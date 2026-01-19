@@ -422,8 +422,7 @@
                                  data-camera-id="${camera.id}"
                                  data-src="${camera.imageUrl}"
                                  alt="${camera.name}"
-                                 style="display: none;"
-                                 loading="lazy">
+                                 style="display: none;">
                             <div class="last-update" id="lastUpdate${index}"></div>
                         </div>
                     `;
@@ -487,34 +486,56 @@
             });
         }
 
-        // Load single image
-        function loadImage(img, index) {
+        // 載入單張圖片
+        function loadImage(img, index, retryCount = 0) {
             const container = img.closest('.camera-image-container');
             const loading = container.querySelector('.loading');
             const lastUpdateEl = document.getElementById(`lastUpdate${index}`);
             
-            // Add timestamp to prevent caching
+            // 加入時間戳以避免快取
             const timestamp = new Date().getTime();
             const imageUrl = img.dataset.src + (img.dataset.src.includes('?') ? '&' : '?') + 't=' + timestamp;
             
-            // Create a new image to preload
+            // 建立新圖片以預載
             const tempImg = new Image();
+            
             tempImg.onload = () => {
-                img.src = tempImg.src;
-                img.style.display = 'block';
-                loading.style.display = 'none';
-                
-                // Update timestamp
-                if (lastUpdateEl) {
-                    const now = new Date();
-                    lastUpdateEl.textContent = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+                // 檢查圖片完整性：如果 naturalWidth 為 0，表示圖片可能損壞或未完全載入
+                if (tempImg.naturalWidth > 0 && tempImg.naturalHeight > 0) {
+                    img.src = tempImg.src;
+                    img.style.display = 'block';
+                    loading.style.display = 'none';
+                    
+                    // 更新時間戳記
+                    if (lastUpdateEl) {
+                        const now = new Date();
+                        lastUpdateEl.textContent = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+                    }
+                } else {
+                    // 圖片內容有問題，觸發重試
+                    handleImageError();
                 }
             };
+
             tempImg.onerror = () => {
-                loading.innerHTML = '<div class="error">載入失敗<br>點擊重新整理重試</div>';
-                loading.style.cursor = 'pointer';
-                loading.onclick = () => loadImage(img, index);
+                handleImageError();
             };
+
+            function handleImageError() {
+                if (retryCount < 3) {
+                    // 自動重試 (最多 3 次，每次間隔 500ms)
+                    console.warn(`圖片載入異常，正在進行第 ${retryCount + 1} 次重試: ${camera.name}`);
+                    setTimeout(() => {
+                        loadImage(img, index, retryCount + 1);
+                    }, 500);
+                } else {
+                    // 重試失敗後才顯示錯誤訊息
+                    loading.innerHTML = '<div class="error">載入失敗<br>點擊重新整理重試</div>';
+                    loading.style.cursor = 'pointer';
+                    loading.onclick = () => loadImage(img, index, 0);
+                }
+            }
+
             tempImg.src = imageUrl;
         }
 
