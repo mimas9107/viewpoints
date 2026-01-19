@@ -7,6 +7,23 @@
 
 ---
 
+## [1.2.2] - 2026-01-19
+
+### Changed
+- **前端邏輯模組化**：將 `index.html` 內部長達 300 行的 JavaScript 拆分至 `js/` 目錄下。
+  - `js/config.js`: 配置載入。
+  - `js/ui.js`: 介面操作與全螢幕。
+  - `js/image-loader.js`: 圖片重試與校驗。
+  - `js/player.js`: HLS 播放器。
+  - `js/app.js`: 主程式進入點。
+- 使用原生 ES Modules (`import/export`)，維持零編譯環境。
+
+## [1.2.1] - 2026-01-19
+
+### Fixed
+- **徹底繁體化**：修正了 `index.html`、`start-server.py` 與所有 Markdown 文件中殘留的簡體字（如：墙、自动、开启等）。
+- **穩定性提升**：修復了更新時間戳記時可能產生的 `null` 元素參考錯誤。
+
 ## [1.2.0] - 2026-01-19
 
 ### Added

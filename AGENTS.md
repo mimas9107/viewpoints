@@ -12,7 +12,13 @@ Viewpoints 是一個基於資料驅動的「即時影像聚合網頁應用」。
 `cameras_database.json` (全域資料庫) ➔ `picker.html` (選取器) ➔ `viewpoints.json` (使用者配置) ➔ `index.html` (渲染引擎)
 
 ### 2. 核心元件
-- **渲染引擎 (index.html)**: 使用原生 JavaScript 與 CSS Grid。根據 `viewpoints.json` 內容動態產生 DOM。
+- **渲染引擎 (index.html)**: 僅包含 HTML/CSS 結構。
+- **邏輯模組 (js/*.js)**: 
+  - `app.js`: 主進入點。
+  - `config.js`: 配置管理。
+  - `ui.js`: 介面操作。
+  - `image-loader.js`: 圖片重試載入邏輯。
+  - `player.js`: HLS 播放器初始化。
 - **選取器 (picker.html)**: 負責過濾資料並產生標準格式的 JSON。支援搜尋、動態分類標籤與自動版面計算。
 - **雙模伺服器 (start-server.js)**:
   - **HTTP 模式**: 提供靜態檔案存取 (Port 8848)。
