@@ -503,8 +503,10 @@
                 loading.style.display = 'none';
                 
                 // Update timestamp
-                const now = new Date();
-                lastUpdateEl.textContent = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+                if (lastUpdateEl) {
+                    const now = new Date();
+                    lastUpdateEl.textContent = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+                }
             };
             tempImg.onerror = () => {
                 loading.innerHTML = '<div class="error">載入失敗<br>點擊重新整理重試</div>';
