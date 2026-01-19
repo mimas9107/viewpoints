@@ -18,7 +18,7 @@ const { z } = require('zod');
 // ==========================================
 // HTTP Server Configuration
 // ==========================================
-const PORT = 8000;
+const PORT = 8848;
 const mimeTypes = {
     '.html': 'text/html',
     '.json': 'application/json',
