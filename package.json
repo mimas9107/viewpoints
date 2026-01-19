@@ -1,0 +1,17 @@
+{
+  "name": "viewpoints",
+  "version": "1.0.0",
+  "description": "基于 tw.live 的客制化监视器墙系统，可通过 JSON 配置文件轻松管理您关注的监控点。",
+  "main": "start-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.2",
+    "zod": "^4.3.5"
+  }
+}
