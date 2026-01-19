@@ -14,14 +14,18 @@ This document provides guidelines for AI coding agents working on the Viewpoints
 ```
 viewpoints/
 ├── index.html              # Main application (HTML/CSS/JS in one file)
+├── picker.html             # Camera picker UI for selecting cameras
 ├── viewpoints.json         # Configuration with camera definitions
 ├── viewpoints.json.template # Empty template for new configurations
+├── cameras_database.json   # Database of all available cameras (600+ cameras)
 ├── start-server.py         # Python HTTP server launcher
-├── start-server.js         # Node.js HTTP server launcher
-├── README.md              # User documentation
-├── QUICKSTART.md          # Quick start guide
-├── LICENSE                # MIT license
-└── .gitignore             # Git ignore rules
+├── start-server.js         # Node.js HTTP + MCP server launcher
+├── MCP_GUIDE.md            # MCP Server setup guide for AI integration
+├── README.md               # User documentation
+├── QUICKSTART.md           # Quick start guide
+├── AGENTS.md               # This file - guidelines for AI agents
+├── LICENSE                 # MIT license
+└── .gitignore              # Git ignore rules
 ```
 
 ## Build/Test/Run Commands
@@ -69,6 +73,39 @@ The application will open at `http://localhost:8000`.
 - Use browser DevTools console (F12) to check for errors
 - Validate JSON: `python3 -m json.tool viewpoints.json`
 - HTML validation: Use W3C validator if needed
+
+## MCP Server
+
+The `start-server.js` file includes a dual-mode server that provides both HTTP and MCP (Model Context Protocol) interfaces:
+
+### Features
+
+- **HTTP Server (Port 8000):** Serves static files (index.html, picker.html)
+- **MCP Server (Stdio):** Provides tools for AI assistants to query camera data
+
+### Available Tools
+
+| Tool | Description |
+|------|-------------|
+| `list_cameras` | List all cameras with optional keyword/category filters |
+| `get_camera_image` | Get the image URL for a specific camera (supports static images, YouTube thumbnails) |
+| `get_current_config` | Read the current viewpoints.json configuration |
+
+### Usage for AI Agents
+
+When working as an AI agent with access to this MCP server, you can:
+1. Use `list_cameras` to find cameras by location or category
+2. Use `get_camera_image` to get the image URL
+3. Analyze the returned URL to provide visual insights about traffic or weather
+
+Example workflow:
+```
+User: "Is there traffic congestion on National Highway 1 at Linkou?"
+Agent: 
+1. Call list_cameras(keyword="林口", category="國道")
+2. Call get_camera_image(id="1030-N-14.7-M") 
+3. Analyze the returned image URL and provide a response
+```
 
 ## Code Style Guidelines
 
