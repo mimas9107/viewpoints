@@ -378,7 +378,8 @@
                                 title="${camera.name}"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
+                                allowfullscreen
+                                loading="lazy">
                             </iframe>
                         </div>
                     `;
@@ -421,7 +422,8 @@
                                  data-camera-id="${camera.id}"
                                  data-src="${camera.imageUrl}"
                                  alt="${camera.name}"
-                                 style="display: none;">
+                                 style="display: none;"
+                                 loading="lazy">
                             <div class="last-update" id="lastUpdate${index}"></div>
                         </div>
                     `;
