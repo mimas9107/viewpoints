@@ -9,7 +9,7 @@ cd viewpoints
 python3 start-server.py
 ```
 
-浏览器会自动打开 `http://localhost:8000`
+浏览器会自動打开 `http://localhost:8000`
 
 ### 2. 停止伺服器
 
@@ -68,7 +68,7 @@ viewpoints/
 ## 常见问题
 
 ### Q: 页面顯示"无法載入組態檔"？
-A: 确保您是通过 `python3 start-server.py` 啟動的，而不是直接双击打开 HTML 檔案。
+A: 确保您是透過 `python3 start-server.py` 啟動的，而不是直接双击打开 HTML 檔案。
 
 ### Q: 如何更改版面設定？
 A: 编辑 `viewpoints.json` 中的 `layout` 字段：
