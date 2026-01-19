@@ -1,0 +1,50 @@
+{
+  "title": "我的监视器墙",
+  "autoRefresh": true,
+  "refreshInterval": 60,
+  "layout": {
+    "columns": 2,
+    "rows": 2
+  },
+  "cameras": [
+    {
+      "id": "1",
+      "name": "监控点名称 1",
+      "description": "监控点描述",
+      "imageUrl": "https://example.com/camera1.jpg",
+      "location": "地理位置",
+      "category": "分类"
+    },
+    {
+      "id": "2",
+      "name": "监控点名称 2（YouTube）",
+      "description": "YouTube 直播示例",
+      "type": "youtube",
+      "youtubeId": "YOUR_YOUTUBE_VIDEO_ID",
+      "location": "地理位置",
+      "category": "景点"
+    },
+    {
+      "id": "3",
+      "name": "监控点名称 3（HLS）",
+      "description": "HLS 串流示例",
+      "type": "hls",
+      "hlsUrl": "https://example.com/stream.m3u8",
+      "location": "地理位置",
+      "category": "市区"
+    },
+    {
+      "id": "4",
+      "name": "监控点名称 4",
+      "description": "监控点描述",
+      "imageUrl": "https://example.com/camera4.jpg",
+      "location": "地理位置",
+      "category": "分类"
+    }
+  ],
+  "备注": {
+    "说明": "这是配置文件模板，请根据实际需求修改",
+    "type字段说明": "image=静态图片（默认），youtube=YouTube直播，hls=HLS串流",
+    "如何获取URL": "请参考 README.md 的详细说明"
+  }
+}

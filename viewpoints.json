@@ -1,0 +1,74 @@
+{
+  "title": "我的監控牆",
+  "autoRefresh": true,
+  "refreshInterval": 60,
+  "layout": {
+    "columns": 3,
+    "rows": 2
+  },
+  "cameras": [
+    {
+      "id": "ymswyttbpd",
+      "name": "陽明書屋遠眺台北盆地",
+      "category": "陽明山",
+      "url": "https://tw.live/cam/?id=ymswyttbpd",
+      "thumbnail": "https://img.youtube.com/vi/RttyIGHbN_w/maxresdefault_live.jpg?t=1768802246",
+      "type": "youtube",
+      "youtubeId": "RttyIGHbN_w",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "T14A-d61a0c91",
+      "name": "合歡山武嶺亭",
+      "description": "合歡山武嶺亭即時影像",
+      "type": "image",
+      "imageUrl": "https://cctv-ss04.thb.gov.tw/T14A-d61a0c91",
+      "location": "南投縣仁愛鄉",
+      "category": "景點",
+      "url": "https://tw.live/cam/?id=T14A-d61a0c91",
+      "thumbnail": "https://cctv-ss04.thb.gov.tw/T14A-d61a0c91/snapshot?t=1768802258"
+    },
+    {
+      "id": "eryanping",
+      "name": "二延平步道",
+      "category": "阿里山",
+      "url": "https://tw.live/cam/?id=eryanping",
+      "thumbnail": "https://img.youtube.com/vi/j2L_559nCjc/sddefault_live.jpg?t=1768802269",
+      "type": "youtube",
+      "youtubeId": "j2L_559nCjc",
+      "description": "阿里山 YouTube 直播"
+    },
+    {
+      "id": "CCTV-11-0090-023-001",
+      "name": "北宜公路石碇",
+      "description": "新北市石碇區北宜路即時影像",
+      "type": "image",
+      "imageUrl": "https://cctv-ss03.thb.gov.tw:443/T9-23K+050",
+      "location": "新北市石碇區",
+      "category": "省道",
+      "url": "https://tw.live/cam/?id=CCTV-11-0090-023-001",
+      "thumbnail": "https://cctv-ss03.thb.gov.tw:443/T9-23K+050/snapshot?t=1768802289"
+    },
+    {
+      "id": "CCTV-12-0640-023-002",
+      "name": "台64線",
+      "description": "快速公路64號即時影像",
+      "type": "image",
+      "imageUrl": "https://cctv-ss08.thb.gov.tw:443/T64-23K+750",
+      "location": "新北市",
+      "category": "快速道路",
+      "url": "https://tw.live/cam/?id=CCTV-12-0640-023-002",
+      "thumbnail": "https://cctv-ss08.thb.gov.tw:443/T64-23K+750/snapshot?t=1768802332"
+    },
+    {
+      "id": "xiaoliyuanshan",
+      "name": "阿里山小笠原山觀景台日出",
+      "category": "阿里山",
+      "url": "https://tw.live/cam/?id=xiaoliyuanshan",
+      "thumbnail": "https://img.youtube.com/vi/turRcGhPnT4/sddefault_live.jpg?t=1768802269",
+      "type": "youtube",
+      "youtubeId": "turRcGhPnT4",
+      "description": "阿里山 YouTube 直播"
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+# Changelog
+
+所有重要的變更都會記錄在此文件中。
+
+格式基於 [Keep a Changelog](https://keepachangelog.com/zh-TW/1.0.0/)，
+版本號遵循 [Semantic Versioning](https://semver.org/lang/zh-TW/)。
+
+---
+
+## [1.1.0] - 2026-01-19
+
+### Added
+- 新增監視器選擇器 (`picker.html`) - 提供圖形化界面選擇監控點
+- 新增監控點資料庫 (`cameras_database.json`) - 包含 10 個精選監控點
+- 新增爬蟲程式 (`scraper.py`) - 用於未來擴充資料庫
+- 新增選擇器使用說明 (`PICKER_USAGE.md`)
+- 新增 CSS 類別 `.grid-2x3` - 支援 2 欄 × 3 列布局
+
+### Fixed
+- **[重要] 修復靜態圖片監控點無法載入的問題**
+  - **問題描述：** 配置檔中的靜態圖片監控點缺少必要欄位（`type` 和 `imageUrl`），導致 JavaScript 嘗試載入 `undefined` URL，產生 HTTP 404 錯誤
+  - **影響範圍：** 合歡山武嶺亭、北宜公路石碇、台64線 等靜態圖片監控點
+  - **錯誤日誌：**
+    ```
+    GET /undefined?t=1768804679493 HTTP/1.1" 404 -
+    ```
+  - **根本原因：** 從 tw.live 複製的配置缺少監控類型判斷和對應的 URL 欄位
+  - **解決方案：** 
+    1. 為所有靜態圖片監控點新增 `type: "image"` 欄位
+    2. 新增 `imageUrl` 欄位，值從 `thumbnail` URL 中提取
+    3. 統一補齊 `location`、`category`、`description` 等欄位
+  - **修正的監控點：**
+    - 合歡山武嶺亭 (`T14A-d61a0c91`)
+    - 北宜公路石碇 (`CCTV-11-0090-023-001`)
+    - 台64線 (`CCTV-12-0640-023-002`)
+
+### Changed
+- 更新 `index.html` - 支援 2x3 網格布局
+- 更新響應式布局 CSS - 包含 `.grid-2x3` 在手機版適配中
+
+---
+
+## [1.0.0] - 2026-01-19
+
+### Added
+- 初始版本發布
+- 支援三種監控類型：
+  - 靜態圖片 (image)
+  - YouTube 直播 (youtube)
+  - HLS 串流 (hls)
+- 支援網格布局：2x2, 3x2, 3x3, 4x3
+- 自動/手動刷新功能
+- 全屏查看功能
+- JSON 配置檔支援
+- Python 和 Node.js 服務器啟動腳本
+- 響應式設計（支援手機和電腦）
+
+### Documentation
+- 新增 README.md - 完整使用說明
+- 新增 QUICKSTART.md - 快速開始指南
+- 新增 AGENTS.md - AI 代理開發指南
+
+---
+
+## 已知問題
+
+### [待修復]
+- HLS URL 可能包含時效性 token，需定期更新
+- 部分監控點可能因為來源暫時離線而無法顯示
+
+### [計畫功能]
+- [ ] 選擇器新增拖拉排序功能
+- [ ] 支援自訂網格布局（手動設定欄列數）
+- [ ] 預覽縮圖顯示
+- [ ] 儲存/載入多組配置
+- [ ] 自動爬蟲更新資料庫
+- [ ] 資料庫擴充至 1000+ 監控點
+
+---
+
+## 配置檔案格式規範
+
+### 必要欄位說明
+
+為避免 `undefined` 錯誤，請確保所有監控點包含以下欄位：
+
+#### 靜態圖片 (type: "image")
+```json
+{
+  "id": "唯一ID",
+  "name": "監控點名稱",
+  "description": "詳細描述",
+  "type": "image",           // ← 必須
+  "imageUrl": "圖片URL",      // ← 必須
+  "location": "地點",
+  "category": "分類"
+}
+```
+
+#### YouTube 直播 (type: "youtube")
+```json
+{
+  "id": "唯一ID",
+  "name": "監控點名稱",
+  "description": "詳細描述",
+  "type": "youtube",         // ← 必須
+  "youtubeId": "影片ID",      // ← 必須
+  "location": "地點",
+  "category": "分類"
+}
+```
+
+#### HLS 串流 (type: "hls")
+```json
+{
+  "id": "唯一ID",
+  "name": "監控點名稱",
+  "description": "詳細描述",
+  "type": "hls",             // ← 必須
+  "hlsUrl": "串流URL",        // ← 必須
+  "location": "地點",
+  "category": "分類"
+}
+```
+
+---
+
+## 故障排除
+
+### 監控點無法載入（顯示 404 錯誤）
+
+**症狀：**
+- 瀏覽器控制台顯示 `GET /undefined` 錯誤
+- 監控畫面顯示「加載失敗」
+
+**診斷：**
+```bash
+# 檢查配置檔格式
+python3 -m json.tool viewpoints.json
+
+# 查看服務器日誌
+# 尋找 "404" 和 "undefined" 關鍵字
+```
+
+**解決方案：**
+1. 檢查所有監控點是否包含對應類型的 URL 欄位
+2. 靜態圖片必須有 `imageUrl`
+3. YouTube 必須有 `youtubeId`
+4. HLS 必須有 `hlsUrl`
+5. 所有監控點必須有 `type` 欄位
+
+**建議：**
+- 使用選擇器 (`picker.html`) 自動產生配置，避免手動編輯錯誤
+- 手動編輯後務必驗證 JSON 格式
+
+---
+
+## 版本說明
+
+### 版本號格式：主版本.次版本.修訂號
+
+- **主版本：** 不兼容的 API 變更
+- **次版本：** 向下兼容的功能新增
+- **修訂號：** 向下兼容的問題修正
+
+---
+
+## 貢獻指南
+
+如果你發現新的問題或有改進建議：
+
+1. 記錄問題的完整描述
+2. 提供重現步驟
+3. 附上錯誤日誌（如果有）
+4. 說明預期行為和實際行為
+5. 更新此 CHANGELOG.md
+
+---
+
+## 聯絡資訊
+
+- 專案靈感來源：[tw.live](https://tw.live)
+- 授權：MIT License
+- 版本：1.1.0
+- 最後更新：2026-01-19

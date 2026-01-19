@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>監視器選擇器 - Viewpoints</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+            background: linear-gradient(135deg, #1a1a1b 0%, #2d2d2e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .controls {
+            background: #2d2d2e;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            background: #1a1a1b;
+            border: 2px solid #4a4a4b;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #0066cc;
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 8px 16px;
+            background: #4a4a4b;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .filter-tab:hover {
+            background: #5a5a5b;
+        }
+
+        .filter-tab.active {
+            background: #0066cc;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .camera-list {
+            background: #2d2d2e;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .camera-item {
+            background: #3a3a3b;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .camera-item:hover {
+            background: #4a4a4b;
+            transform: translateX(5px);
+        }
+
+        .camera-item.selected {
+            border-color: #0066cc;
+            background: #0066cc22;
+        }
+
+        .camera-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .camera-name {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .camera-type {
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .camera-type.youtube {
+            background: rgba(255, 0, 0, 0.8);
+        }
+
+        .camera-type.hls {
+            background: rgba(0, 153, 255, 0.8);
+        }
+
+        .camera-type.image {
+            background: rgba(76, 175, 80, 0.8);
+        }
+
+        .camera-info {
+            font-size: 12px;
+            color: #aaa;
+            display: flex;
+            gap: 15px;
+        }
+
+        .selected-panel {
+            background: #2d2d2e;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .selected-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .selected-count {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .clear-btn {
+            padding: 6px 12px;
+            background: #ff4444;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .clear-btn:hover {
+            background: #ff6666;
+        }
+
+        .selected-item {
+            background: #3a3a3b;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .remove-btn {
+            background: #ff4444;
+            border: none;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .export-section {
+            background: #2d2d2e;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .export-btn {
+            width: 100%;
+            padding: 15px;
+            background: #00cc66;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .export-btn:hover {
+            background: #00dd77;
+        }
+
+        .preview-btn {
+            width: 100%;
+            padding: 15px;
+            background: #0066cc;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .preview-btn:hover {
+            background: #0077dd;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📺 監視器選擇器</h1>
+            <p>從資料庫中選擇你想要的監控點，建立專屬監控牆</p>
+        </div>
+
+        <div class="controls">
+            <div class="search-bar">
+                <input type="text" class="search-input" id="searchInput" placeholder="🔍 搜尋監控點名稱、地點...">
+            </div>
+            <div class="filter-tabs" id="filterTabs">
+                <button class="filter-tab active" data-category="全部">全部</button>
+                <button class="filter-tab" data-category="國道">國道</button>
+                <button class="filter-tab" data-category="景點">景點</button>
+                <button class="filter-tab" data-category="市區">市區</button>
+                <button class="filter-tab" data-category="快速道路">快速道路</button>
+                <button class="filter-tab" data-category="省道">省道</button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="camera-list" id="cameraList">
+                <!-- Camera items will be inserted here -->
+            </div>
+
+            <div>
+                <div class="selected-panel">
+                    <div class="selected-header">
+                        <span class="selected-count">已選擇: <span id="selectedCount">0</span> 個</span>
+                        <button class="clear-btn" onclick="clearAll()">清空</button>
+                    </div>
+                    <div id="selectedList">
+                        <p style="color: #666; text-align: center;">尚未選擇任何監控點</p>
+                    </div>
+                </div>
+
+                <div class="export-section">
+                    <button class="export-btn" onclick="exportConfig()">📥 匯出配置</button>
+                    <button class="preview-btn" onclick="previewWall()">👁️ 預覽監控牆</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let database = {};
+        let selectedCameras = [];
+        let currentFilter = '全部';
+
+        // 載入資料庫
+        async function loadDatabase() {
+            try {
+                const response = await fetch('./cameras_database.json');
+                database = await response.json();
+                renderCameraList();
+            } catch (error) {
+                console.error('載入資料庫失敗:', error);
+                alert('無法載入監控點資料庫');
+            }
+        }
+
+        // 渲染監控點列表
+        function renderCameraList(searchTerm = '') {
+            const container = document.getElementById('cameraList');
+            const cameras = database.cameras || [];
+            
+            // 篩選
+            let filtered = cameras.filter(cam => {
+                const matchSearch = !searchTerm || 
+                    cam.name.includes(searchTerm) || 
+                    cam.location.includes(searchTerm);
+                const matchCategory = currentFilter === '全部' || cam.category === currentFilter;
+                return matchSearch && matchCategory;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<p style="color: #666; text-align: center;">找不到符合的監控點</p>';
+                return;
+            }
+
+            container.innerHTML = filtered.map(cam => `
+                <div class="camera-item ${isSelected(cam.id) ? 'selected' : ''}" onclick="toggleCamera('${cam.id}')">
+                    <div class="camera-header">
+                        <span class="camera-name">${cam.name}</span>
+                        <span class="camera-type ${cam.type}">${getTypeName(cam.type)}</span>
+                    </div>
+                    <div class="camera-info">
+                        <span>📍 ${cam.location}</span>
+                        <span>🏷️ ${cam.category}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 判斷是否已選擇
+        function isSelected(id) {
+            return selectedCameras.some(cam => cam.id === id);
+        }
+
+        // 取得類型名稱
+        function getTypeName(type) {
+            const types = {
+                'image': '圖片',
+                'youtube': 'YouTube',
+                'hls': 'HLS'
+            };
+            return types[type] || type;
+        }
+
+        // 切換選擇
+        function toggleCamera(id) {
+            const camera = database.cameras.find(cam => cam.id === id);
+            if (!camera) return;
+
+            const index = selectedCameras.findIndex(cam => cam.id === id);
+            if (index > -1) {
+                selectedCameras.splice(index, 1);
+            } else {
+                selectedCameras.push(camera);
+            }
+
+            renderCameraList(document.getElementById('searchInput').value);
+            renderSelectedList();
+        }
+
+        // 渲染已選擇列表
+        function renderSelectedList() {
+            const container = document.getElementById('selectedList');
+            const countEl = document.getElementById('selectedCount');
+            
+            countEl.textContent = selectedCameras.length;
+
+            if (selectedCameras.length === 0) {
+                container.innerHTML = '<p style="color: #666; text-align: center;">尚未選擇任何監控點</p>';
+                return;
+            }
+
+            container.innerHTML = selectedCameras.map((cam, index) => `
+                <div class="selected-item">
+                    <div>
+                        <div style="font-weight: 600; margin-bottom: 4px;">${cam.name}</div>
+                        <div style="font-size: 11px; color: #aaa;">${cam.location}</div>
+                    </div>
+                    <button class="remove-btn" onclick="removeCamera('${cam.id}')">×</button>
+                </div>
+            `).join('');
+        }
+
+        // 移除監控點
+        function removeCamera(id) {
+            selectedCameras = selectedCameras.filter(cam => cam.id !== id);
+            renderCameraList(document.getElementById('searchInput').value);
+            renderSelectedList();
+        }
+
+        // 清空全部
+        function clearAll() {
+            if (selectedCameras.length === 0) return;
+            if (confirm('確定要清空所有已選擇的監控點嗎？')) {
+                selectedCameras = [];
+                renderCameraList(document.getElementById('searchInput').value);
+                renderSelectedList();
+            }
+        }
+
+        // 匯出配置
+        function exportConfig() {
+            if (selectedCameras.length === 0) {
+                alert('請先選擇至少一個監控點');
+                return;
+            }
+
+            const cols = Math.ceil(Math.sqrt(selectedCameras.length));
+            const rows = Math.ceil(selectedCameras.length / cols);
+
+            const config = {
+                title: "我的監控牆",
+                autoRefresh: true,
+                refreshInterval: 60,
+                layout: {
+                    columns: cols,
+                    rows: rows
+                },
+                cameras: selectedCameras
+            };
+
+            const json = JSON.stringify(config, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'viewpoints.json';
+            a.click();
+            URL.revokeObjectURL(url);
+
+            alert(`✅ 配置已匯出！\n已選擇 ${selectedCameras.length} 個監控點\n布局: ${cols}×${rows}`);
+        }
+
+        // 預覽監控牆
+        function previewWall() {
+            if (selectedCameras.length === 0) {
+                alert('請先選擇至少一個監控點');
+                return;
+            }
+
+            const cols = Math.ceil(Math.sqrt(selectedCameras.length));
+            const rows = Math.ceil(selectedCameras.length / cols);
+
+            alert(`預覽監控牆\n\n已選擇: ${selectedCameras.length} 個監控點\n布局: ${cols} 欄 × ${rows} 列\n\n請先「匯出配置」，然後將檔案儲存為 viewpoints.json 並重新整理主頁面。`);
+        }
+
+        // 搜尋功能
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            renderCameraList(e.target.value);
+        });
+
+        // 分類篩選
+        document.getElementById('filterTabs').addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-tab')) {
+                document.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
+                e.target.classList.add('active');
+                currentFilter = e.target.dataset.category;
+                renderCameraList(document.getElementById('searchInput').value);
+            }
+        });
+
+        // 初始化
+        loadDatabase();
+    </script>
+</body>
+</html>

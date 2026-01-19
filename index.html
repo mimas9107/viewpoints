@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的监视器墙</title>
+    
+    <!-- Video.js for HLS streaming -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.23.4/video-js.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.23.4/video.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a1b;
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #2d2d2e;
+            padding: 15px 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn {
+            background-color: #4a4a4b;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #5a5a5b;
+        }
+
+        .btn.active {
+            background-color: #0066cc;
+        }
+
+        .status {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .status.live {
+            color: #00ff00;
+        }
+
+        .camera-grid {
+            display: grid;
+            gap: 10px;
+            padding: 10px;
+            height: calc(100vh - 70px);
+        }
+
+        .camera-grid.grid-2x2 {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+        }
+
+        .camera-grid.grid-2x3 {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+        }
+
+        .camera-grid.grid-3x2 {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+        }
+
+        .camera-grid.grid-3x3 {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+        }
+
+        .camera-grid.grid-4x3 {
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+        }
+
+        .camera-item {
+            background-color: #2d2d2e;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .camera-header {
+            padding: 10px 15px;
+            background-color: #3a3a3b;
+            border-bottom: 1px solid #4a4a4b;
+        }
+
+        .camera-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .camera-info {
+            font-size: 12px;
+            color: #aaa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .camera-location {
+            color: #888;
+        }
+
+        .camera-category {
+            background-color: #4a4a4b;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+
+        .camera-image-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #1a1a1b;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .camera-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .camera-image:hover {
+            transform: scale(1.02);
+        }
+
+        .camera-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .youtube-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background-color: rgba(255, 0, 0, 0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .hls-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background-color: rgba(0, 153, 255, 0.8);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .video-js {
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-js .vjs-tech {
+            object-fit: contain;
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #666;
+            font-size: 14px;
+        }
+
+        .error {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ff4444;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .last-update {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            color: #aaa;
+        }
+
+        .fullscreen-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fullscreen-overlay.active {
+            display: flex;
+        }
+
+        .fullscreen-image {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+        }
+
+        .close-fullscreen {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-fullscreen:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .camera-grid.grid-2x2,
+            .camera-grid.grid-2x3,
+            .camera-grid.grid-3x2,
+            .camera-grid.grid-3x3,
+            .camera-grid.grid-4x3 {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                height: auto;
+            }
+
+            .camera-item {
+                min-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 id="pageTitle">我的监视器墙</h1>
+        <div class="controls">
+            <span class="status" id="autoRefreshStatus">自动刷新: 关闭</span>
+            <button class="btn" id="refreshBtn">手动刷新</button>
+            <button class="btn" id="toggleAutoRefresh">启用自动刷新</button>
+        </div>
+    </div>
+
+    <div class="camera-grid grid-2x2" id="cameraGrid">
+        <!-- Camera items will be inserted here -->
+    </div>
+
+    <div class="fullscreen-overlay" id="fullscreenOverlay">
+        <button class="close-fullscreen" id="closeFullscreen">&times;</button>
+        <img class="fullscreen-image" id="fullscreenImage" src="" alt="全屏显示">
+    </div>
+
+    <script>
+        let config = null;
+        let autoRefreshInterval = null;
+        let autoRefreshEnabled = false;
+
+        // Load configuration
+        async function loadConfig() {
+            try {
+                const response = await fetch('./viewpoints.json');
+                config = await response.json();
+                
+                // Update page title
+                document.getElementById('pageTitle').textContent = config.title || '我的监视器墙';
+                
+                // Set up grid layout
+                const grid = document.getElementById('cameraGrid');
+                grid.className = `camera-grid grid-${config.layout.columns}x${config.layout.rows}`;
+                
+                // Render cameras
+                renderCameras();
+                
+                // Set up auto refresh
+                if (config.autoRefresh) {
+                    enableAutoRefresh();
+                }
+            } catch (error) {
+                console.error('Failed to load config:', error);
+                alert('无法加载配置文件 viewpoints.json，请确保文件存在。');
+            }
+        }
+
+        // Render camera items
+        function renderCameras() {
+            const grid = document.getElementById('cameraGrid');
+            grid.innerHTML = '';
+            
+            config.cameras.forEach((camera, index) => {
+                const cameraItem = document.createElement('div');
+                cameraItem.className = 'camera-item';
+                
+                const isYoutube = camera.type === 'youtube';
+                const isHls = camera.type === 'hls';
+                
+                if (isYoutube) {
+                    // YouTube 直播
+                    cameraItem.innerHTML = `
+                        <div class="camera-header">
+                            <div class="camera-name">${camera.name}</div>
+                            <div class="camera-info">
+                                <span class="camera-location">${camera.location}</span>
+                                <span class="camera-category">${camera.category}</span>
+                            </div>
+                        </div>
+                        <div class="camera-image-container">
+                            <div class="youtube-badge">LIVE</div>
+                            <iframe class="camera-iframe"
+                                src="https://www.youtube-nocookie.com/embed/${camera.youtubeId}?mute=1&autoplay=1&playsinline=1&rel=0&modestbranding=1&controls=1"
+                                title="${camera.name}"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    `;
+                } else if (isHls) {
+                    // HLS/M3U8 串流
+                    cameraItem.innerHTML = `
+                        <div class="camera-header">
+                            <div class="camera-name">${camera.name}</div>
+                            <div class="camera-info">
+                                <span class="camera-location">${camera.location}</span>
+                                <span class="camera-category">${camera.category}</span>
+                            </div>
+                        </div>
+                        <div class="camera-image-container">
+                            <div class="hls-badge">HLS LIVE</div>
+                            <video-js id="hls-player-${index}" 
+                                      class="video-js vjs-default-skin vjs-big-play-centered"
+                                      controls
+                                      autoplay
+                                      muted
+                                      playsinline
+                                      preload="auto">
+                                <source src="${camera.hlsUrl}" type="application/x-mpegURL">
+                            </video-js>
+                        </div>
+                    `;
+                } else {
+                    // 静态图片监控器
+                    cameraItem.innerHTML = `
+                        <div class="camera-header">
+                            <div class="camera-name">${camera.name}</div>
+                            <div class="camera-info">
+                                <span class="camera-location">${camera.location}</span>
+                                <span class="camera-category">${camera.category}</span>
+                            </div>
+                        </div>
+                        <div class="camera-image-container">
+                            <div class="loading">加载中...</div>
+                            <img class="camera-image" 
+                                 data-camera-id="${camera.id}"
+                                 data-src="${camera.imageUrl}"
+                                 alt="${camera.name}"
+                                 style="display: none;">
+                            <div class="last-update" id="lastUpdate${index}"></div>
+                        </div>
+                    `;
+                }
+                
+                grid.appendChild(cameraItem);
+            });
+            
+            // Initialize HLS players
+            initHlsPlayers();
+            
+            // Load images (only for non-YouTube cameras)
+            loadAllImages();
+            
+            // Add click event for fullscreen (only for images)
+            document.querySelectorAll('.camera-image').forEach(img => {
+                img.addEventListener('click', () => {
+                    showFullscreen(img.src, img.alt);
+                });
+            });
+        }
+
+        // Initialize HLS players
+        function initHlsPlayers() {
+            config.cameras.forEach((camera, index) => {
+                if (camera.type === 'hls') {
+                    const playerId = `hls-player-${index}`;
+                    const playerElement = document.getElementById(playerId);
+                    
+                    if (playerElement && typeof videojs !== 'undefined') {
+                        const player = videojs(playerId, {
+                            autoplay: true,
+                            muted: true,
+                            preload: 'auto',
+                            fluid: true,
+                            liveui: true,
+                            html5: {
+                                hls: {
+                                    enableLowInitialPlaylist: true,
+                                    smoothQualityChange: true,
+                                    overrideNative: true
+                                }
+                            }
+                        });
+
+                        player.ready(function() {
+                            this.play().catch(err => {
+                                console.log('Auto-play was prevented:', err);
+                            });
+                        });
+                    }
+                }
+            });
+        }
+
+        // Load all camera images
+        function loadAllImages() {
+            const images = document.querySelectorAll('.camera-image');
+            images.forEach((img, index) => {
+                loadImage(img, index);
+            });
+        }
+
+        // Load single image
+        function loadImage(img, index) {
+            const container = img.closest('.camera-image-container');
+            const loading = container.querySelector('.loading');
+            const lastUpdateEl = document.getElementById(`lastUpdate${index}`);
+            
+            // Add timestamp to prevent caching
+            const timestamp = new Date().getTime();
+            const imageUrl = img.dataset.src + (img.dataset.src.includes('?') ? '&' : '?') + 't=' + timestamp;
+            
+            // Create a new image to preload
+            const tempImg = new Image();
+            tempImg.onload = () => {
+                img.src = tempImg.src;
+                img.style.display = 'block';
+                loading.style.display = 'none';
+                
+                // Update timestamp
+                const now = new Date();
+                lastUpdateEl.textContent = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
+            };
+            tempImg.onerror = () => {
+                loading.innerHTML = '<div class="error">加载失败<br>点击刷新重试</div>';
+                loading.style.cursor = 'pointer';
+                loading.onclick = () => loadImage(img, index);
+            };
+            tempImg.src = imageUrl;
+        }
+
+        // Manual refresh
+        document.getElementById('refreshBtn').addEventListener('click', () => {
+            loadAllImages();
+        });
+
+        // Toggle auto refresh
+        document.getElementById('toggleAutoRefresh').addEventListener('click', () => {
+            if (autoRefreshEnabled) {
+                disableAutoRefresh();
+            } else {
+                enableAutoRefresh();
+            }
+        });
+
+        function enableAutoRefresh() {
+            autoRefreshEnabled = true;
+            const interval = (config?.refreshInterval || 60) * 1000;
+            
+            autoRefreshInterval = setInterval(() => {
+                loadAllImages();
+            }, interval);
+            
+            document.getElementById('autoRefreshStatus').textContent = `自动刷新: 开启 (${config?.refreshInterval || 60}秒)`;
+            document.getElementById('autoRefreshStatus').classList.add('live');
+            document.getElementById('toggleAutoRefresh').textContent = '停止自动刷新';
+            document.getElementById('toggleAutoRefresh').classList.add('active');
+        }
+
+        function disableAutoRefresh() {
+            autoRefreshEnabled = false;
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+                autoRefreshInterval = null;
+            }
+            
+            document.getElementById('autoRefreshStatus').textContent = '自动刷新: 关闭';
+            document.getElementById('autoRefreshStatus').classList.remove('live');
+            document.getElementById('toggleAutoRefresh').textContent = '启用自动刷新';
+            document.getElementById('toggleAutoRefresh').classList.remove('active');
+        }
+
+        // Fullscreen functionality
+        function showFullscreen(src, alt) {
+            const overlay = document.getElementById('fullscreenOverlay');
+            const img = document.getElementById('fullscreenImage');
+            img.src = src;
+            img.alt = alt;
+            overlay.classList.add('active');
+        }
+
+        document.getElementById('closeFullscreen').addEventListener('click', () => {
+            document.getElementById('fullscreenOverlay').classList.remove('active');
+        });
+
+        document.getElementById('fullscreenOverlay').addEventListener('click', (e) => {
+            if (e.target.id === 'fullscreenOverlay') {
+                document.getElementById('fullscreenOverlay').classList.remove('active');
+            }
+        });
+
+        // ESC key to close fullscreen
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.getElementById('fullscreenOverlay').classList.remove('active');
+            }
+        });
+
+        // Initialize
+        loadConfig();
+    </script>
+</body>
+</html>
