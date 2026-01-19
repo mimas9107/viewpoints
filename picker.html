@@ -404,18 +404,20 @@
                 return;
             }
 
-            container.innerHTML = filtered.map(cam => `
+            container.innerHTML = filtered.map(cam => {
+                const type = cam.type || 'image';
+                return `
                 <div class="camera-item ${isSelected(cam.id) ? 'selected' : ''}" onclick="toggleCamera('${cam.id}')">
                     <div class="camera-header">
                         <span class="camera-name">${cam.name}</span>
-                        <span class="camera-type ${cam.type}">${getTypeName(cam.type)}</span>
+                        <span class="camera-type ${type}">${getTypeName(type)}</span>
                     </div>
                     <div class="camera-info">
                         <span>📍 ${cam.location || "未知地點"}</span>
                         <span>🏷️ ${cam.category || "未分類"}</span>
                     </div>
                 </div>
-            `).join('');
+            `;}).join('');
         }
 
         // 判斷是否已選擇

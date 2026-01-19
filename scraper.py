@@ -158,8 +158,11 @@ class TWLiveScraper:
                 "id": camera_id,
                 "name": name,
                 "category": category_name,
+                "location": category_name,  # 預設使用分類名稱作為地點
                 "url": camera_url,
                 "thumbnail": thumbnail,
+                "type": "image",  # 預設類型
+                "imageUrl": thumbnail,  # 預設圖片網址
             }
 
             # 判斷類型（從縮圖 URL）
@@ -170,6 +173,8 @@ class TWLiveScraper:
                     camera["type"] = "youtube"
                     camera["youtubeId"] = yt_id_match.group(1)
                     camera["description"] = f"{category_name} YouTube 直播"
+                    # YouTube 不需要 imageUrl
+                    del camera["imageUrl"]
 
             cameras.append(camera)
 
