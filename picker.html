@@ -263,6 +263,26 @@
             background: #0077dd;
         }
 
+        .back-btn {
+            width: 100%;
+            padding: 15px;
+            background: #4a4a4b;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .back-btn:hover {
+            background: #5a5a5b;
+        }
+
         @media (max-width: 768px) {
             .main-content {
                 grid-template-columns: 1fr;
@@ -310,6 +330,7 @@
                 <div class="export-section">
                     <button class="export-btn" onclick="exportConfig()">📥 匯出配置</button>
                     <button class="preview-btn" onclick="previewWall()">👁️ 預覽監控牆</button>
+                    <a href="index.html" class="back-btn">🏠 返回監控牆</a>
                 </div>
             </div>
         </div>
