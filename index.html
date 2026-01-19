@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的監視器墙</title>
+    <title>我的監視器牆</title>
     
     <!-- Video.js for HLS streaming -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.23.4/video-js.min.css">
@@ -300,10 +300,10 @@
 </head>
 <body>
     <div class="header">
-        <h1 id="pageTitle">我的監視器墙</h1>
+        <h1 id="pageTitle">我的監視器牆</h1>
         <div class="controls">
-            <span class="status" id="autoRefreshStatus">自動重新整理: 关闭</span>
-            <button class="btn" id="refreshBtn">手动重新整理</button>
+            <span class="status" id="autoRefreshStatus">自動重新整理: 關閉</span>
+            <button class="btn" id="refreshBtn">手動重新整理</button>
             <button class="btn" id="toggleAutoRefresh">啟用自動重新整理</button>
             <a href="picker.html" class="btn" style="text-decoration: none;">⚙️ 選取器</a>
         </div>
@@ -315,7 +315,7 @@
 
     <div class="fullscreen-overlay" id="fullscreenOverlay">
         <button class="close-fullscreen" id="closeFullscreen">&times;</button>
-        <img class="fullscreen-image" id="fullscreenImage" src="" alt="全屏顯示">
+        <img class="fullscreen-image" id="fullscreenImage" src="" alt="全螢幕顯示">
     </div>
 
     <script>
@@ -329,8 +329,8 @@
                 const response = await fetch('./viewpoints.json');
                 config = await response.json();
                 
-                // Update page title
-                document.getElementById('pageTitle').textContent = config.title || '我的監視器墙';
+                // 更新頁面標題
+                document.getElementById('pageTitle').textContent = config.title || '我的監視器牆';
                 
                 // Set up grid layout
                 const grid = document.getElementById('cameraGrid');
@@ -536,7 +536,7 @@
                 loadAllImages();
             }, interval);
             
-            document.getElementById('autoRefreshStatus').textContent = `自動重新整理: 开启 (${config?.refreshInterval || 60}秒)`;
+            document.getElementById('autoRefreshStatus').textContent = `自動重新整理: 開啟 (${config?.refreshInterval || 60}秒)`;
             document.getElementById('autoRefreshStatus').classList.add('live');
             document.getElementById('toggleAutoRefresh').textContent = '停止自動重新整理';
             document.getElementById('toggleAutoRefresh').classList.add('active');
@@ -549,7 +549,7 @@
                 autoRefreshInterval = null;
             }
             
-            document.getElementById('autoRefreshStatus').textContent = '自動重新整理: 关闭';
+            document.getElementById('autoRefreshStatus').textContent = '自動重新整理: 關閉';
             document.getElementById('autoRefreshStatus').classList.remove('live');
             document.getElementById('toggleAutoRefresh').textContent = '啟用自動重新整理';
             document.getElementById('toggleAutoRefresh').classList.remove('active');
