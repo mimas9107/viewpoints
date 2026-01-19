@@ -11,8 +11,17 @@ Viewpoints 是一個基於資料驅動的「即時影像聚合網頁應用」。
 ### 1. 數據流向 (Data Flow)
 `cameras_database.json` (全域資料庫) ➔ `picker.html` (選取器) ➔ `viewpoints.json` (使用者配置) ➔ `index.html` (渲染引擎)
 
-### 2. 核心元件
-- **渲染引擎 (index.html)**: 僅包含 HTML/CSS 結構。
+### 2. 目錄結構 (Directory Structure)
+- `index.html`: 主監控牆。
+- `picker.html`: 監控點選取器。
+- `css/`: 樣式表目錄。
+- `js/`: 邏輯模組目錄。
+- `viewpoints.json`: 當前配置檔。
+- `cameras_database.json`: 全域監控點資料庫。
+
+### 3. 核心元件
+- **渲染引擎 (index.html)**: 僅包含 HTML 結構。
+- **樣式模組 (css/*.css)**: 負責介面視覺外觀。
 - **邏輯模組 (js/*.js)**: 
   - `app.js`: 主進入點。
   - `config.js`: 配置管理。
@@ -154,6 +163,6 @@ python3 -m json.tool viewpoints.json
 - [ ] **視覺警報**: 透過 MCP 定時截圖並在車流量過大時發出通知。
 
 ---
-**版本**: 1.2.2
+**版本**: 1.2.3
 **最後更新**: 2026-01-19
 **維護者**: AI Agent Framework
