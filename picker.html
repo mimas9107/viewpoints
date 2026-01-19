@@ -390,9 +390,11 @@
             
             // 篩選
             let filtered = cameras.filter(cam => {
+                const name = cam.name || "";
+                const location = cam.location || "";
                 const matchSearch = !searchTerm || 
-                    cam.name.includes(searchTerm) || 
-                    cam.location.includes(searchTerm);
+                    name.includes(searchTerm) || 
+                    location.includes(searchTerm);
                 const matchCategory = currentFilter === '全部' || cam.category === currentFilter;
                 return matchSearch && matchCategory;
             });
@@ -409,8 +411,8 @@
                         <span class="camera-type ${cam.type}">${getTypeName(cam.type)}</span>
                     </div>
                     <div class="camera-info">
-                        <span>📍 ${cam.location}</span>
-                        <span>🏷️ ${cam.category}</span>
+                        <span>📍 ${cam.location || "未知地點"}</span>
+                        <span>🏷️ ${cam.category || "未分類"}</span>
                     </div>
                 </div>
             `).join('');
