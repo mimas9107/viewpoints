@@ -20,12 +20,12 @@ Viewpoints 不僅是一個網頁應用，還內建了 **MCP (Model Context Proto
   npm install
   ```
 
-### 2. 編輯 Claude Desktop 配置檔
+### 2. 編輯 Claude Desktop 設定檔
 找到你的 Claude Desktop 設定檔：
 - **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
 
-新增以下配置：
+新增以下設定：
 
 ```json
 {
@@ -64,7 +64,7 @@ Viewpoints 不僅是一個網頁應用，還內建了 **MCP (Model Context Proto
 |----------|------|------|
 | `list_cameras` | 搜尋監視器 | `keyword` (關鍵字), `category` (分類) |
 | `get_camera_image` | 獲取影像連結 | `id` (監視器 ID) |
-| `get_current_config` | 讀取目前配置 | 無 |
+| `get_current_config` | 讀取目前設定 | 無 |
 
 ---
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的监视器墙</title>
+    <title>我的監視器墙</title>
     
     <!-- Video.js for HLS streaming -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.23.4/video-js.min.css">
@@ -300,12 +300,12 @@
 </head>
 <body>
     <div class="header">
-        <h1 id="pageTitle">我的监视器墙</h1>
+        <h1 id="pageTitle">我的監視器墙</h1>
         <div class="controls">
-            <span class="status" id="autoRefreshStatus">自动刷新: 关闭</span>
-            <button class="btn" id="refreshBtn">手动刷新</button>
-            <button class="btn" id="toggleAutoRefresh">启用自动刷新</button>
-            <a href="picker.html" class="btn" style="text-decoration: none;">⚙️ 选择器</a>
+            <span class="status" id="autoRefreshStatus">自动重新整理: 关闭</span>
+            <button class="btn" id="refreshBtn">手动重新整理</button>
+            <button class="btn" id="toggleAutoRefresh">啟用自动重新整理</button>
+            <a href="picker.html" class="btn" style="text-decoration: none;">⚙️ 選取器</a>
         </div>
     </div>
 
@@ -315,7 +315,7 @@
 
     <div class="fullscreen-overlay" id="fullscreenOverlay">
         <button class="close-fullscreen" id="closeFullscreen">&times;</button>
-        <img class="fullscreen-image" id="fullscreenImage" src="" alt="全屏显示">
+        <img class="fullscreen-image" id="fullscreenImage" src="" alt="全屏顯示">
     </div>
 
     <script>
@@ -330,7 +330,7 @@
                 config = await response.json();
                 
                 // Update page title
-                document.getElementById('pageTitle').textContent = config.title || '我的监视器墙';
+                document.getElementById('pageTitle').textContent = config.title || '我的監視器墙';
                 
                 // Set up grid layout
                 const grid = document.getElementById('cameraGrid');
@@ -345,7 +345,7 @@
                 }
             } catch (error) {
                 console.error('Failed to load config:', error);
-                alert('无法加载配置文件 viewpoints.json，请确保文件存在。');
+                alert('无法載入組態檔 viewpoints.json，请确保檔案存在。');
             }
         }
 
@@ -406,7 +406,7 @@
                         </div>
                     `;
                 } else {
-                    // 静态图片监控器
+                    // 靜態圖片監控器
                     cameraItem.innerHTML = `
                         <div class="camera-header">
                             <div class="camera-name">${camera.name}</div>
@@ -416,7 +416,7 @@
                             </div>
                         </div>
                         <div class="camera-image-container">
-                            <div class="loading">加载中...</div>
+                            <div class="loading">載入中...</div>
                             <img class="camera-image" 
                                  data-camera-id="${camera.id}"
                                  data-src="${camera.imageUrl}"
@@ -507,7 +507,7 @@
                 lastUpdateEl.textContent = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
             };
             tempImg.onerror = () => {
-                loading.innerHTML = '<div class="error">加载失败<br>点击刷新重试</div>';
+                loading.innerHTML = '<div class="error">載入失敗<br>点击重新整理重試</div>';
                 loading.style.cursor = 'pointer';
                 loading.onclick = () => loadImage(img, index);
             };
@@ -536,9 +536,9 @@
                 loadAllImages();
             }, interval);
             
-            document.getElementById('autoRefreshStatus').textContent = `自动刷新: 开启 (${config?.refreshInterval || 60}秒)`;
+            document.getElementById('autoRefreshStatus').textContent = `自动重新整理: 开启 (${config?.refreshInterval || 60}秒)`;
             document.getElementById('autoRefreshStatus').classList.add('live');
-            document.getElementById('toggleAutoRefresh').textContent = '停止自动刷新';
+            document.getElementById('toggleAutoRefresh').textContent = '停止自动重新整理';
             document.getElementById('toggleAutoRefresh').classList.add('active');
         }
 
@@ -549,9 +549,9 @@
                 autoRefreshInterval = null;
             }
             
-            document.getElementById('autoRefreshStatus').textContent = '自动刷新: 关闭';
+            document.getElementById('autoRefreshStatus').textContent = '自动重新整理: 关闭';
             document.getElementById('autoRefreshStatus').classList.remove('live');
-            document.getElementById('toggleAutoRefresh').textContent = '启用自动刷新';
+            document.getElementById('toggleAutoRefresh').textContent = '啟用自动重新整理';
             document.getElementById('toggleAutoRefresh').classList.remove('active');
         }
 

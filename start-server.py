@@ -15,7 +15,7 @@ PORT = 8000
 
 class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
-        # 添加 CORS 头，允许跨域请求
+        # 添加 CORS 头，允许跨域請求
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
@@ -23,7 +23,7 @@ class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 
 
 def main():
-    # 切换到脚本所在目录
+    # 切換到指令碼所在目錄
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
     Handler = MyHTTPRequestHandler

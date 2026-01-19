@@ -324,9 +324,9 @@
                 </div>
 
                 <div class="export-section">
-                    <button class="export-btn" onclick="exportConfig()">📥 匯出配置</button>
+                    <button class="export-btn" onclick="exportConfig()">📥 匯出設定</button>
                     <button class="preview-btn" onclick="previewWall()">👁️ 預覽監控牆</button>
-                    <a href="index.html" class="back-btn">🏠 返回監控牆</a>
+                    <a href="index.html" class="back-btn">🏠 回傳監控牆</a>
                 </div>
             </div>
         </div>
@@ -383,7 +383,7 @@
             });
         }
 
-        // 渲染監控點列表
+        // 渲染監控點清單
         function renderCameraList(searchTerm = '') {
             const container = document.getElementById('cameraList');
             const cameras = database.cameras || [];
@@ -447,7 +447,7 @@
             renderSelectedList();
         }
 
-        // 渲染已選擇列表
+        // 渲染已選擇清單
         function renderSelectedList() {
             const container = document.getElementById('selectedList');
             const countEl = document.getElementById('selectedCount');
@@ -487,7 +487,7 @@
             }
         }
 
-        // 匯出配置
+        // 匯出設定
         function exportConfig() {
             if (selectedCameras.length === 0) {
                 alert('請先選擇至少一個監控點');
@@ -517,7 +517,7 @@
             a.click();
             URL.revokeObjectURL(url);
 
-            alert(`✅ 配置已匯出！\n已選擇 ${selectedCameras.length} 個監控點\n布局: ${cols}×${rows}`);
+            alert(`✅ 設定已匯出！\n已選擇 ${selectedCameras.length} 個監控點\n版面設定: ${cols}×${rows}`);
         }
 
         // 預覽監控牆
@@ -530,7 +530,7 @@
             const cols = Math.ceil(Math.sqrt(selectedCameras.length));
             const rows = Math.ceil(selectedCameras.length / cols);
 
-            alert(`預覽監控牆\n\n已選擇: ${selectedCameras.length} 個監控點\n布局: ${cols} 欄 × ${rows} 列\n\n請先「匯出配置」，然後將檔案儲存為 viewpoints.json 並重新整理主頁面。`);
+            alert(`預覽監控牆\n\n已選擇: ${selectedCameras.length} 個監控點\n版面設定: ${cols} 欄 × ${rows} 列\n\n請先「匯出設定」，然後將檔案儲存為 viewpoints.json 並重新整理主頁面。`);
         }
 
         // 搜尋功能

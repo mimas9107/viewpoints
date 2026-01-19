@@ -153,7 +153,7 @@ async function loadConfig() {
         renderCameras();
     } catch (error) {
         console.error('Failed to load config:', error);
-        alert('无法加载配置文件');
+        alert('无法載入組態檔');
     }
 }
 ```
@@ -168,7 +168,7 @@ async function loadConfig() {
 **Example:**
 ```javascript
 tempImg.onerror = () => {
-    loading.innerHTML = '<div class="error">加载失败<br>点击刷新重试</div>';
+    loading.innerHTML = '<div class="error">載入失敗<br>点击重新整理重試</div>';
     loading.style.cursor = 'pointer';
     loading.onclick = () => loadImage(img, index);
 };
@@ -233,7 +233,7 @@ When adding support for new camera types:
   "description": "Detailed description",
   "imageUrl": "https://example.com/image.jpg",
   "location": "City, Region",
-  "category": "国道/省道/市区/景点"
+  "category": "國道/省道/市區/景點"
 }
 ```
 

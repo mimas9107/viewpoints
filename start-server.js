@@ -229,7 +229,7 @@ async function start() {
     const httpServer = http.createServer((req, res) => {
         let filePath = '.' + (req.url === '/' ? '/index.html' : req.url);
         
-        // 簡單的安全檢查，防止讀取上一層目錄
+        // 簡單的安全性性檢查，防止讀取上一層目錄
         if (filePath.includes('..')) {
             res.writeHead(403);
             res.end('Access Denied');
