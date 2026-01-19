@@ -26,6 +26,8 @@ def main():
     # 切換到腳本所在目錄
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
+    # 允許立即重用連接埠，解決 TIME_WAIT 問題
+    socketserver.TCPServer.allow_reuse_address = True
     Handler = MyHTTPRequestHandler
 
     try:
