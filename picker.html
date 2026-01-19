@@ -303,16 +303,7 @@
             </div>
             <div class="filter-tabs" id="filterTabs">
                 <button class="filter-tab active" data-category="全部">全部</button>
-                <button class="filter-tab" data-category="陽明山">陽明山</button>
-                <button class="filter-tab" data-category="合歡山">合歡山</button>
-                <button class="filter-tab" data-category="阿里山">阿里山</button>
-                <button class="filter-tab" data-category="日月潭">日月潭</button>
-                <button class="filter-tab" data-category="雪霸國家公園">雪霸</button>
-                <button class="filter-tab" data-category="北宜公路">北宜</button>
-                <button class="filter-tab" data-category="蘇花改">蘇花改</button>
-                <button class="filter-tab" data-category="台64線">台64線</button>
-                <button class="filter-tab" data-category="台61線">台61線</button>
-                <button class="filter-tab" data-category="新北市省道">新北省道</button>
+                <!-- Filter tabs will be generated dynamically -->
             </div>
         </div>
 
@@ -351,11 +342,45 @@
             try {
                 const response = await fetch('./cameras_database.json');
                 database = await response.json();
+                generateFilterTabs();
                 renderCameraList();
             } catch (error) {
                 console.error('載入資料庫失敗:', error);
                 alert('無法載入監控點資料庫');
             }
+        }
+
+        // 動態生成篩選標籤
+        function generateFilterTabs() {
+            const cameras = database.cameras || [];
+            const categories = {};
+            
+            // 統計各分類數量
+            cameras.forEach(cam => {
+                if (cam.category) {
+                    categories[cam.category] = (categories[cam.category] || 0) + 1;
+                }
+            });
+            
+            // 排序分類（按數量多到少）
+            const sortedCategories = Object.entries(categories)
+                .sort((a, b) => b[1] - a[1]);
+            
+            const tabsContainer = document.getElementById('filterTabs');
+            
+            // 保留"全部"按鈕
+            tabsContainer.innerHTML = '<button class="filter-tab active" data-category="全部">全部</button>';
+            
+            // 產生標籤
+            sortedCategories.forEach(([cat, count]) => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-tab';
+                btn.dataset.category = cat;
+                // 顯示分類名稱和數量，如果是很長的名稱可以截斷
+                const displayName = cat.length > 6 ? cat.substring(0, 6) + '...' : cat;
+                btn.textContent = `${displayName} (${count})`;
+                tabsContainer.appendChild(btn);
+            });
         }
 
         // 渲染監控點列表
