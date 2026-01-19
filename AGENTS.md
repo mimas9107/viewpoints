@@ -1,276 +1,153 @@
-# Agent Instructions for Viewpoints
+# 🤖 Viewpoints AI 代理開發聖經 (Agent Instructions)
 
-This document provides guidelines for AI coding agents working on the Viewpoints project - a customizable CCTV monitoring wall system.
+這份文件專為 AI 代理（Coding Agents）設計，旨在提供關於 **Viewpoints** 專案的深度架構資訊、開發規範、工具呼叫準則及故障排除指南。
 
-## Project Overview
+---
 
-**Type:** Static web application with local server scripts  
-**Tech Stack:** HTML5, vanilla JavaScript, CSS3, Python 3, Node.js  
-**Dependencies:** Video.js (CDN), no local npm/pip packages  
-**Structure:** Single-page application with JSON configuration
+## 🏗️ 專案核心架構
 
-## Repository Structure
+Viewpoints 是一個基於資料驅動的「即時影像聚合網頁應用」。
 
+### 1. 數據流向 (Data Flow)
+`cameras_database.json` (全域資料庫) ➔ `picker.html` (選取器) ➔ `viewpoints.json` (使用者配置) ➔ `index.html` (渲染引擎)
+
+### 2. 核心元件
+- **渲染引擎 (index.html)**: 使用原生 JavaScript 與 CSS Grid。根據 `viewpoints.json` 內容動態產生 DOM。
+- **選取器 (picker.html)**: 負責過濾資料並產生標準格式的 JSON。支援搜尋、動態分類標籤與自動版面計算。
+- **雙模伺服器 (start-server.js)**:
+  - **HTTP 模式**: 提供靜態檔案存取 (Port 8848)。
+  - **MCP 模式**: 透過標準輸入輸出 (stdio) 為 AI 提供 API 工具。
+
+---
+
+## 📡 MCP 工具與 AI 協作準則
+
+當你作為 AI Agent 運作時，請優先使用以下流程：
+
+### 1. 獲取資訊 (Discovery)
+- 使用 `list_cameras` 搜尋特定地點。
+- **關鍵準則**: 優先回傳 `id` 供後續操作。
+
+### 2. 視覺分析 (Vision Analysis)
+- 使用 `get_camera_image` 獲取 URL。
+- **思考邏輯**: "我需要先獲取截圖，再利用我的視覺能力分析畫面中的車流、天氣或人潮。"
+
+### 3. 配置管理 (Configuration)
+- 使用 `get_current_config` 了解目前監控牆狀態。
+- **重要**: 修改配置後，務必驗證 JSON 格式。
+
+---
+
+## 📜 資料格式規範 (Strict Schema)
+
+為避免出現 `undefined` 或 404 錯誤，所有監控點必須符合以下格式：
+
+### 📷 靜態圖片 (Image Type)
+```json
+{
+  "id": "必填: 唯一識別碼",
+  "name": "必填: 顯示名稱",
+  "type": "image",
+  "imageUrl": "必填: 靜態圖片連結",
+  "location": "建議: 地點名稱",
+  "category": "必填: 分類標籤"
+}
 ```
-viewpoints/
-├── index.html              # Main application (HTML/CSS/JS in one file)
-├── picker.html             # Camera picker UI for selecting cameras
-├── viewpoints.json         # Configuration with camera definitions
-├── viewpoints.json.template # Empty template for new configurations
-├── cameras_database.json   # Database of all available cameras (600+ cameras)
-├── start-server.py         # Python HTTP server launcher
-├── start-server.js         # Node.js HTTP + MCP server launcher
-├── MCP_GUIDE.md            # MCP Server setup guide for AI integration
-├── README.md               # User documentation
-├── QUICKSTART.md           # Quick start guide
-├── AGENTS.md               # This file - guidelines for AI agents
-├── LICENSE                 # MIT license
-└── .gitignore              # Git ignore rules
+
+### 🎥 YouTube 直播 (YouTube Type)
+```json
+{
+  "id": "唯一碼",
+  "name": "名稱",
+  "type": "youtube",
+  "youtubeId": "必填: 11位元影片ID",
+  "category": "分類"
+}
 ```
 
-## Build/Test/Run Commands
-
-### Running the Application
-
-**Start Python server (recommended):**
-```bash
-python3 start-server.py
+### 📡 HLS 串流 (HLS Type)
+```json
+{
+  "id": "唯一碼",
+  "name": "名稱",
+  "type": "hls",
+  "hlsUrl": "必填: .m3u8 連結",
+  "category": "分類"
+}
 ```
 
-**Start Node.js server:**
+---
+
+## 🎨 界面開發規範 (Frontend Guidelines)
+
+### 1. CSS Grid 佈局
+- **規則**: 必須在 `index.html` 的 `<style>` 中定義對應的 `.grid-NxM` 類別。
+- **斷點**: 768px 以下自動切換為垂直單欄。
+- **效能**: 避免使用 JS 計算高度，優先使用 CSS `vh` 或 `calc()`。
+
+### 2. 圖片快取機制
+- **Cache Busting**: 載入圖片時必須附加 `?t=${Date.now()}` 確保抓取最新畫面。
+- **錯誤處理**: `tempImg.onerror` 必須提供重試按鈕的 HTML 結構。
+
+---
+
+## 🛠️ 開發常用命令
+
+### 啟動服務 (雙模 - 推薦)
 ```bash
 node start-server.js
 ```
 
-**Alternative methods:**
+### 啟動服務 (輕量)
 ```bash
-# Python built-in server
-python3 -m http.server 8000
-
-# Node http-server (if installed)
-npx http-server -p 8000
+python3 start-server.py
 ```
 
-The application will open at `http://localhost:8000`.
-
-### Testing
-
-**No formal test suite exists.** Manual testing checklist:
-
-1. Start server and verify page loads
-2. Test static image cameras (image loading, refresh)
-3. Test YouTube cameras (iframe embedding, autoplay)
-4. Test HLS cameras (Video.js player, streaming)
-5. Test manual refresh button
-6. Test auto-refresh toggle
-7. Test fullscreen functionality (click image, ESC key)
-8. Test responsive layout on mobile
-9. Verify JSON configuration changes take effect on reload
-
-### Linting
-
-**No linters configured.** For manual code quality checks:
-- Use browser DevTools console (F12) to check for errors
-- Validate JSON: `python3 -m json.tool viewpoints.json`
-- HTML validation: Use W3C validator if needed
-
-## MCP Server
-
-The `start-server.js` file includes a dual-mode server that provides both HTTP and MCP (Model Context Protocol) interfaces:
-
-### Features
-
-- **HTTP Server (Port 8000):** Serves static files (index.html, picker.html)
-- **MCP Server (Stdio):** Provides tools for AI assistants to query camera data
-
-### Available Tools
-
-| Tool | Description |
-|------|-------------|
-| `list_cameras` | List all cameras with optional keyword/category filters |
-| `get_camera_image` | Get the image URL for a specific camera (supports static images, YouTube thumbnails) |
-| `get_current_config` | Read the current viewpoints.json configuration |
-
-### Usage for AI Agents
-
-When working as an AI agent with access to this MCP server, you can:
-1. Use `list_cameras` to find cameras by location or category
-2. Use `get_camera_image` to get the image URL
-3. Analyze the returned URL to provide visual insights about traffic or weather
-
-Example workflow:
-```
-User: "Is there traffic congestion on National Highway 1 at Linkou?"
-Agent: 
-1. Call list_cameras(keyword="林口", category="國道")
-2. Call get_camera_image(id="1030-N-14.7-M") 
-3. Analyze the returned image URL and provide a response
+### 資料庫轉換 (簡轉繁)
+```bash
+python3 convert_to_traditional.py
 ```
 
-## Code Style Guidelines
-
-### HTML
-
-- **Indentation:** 4 spaces
-- **Language:** `lang="zh-Hant-TW"` (Traditional Chinese)
-- **Meta tags:** Include charset UTF-8 and viewport for mobile
-- **Structure:** Semantic HTML5 elements where appropriate
-- **Classes:** Use kebab-case (e.g., `camera-grid`, `camera-item`)
-
-### CSS
-
-- **Embedded:** All CSS is in `<style>` tag in index.html
-- **Reset:** Universal box-sizing and margin/padding reset
-- **Color scheme:** Dark theme (#1a1a1b background, #2d2d2e panels)
-- **Layout:** CSS Grid for camera grid, Flexbox for header/controls
-- **Responsive:** Mobile-first with `@media (max-width: 768px)`
-- **Naming:** BEM-like conventions (e.g., `camera-item`, `camera-header`, `camera-image-container`)
-- **Units:** 
-  - px for borders, shadows, small fixed sizes
-  - rem/em for font sizes when appropriate
-  - % or vh/vw for responsive layouts
-  - Padding/margin in px
-
-### JavaScript
-
-- **Style:** ES6+ modern JavaScript (no build step, browser-native)
-- **Variables:** `let` for mutable, `const` for immutable
-- **Functions:** Use arrow functions for callbacks, regular functions for top-level
-- **Async:** `async/await` for asynchronous operations
-- **Naming conventions:**
-  - Functions: camelCase (e.g., `loadConfig`, `renderCameras`)
-  - Variables: camelCase (e.g., `autoRefreshInterval`, `config`)
-  - Constants: UPPER_SNAKE_CASE if truly constant (e.g., PORT in servers)
-  - DOM IDs: camelCase (e.g., `cameraGrid`, `pageTitle`)
-  - CSS classes: kebab-case (e.g., `camera-item`)
-
-**Example:**
-```javascript
-async function loadConfig() {
-    try {
-        const response = await fetch('./viewpoints.json');
-        config = await response.json();
-        renderCameras();
-    } catch (error) {
-        console.error('Failed to load config:', error);
-        alert('无法載入組態檔');
-    }
-}
+### JSON 驗證
+```bash
+python3 -m json.tool viewpoints.json
 ```
 
-### Error Handling
+---
 
-- **Always use try-catch for async operations**
-- **Console logging:** `console.error()` for errors, `console.log()` for debugging
-- **User feedback:** Alert or inline error messages for critical failures
-- **Graceful degradation:** Show error message in UI, allow retry (see loadImage function)
+## 🚨 AI 代理禁忌與原則 (The Golden Rules)
 
-**Example:**
-```javascript
-tempImg.onerror = () => {
-    loading.innerHTML = '<div class="error">載入失敗<br>点击重新整理重試</div>';
-    loading.style.cursor = 'pointer';
-    loading.onclick = () => loadImage(img, index);
-};
-```
+1.  **禁止硬編碼 (No Hardcoding)**: 不要手動將分類標籤寫死在 `picker.html`，請使用 `generateFilterTabs()` 動態生成。
+2.  **繁體中文優先 (Traditional Chinese Only)**: 所有 UI 文字、註解與文檔必須使用繁體中文。
+3.  **安全性檢查**:
+    - HTTP 伺服器嚴禁存取 `..` 上層目錄。
+    - 確保 `Access-Control-Allow-Origin: *` 僅用於本地開發環境。
+4.  **Git 規範**:
+    - 提交前必須更新 `CHANGELOG.md`。
+    - 使用 `feat:`, `fix:`, `chore:`, `docs:` 作為提交前綴。
+    - 保持提交記錄原子化 (Atomic Commits)。
 
-### Python (start-server.py)
+---
 
-- **Style:** PEP 8 compliant
-- **Docstrings:** Triple-quoted strings for module/function docs
-- **Imports:** Standard library only (http.server, socketserver, os, webbrowser, sys)
-- **Error handling:** Try-except with specific exception types
-- **Constants:** UPPER_CASE (e.g., `PORT = 8000`)
-- **Indentation:** 4 spaces
+## 🔍 深度調試技巧
 
-### Node.js (start-server.js)
+1. **影像無法顯示**:
+   - 檢查 `viewpoints.json` 類型 (type) 是否與欄位 (imageUrl/youtubeId) 匹配。
+   - 檢查瀏覽器控制台 (F12) 是否有 `CORS` 或 `404` 錯誤。
+2. **佈局混亂**:
+   - 驗證 `document.getElementById('cameraGrid').className` 是否正確獲取了 CSS 類別名。
+3. **MCP 故障**:
+   - 檢查 `start-server.js` 的 `stderr` 輸出，這是 MCP 的主要日誌通道。
 
-- **Style:** CommonJS modules (`require`/`module.exports`)
-- **Conventions:** camelCase for variables/functions
-- **Error handling:** Error-first callbacks, try-catch where appropriate
-- **Constants:** const for immutable values
-- **Indentation:** 4 spaces
+---
 
-### JSON (viewpoints.json)
+## 📈 未來擴充路線圖 (Agent Roadmap)
+如果你目前沒有任務，可以考慮提議實作以下功能：
+- [ ] **拖曳排序**: 讓 `picker.html` 支援拖曳更換監控點順序。
+- [ ] **多重配置**: 支援儲存 `viewpoints_work.json` 或 `viewpoints_travel.json`。
+- [ ] **視覺警報**: 透過 MCP 定時截圖並在車流量過大時發出通知。
 
-- **Indentation:** 2 spaces
-- **Structure:** Must include `title`, `autoRefresh`, `refreshInterval`, `layout`, `cameras`
-- **Camera types:**
-  - Static image: `type` omitted or `"image"`, requires `imageUrl`
-  - YouTube: `type: "youtube"`, requires `youtubeId`
-  - HLS: `type: "hls"`, requires `hlsUrl`
-- **Required fields per camera:** `id`, `name`, `location`, `category`
-- **Validation:** Ensure layout columns × rows ≥ camera count
-
-## Making Changes
-
-### Adding New Features
-
-1. **HTML changes:** Edit `index.html` structure section
-2. **CSS changes:** Edit `<style>` section in index.html
-3. **JavaScript changes:** Edit `<script>` section in index.html
-4. **Configuration:** Modify `viewpoints.json` for data changes
-5. **Documentation:** Update README.md with user-facing changes
-
-### Camera Types Implementation
-
-When adding support for new camera types:
-
-1. Add type check in `renderCameras()` function
-2. Create appropriate HTML structure (iframe, video, img)
-3. Initialize player/loader if needed (like `initHlsPlayers()`)
-4. Add distinctive badge styling
-5. Update viewpoints.json.template with example
-6. Document in README.md
-
-### Common Tasks
-
-**Add a new camera to default configuration:**
-```json
-{
-  "id": "unique-id",
-  "name": "Display Name",
-  "description": "Detailed description",
-  "imageUrl": "https://example.com/image.jpg",
-  "location": "City, Region",
-  "category": "國道/省道/市區/景點"
-}
-```
-
-**Change grid layout:**
-Modify `layout` in viewpoints.json and ensure CSS class exists in index.html (grid-2x2, grid-3x2, grid-3x3, grid-4x3).
-
-**Modify refresh interval:**
-Edit `refreshInterval` in viewpoints.json (value in seconds).
-
-## Important Notes
-
-- **CORS:** Application must run through HTTP server, not file:// protocol
-- **No build process:** All code is browser-ready, no transpilation/bundling
-- **External dependencies:** Only Video.js via CDN (for HLS playback)
-- **Browser support:** Modern browsers (Chrome, Firefox, Edge, Safari)
-- **Language:** UI text is in Traditional Chinese (zh-Hant-TW)
-- **Timestamps:** Images include cache-busting timestamp parameter
-- **Security:** Basic CORS headers in server scripts for local development
-
-## Git Workflow
-
-- Commit messages in English or Chinese are acceptable
-- Keep commits atomic and descriptive
-- No force push to main branch
-- Test manually before committing
-
-## Debugging Tips
-
-1. Open browser DevTools (F12) → Console tab for JavaScript errors
-2. Network tab to inspect image/stream loading
-3. Check server console for HTTP errors
-4. Validate viewpoints.json with `python3 -m json.tool viewpoints.json`
-5. Test different camera types independently
-
-## Resources
-
-- Main documentation: README.md
-- Quick start: QUICKSTART.md
-- Video.js docs: https://videojs.com/
-- Camera sources: https://tw.live/
+---
+**版本**: 1.2.2
+**最後更新**: 2026-01-19
+**維護者**: AI Agent Framework
