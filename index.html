@@ -302,9 +302,9 @@
     <div class="header">
         <h1 id="pageTitle">我的監視器墙</h1>
         <div class="controls">
-            <span class="status" id="autoRefreshStatus">自动重新整理: 关闭</span>
+            <span class="status" id="autoRefreshStatus">自動重新整理: 关闭</span>
             <button class="btn" id="refreshBtn">手动重新整理</button>
-            <button class="btn" id="toggleAutoRefresh">啟用自动重新整理</button>
+            <button class="btn" id="toggleAutoRefresh">啟用自動重新整理</button>
             <a href="picker.html" class="btn" style="text-decoration: none;">⚙️ 選取器</a>
         </div>
     </div>
@@ -507,7 +507,7 @@
                 lastUpdateEl.textContent = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
             };
             tempImg.onerror = () => {
-                loading.innerHTML = '<div class="error">載入失敗<br>点击重新整理重試</div>';
+                loading.innerHTML = '<div class="error">載入失敗<br>點擊重新整理重試</div>';
                 loading.style.cursor = 'pointer';
                 loading.onclick = () => loadImage(img, index);
             };
@@ -536,9 +536,9 @@
                 loadAllImages();
             }, interval);
             
-            document.getElementById('autoRefreshStatus').textContent = `自动重新整理: 开启 (${config?.refreshInterval || 60}秒)`;
+            document.getElementById('autoRefreshStatus').textContent = `自動重新整理: 开启 (${config?.refreshInterval || 60}秒)`;
             document.getElementById('autoRefreshStatus').classList.add('live');
-            document.getElementById('toggleAutoRefresh').textContent = '停止自动重新整理';
+            document.getElementById('toggleAutoRefresh').textContent = '停止自動重新整理';
             document.getElementById('toggleAutoRefresh').classList.add('active');
         }
 
@@ -549,9 +549,9 @@
                 autoRefreshInterval = null;
             }
             
-            document.getElementById('autoRefreshStatus').textContent = '自动重新整理: 关闭';
+            document.getElementById('autoRefreshStatus').textContent = '自動重新整理: 关闭';
             document.getElementById('autoRefreshStatus').classList.remove('live');
-            document.getElementById('toggleAutoRefresh').textContent = '啟用自动重新整理';
+            document.getElementById('toggleAutoRefresh').textContent = '啟用自動重新整理';
             document.getElementById('toggleAutoRefresh').classList.remove('active');
         }
 

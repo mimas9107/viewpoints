@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-监视器墙本地服务器启动脚本
+監視器牆本地服务器启动脚本
 使用 Python 内置的 HTTP 服务器
 """
 
@@ -32,7 +32,7 @@ def main():
         with socketserver.TCPServer(("", PORT), Handler) as httpd:
             url = f"http://localhost:{PORT}"
             print(f"=" * 60)
-            print(f"监视器墙服务器已启动！")
+            print(f"監視器牆服务器已启动！")
             print(f"=" * 60)
             print(f"")
             print(f"访问地址: {url}")
@@ -40,7 +40,7 @@ def main():
             print(f"按 Ctrl+C 停止服务器")
             print(f"=" * 60)
 
-            # 自动在浏览器中打开
+            # 自動在瀏覽器中開啟
             try:
                 webbrowser.open(url)
             except:
