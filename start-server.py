@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-監視器牆本地服务器启动脚本
-使用 Python 内置的 HTTP 服务器
+監視器牆本地伺服器啟動腳本
+使用 Python 內建的 HTTP 伺服器
 """
 
 import http.server
@@ -15,7 +15,7 @@ PORT = 8000
 
 class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
-        # 添加 CORS 头，允许跨域請求
+        # 添加 CORS 標頭，允許跨網域請求
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
@@ -23,7 +23,7 @@ class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 
 
 def main():
-    # 切換到指令碼所在目錄
+    # 切換到腳本所在目錄
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
     Handler = MyHTTPRequestHandler
@@ -32,12 +32,12 @@ def main():
         with socketserver.TCPServer(("", PORT), Handler) as httpd:
             url = f"http://localhost:{PORT}"
             print(f"=" * 60)
-            print(f"監視器牆服务器已启动！")
+            print(f"監視器牆伺服器已啟動！")
             print(f"=" * 60)
             print(f"")
-            print(f"访问地址: {url}")
+            print(f"存取位址: {url}")
             print(f"")
-            print(f"按 Ctrl+C 停止服务器")
+            print(f"按 Ctrl+C 停止伺服器")
             print(f"=" * 60)
 
             # 自動在瀏覽器中開啟
@@ -50,15 +50,15 @@ def main():
     except KeyboardInterrupt:
         print("\n")
         print("=" * 60)
-        print("服务器已停止")
+        print("伺服器已停止")
         print("=" * 60)
         sys.exit(0)
     except OSError as e:
         if e.errno == 48 or e.errno == 98:  # Address already in use
-            print(f"错误: 端口 {PORT} 已被占用")
-            print(f"请关闭占用该端口的程序，或修改脚本中的 PORT 变量")
+            print(f"錯誤: 連接埠 {PORT} 已被佔用")
+            print(f"請關閉佔用該連接埠的程式，或修改腳本中的 PORT 變數")
         else:
-            print(f"错误: {e}")
+            print(f"錯誤: {e}")
         sys.exit(1)
 
 
