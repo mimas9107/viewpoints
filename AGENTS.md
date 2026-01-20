@@ -10,14 +10,21 @@ Viewpoints 是一個基於資料驅動的「即時影像聚合網頁應用」。
 
 ### 1. 數據流向 (Data Flow)
 `cameras_database.json` (全域資料庫) ➔ `picker.html` (選取器) ➔ `viewpoints.json` (使用者配置) ➔ `index.html` (渲染引擎)
+`upload.html` (上傳介面) ➔ `config-server.py` (API) ➔ `viewpoints.json` (使用者配置)
 
 ### 2. 目錄結構 (Directory Structure)
 - `index.html`: 主監控牆。
 - `picker.html`: 監控點選取器。
+- `upload.html`: 配置上傳介面。
 - `css/`: 樣式表目錄。
 - `js/`: 邏輯模組目錄。
 - `viewpoints.json`: 當前配置檔。
 - `cameras_database.json`: 全域監控點資料庫。
+- `config-server.py`: 配置管理伺服器 (Port 8845)。
+- `start-server.py`: Python HTTP 伺服器 (Port 8844)。
+- `start-server.js`: 雙模伺服器 (HTTP + MCP)。
+- `.env`: 環境變數設定檔。
+- `.backups/`: 自動備份目錄。
 
 ### 3. 核心元件
 - **渲染引擎 (index.html)**: 僅包含 HTML 結構。
@@ -30,8 +37,8 @@ Viewpoints 是一個基於資料驅動的「即時影像聚合網頁應用」。
   - `player.js`: HLS 播放器初始化。
 - **選取器 (picker.html)**: 負責過濾資料並產生標準格式的 JSON。支援搜尋、動態分類標籤與自動版面計算。
 - **雙模伺服器 (start-server.js)**:
-  - **HTTP 模式**: 提供靜態檔案存取 (Port 8848)。
-  - **MCP 模式**: 透過標準輸入輸出 (stdio) 為 AI 提供 API 工具。
+   - **HTTP 模式**: 提供靜態檔案存取 (Port 由 `.env` 設定，預設 8844)。
+   - **MCP 模式**: 透過標準輸入輸出 (stdio) 為 AI 提供 API 工具。
 
 ---
 
@@ -118,6 +125,11 @@ node start-server.js
 python3 start-server.py
 ```
 
+### 啟動配置管理伺服器 (需要上傳/儲存功能時)
+```bash
+python3 config-server.py
+```
+
 ### 資料庫轉換 (簡轉繁)
 ```bash
 python3 convert_to_traditional.py
@@ -144,6 +156,63 @@ python3 -m json.tool viewpoints.json
 
 ---
 
+## 📋 文件更新追蹤清單 (Document Update Checklist)
+
+當進行程式碼變更時，必須同步更新以下文件。請依變更類型勾選並更新對應文件：
+
+### 必備文件更新清單
+
+| 變更類型 | 需要更新的文件 | 更新時機 |
+|----------|----------------|----------|
+| **新功能上線** | `CHANGELOG.md`, `README.md` | 功能完成後 |
+| **使用者介面變更** | `README.md`, `QUICKSTART.md` | UI 調整後 |
+| **新增/修改 API** | `README.md`, `UPLOAD_USAGE.md` | API 變更後 |
+| **選取器功能變更** | `PICKER_USAGE.md`, `README.md` | picker.html 修改後 |
+| **上傳功能變更** | `UPLOAD_USAGE.md`, `README.md` | upload.html 修改後 |
+| **伺服器變更** | `README.md`, `QUICKSTART.md` | start-server.py 或 config-server.py 修改後 |
+| **環境變數變更** | `README.md`, `QUICKSTART.md`, `.env.example` | PORT 或環境變數調整後 |
+
+### 文件更新檢查清單
+
+提交程式碼前，請確認以下文件已同步更新：
+
+- [ ] `CHANGELOG.md` - 新增版本紀錄
+- [ ] `README.md` - 更新功能說明與操作流程
+- [ ] `QUICKSTART.md` - 更新快速開始指令
+- [ ] `PICKER_USAGE.md` - 更新選擇器操作說明（如有變更）
+- [ ] `UPLOAD_USAGE.md` - 更新上傳介面說明（如有變更）
+
+### 文件更新原則
+
+1. **CHANGELOG.md**:
+   - 使用 `[Unreleased]` 區塊記錄即將發布的變更
+   - 發布版本時移動到正式版本區塊
+   - 格式：`## [版本號] - YYYY-MM-DD`
+
+2. **README.md**:
+   - 保持「功能特色」與實際功能一致
+   - 更新「使用流程」說明
+   - 新增或修正「常見問題」
+
+3. **QUICKSTART.md**:
+   - 保持指令正確性
+   - 反映預設連接埠設定
+
+4. **使用說明文件 (PICKER_USAGE.md, UPLOAD_USAGE.md)**:
+   - 介面變更時同步更新截圖或操作說明
+   - 新增功能時補充使用範例
+
+### 版本號管理原則
+
+| 變更類型 | 版本號遞增 |
+|----------|------------|
+| 新增功能 | 次版本 (+0.1.0) |
+| 修正問題 | 修訂號 (+0.0.1) |
+| 不相容變更 | 主版本 (+1.0.0) |
+| 文件更新 | 視情況遞增 |
+
+---
+
 ## 🔍 深度調試技巧
 
 1. **影像無法顯示**:
@@ -163,6 +232,6 @@ python3 -m json.tool viewpoints.json
 - [ ] **視覺警報**: 透過 MCP 定時截圖並在車流量過大時發出通知。
 
 ---
-**版本**: 1.2.3
-**最後更新**: 2026-01-19
+**版本**: 1.3.0
+**最後更新**: 2026-01-20
 **維護者**: AI Agent Framework

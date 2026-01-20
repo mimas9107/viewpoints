@@ -30,3 +30,6 @@ package-lock.json
 # Temporary files
 *.tmp
 *~
+
+# environment variables
+.env

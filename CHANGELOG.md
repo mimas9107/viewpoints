@@ -7,7 +7,47 @@
 
 ---
 
-## [1.2.3] - 2026-01-19
+## [1.3.0] - 2026-01-20
+
+### Added
+
+- **配置 API 管理伺服器 (`config-server.py`)**
+  - 新增 REST API 端點支援
+  - `GET /api/config` - 讀取配置
+  - `POST /api/config` - 儲存配置
+  - `GET /api/config/download` - 下載配置
+  - `GET /api/config/backup` - 列出備份
+  - `GET /api/config/restore/{filename}` - 復原備份
+  - 自動備份機制（最多保留 10 份）
+
+- **上傳介面 (`upload.html`)**
+  - 圖形化介面上傳自訂 JSON 檔案
+  - 支援拖曳上傳
+  - 即時顯示目前配置狀態
+  - 驗證 JSON 格式
+
+- **環境變數支援**
+  - 新增 `.env` 設定檔
+  - `VIEWPOINTS_PORT` - 主伺服器連接埠（預設：8844）
+  - `VIEWPOINTS_CONFIG_PORT` - 配置伺服器連接埠（預設：8845）
+
+### Changed
+
+- **配置載入優先順序 (`js/config.js`)**
+  1. URL 參數 `?configUrl=...`（外部 URL）
+  2. API 端點 `/api/config`（config-server.py）
+  3. 本地檔案 `./viewpoints.json`（fallback）
+
+- **選擇器新增功能 (`picker.html`)**
+  - 新增「儲存到伺服器」按鈕
+  - 可直接將配置寫入 viewpoints.json
+
+### Documentation
+
+- 新增 `UPLOAD_USAGE.md` 上傳介面使用說明
+- 更新 `README.md` 繁體中文內容
+- 更新 `QUICKSTART.md` 繁體中文內容
+- 更新 `PICKER_USAGE.md` 說明
 
 ### Changed
 - **前端樣式分離**：將 `index.html` 中的 CSS 樣式提取至 `css/style.css`。

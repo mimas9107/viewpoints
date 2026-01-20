@@ -247,6 +247,29 @@
             background: #00dd77;
         }
 
+        .save-btn {
+            width: 100%;
+            padding: 15px;
+            background: #0066cc;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: all 0.2s;
+        }
+
+        .save-btn:hover {
+            background: #0077dd;
+        }
+
+        .save-btn:disabled {
+            background: #4a4a4b;
+            cursor: not-allowed;
+        }
+
         .preview-btn {
             width: 100%;
             padding: 15px;
@@ -325,6 +348,7 @@
 
                 <div class="export-section">
                     <button class="export-btn" onclick="exportConfig()">📥 匯出設定</button>
+                    <button class="save-btn" onclick="saveToServer()">☁️ 儲存到伺服器</button>
                     <button class="preview-btn" onclick="previewWall()">👁️ 預覽監控牆</button>
                     <a href="index.html" class="back-btn">🏠 回傳監控牆</a>
                 </div>
@@ -522,6 +546,54 @@
             URL.revokeObjectURL(url);
 
             alert(`✅ 設定已匯出！\n已選擇 ${selectedCameras.length} 個監控點\n版面設定: ${cols}×${rows}`);
+        }
+
+        // 儲存到伺服器
+        async function saveToServer() {
+            if (selectedCameras.length === 0) {
+                alert('請先選擇至少一個監控點');
+                return;
+            }
+
+            const cols = Math.ceil(Math.sqrt(selectedCameras.length));
+            const rows = Math.ceil(selectedCameras.length / cols);
+
+            const config = {
+                title: "我的監控牆",
+                autoRefresh: true,
+                refreshInterval: 60,
+                layout: {
+                    columns: cols,
+                    rows: rows
+                },
+                cameras: selectedCameras
+            };
+
+            const saveBtn = document.querySelector('.save-btn');
+            const originalText = saveBtn.textContent;
+            saveBtn.textContent = '儲存中...';
+            saveBtn.disabled = true;
+
+            try {
+                const response = await fetch('/api/config', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(config)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert(`✅ 設定已儲存到伺服器！\n已選擇 ${selectedCameras.length} 個監控點\n版面設定: ${cols}×${rows}\n\n現在可以開啟 index.html 查看更新後的監控牆。`);
+                } else {
+                    alert('❌ 儲存失敗: ' + (result.error || '未知錯誤'));
+                }
+            } catch (error) {
+                alert('❌ 網路錯誤: ' + error.message + '\n\n請確保 config-server.py 已在 port 8844 執行。');
+            } finally {
+                saveBtn.textContent = originalText;
+                saveBtn.disabled = false;
+            }
         }
 
         // 預覽監控牆

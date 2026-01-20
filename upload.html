@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上傳配置 - Viewpoints</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
+            background: linear-gradient(135deg, #1a1a1b 0%, #2d2d2e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .card {
+            background: #2d2d2e;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .upload-area {
+            border: 3px dashed #4a4a4b;
+            border-radius: 12px;
+            padding: 50px 30px;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .upload-area:hover, .upload-area.dragover {
+            border-color: #0066cc;
+            background: rgba(0,102,204,0.1);
+        }
+
+        .upload-icon {
+            font-size: 56px;
+            margin-bottom: 15px;
+        }
+
+        .upload-text {
+            color: #aaa;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .file-info {
+            color: #00cc66;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: #00cc66;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #00dd77;
+        }
+
+        .btn-primary:disabled {
+            background: #4a4a4b;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #0066cc;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #0077dd;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #4a4a4b;
+            color: #aaa;
+        }
+
+        .btn-outline:hover {
+            border-color: #fff;
+            color: #fff;
+        }
+
+        .nav-links {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .nav-links a {
+            color: #0066cc;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+            text-align: center;
+        }
+
+        .status-success {
+            background: rgba(0,204,102,0.2);
+            color: #00cc66;
+        }
+
+        .status-error {
+            background: rgba(255,68,68,0.2);
+            color: #ff4444;
+        }
+
+        .status-info {
+            background: rgba(0,102,204,0.2);
+            color: #0066cc;
+        }
+
+        .config-preview {
+            background: #1a1a1b;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-family: monospace;
+            font-size: 12px;
+            color: #aaa;
+            max-height: 150px;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .current-config {
+            background: #1a1a1b;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .config-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #3a3a3b;
+        }
+
+        .config-stat:last-child {
+            border-bottom: none;
+        }
+
+        .config-stat-label {
+            color: #aaa;
+        }
+
+        .config-stat-value {
+            color: #00cc66;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📤 上傳配置</h1>
+            <p>上傳您的 viewpoints.json 配置文件</p>
+        </div>
+
+        <div class="card">
+            <div class="section-title">📊 目前配置狀態</div>
+            <div class="current-config" id="currentConfig">
+                <div style="color: #666; text-align: center;">載入中...</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">📁 選擇檔案</div>
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📤</div>
+                <div class="upload-text">點擊或拖曳 JSON 檔案到此處</div>
+                <div style="color: #666; font-size: 13px;">支援 .json 檔案</div>
+                <div class="file-info" id="fileInfo"></div>
+            </div>
+            <input type="file" id="fileInput" accept=".json">
+
+            <div class="config-preview" id="configPreview"></div>
+
+            <button class="btn btn-primary" id="uploadBtn" onclick="uploadConfig()" disabled>
+                🚀 上傳並套用配置
+            </button>
+            <button class="btn btn-secondary" onclick="downloadCurrent()">
+                ⬇️ 下載目前配置
+            </button>
+        </div>
+
+        <div class="status" id="status"></div>
+
+        <div class="nav-links">
+            <a href="index.html">🏠 監控牆</a>
+            <a href="picker.html">📺 選擇器</a>
+            <a href="#" onclick="openConfigServer(); return false;">⚙️ 配置管理</a>
+        </div>
+    </div>
+
+    <script>
+        let selectedFile = null;
+        let parsedConfig = null;
+        const CONFIG_API = '/api/config';
+
+        async function loadCurrentConfig() {
+            try {
+                const response = await fetch(CONFIG_API);
+                if (!response.ok) throw new Error('無法載入');
+
+                const config = await response.json();
+                const container = document.getElementById('currentConfig');
+
+                const cameraCount = config.cameras ? config.cameras.length : 0;
+                const title = config.title || '未命名';
+
+                container.innerHTML = `
+                    <div class="config-stat">
+                        <span class="config-stat-label">名稱</span>
+                        <span class="config-stat-value">${escapeHtml(title)}</span>
+                    </div>
+                    <div class="config-stat">
+                        <span class="config-stat-label">監控點數量</span>
+                        <span class="config-stat-value">${cameraCount} 個</span>
+                    </div>
+                    <div class="config-stat">
+                        <span class="config-stat-label">自動重新整理</span>
+                        <span class="config-stat-value">${config.autoRefresh ? '開啟' : '關閉'}</span>
+                    </div>
+                    <div class="config-stat">
+                        <span class="config-stat-label">整理間隔</span>
+                        <span class="config-stat-value">${config.refreshInterval || 60} 秒</span>
+                    </div>
+                `;
+            } catch (e) {
+                document.getElementById('currentConfig').innerHTML =
+                    '<div style="color: #ff6666; text-align: center;">無法載入目前配置</div>';
+            }
+        }
+
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+
+        uploadArea.onclick = () => fileInput.click();
+
+        uploadArea.ondragover = (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        };
+
+        uploadArea.ondragleave = () => uploadArea.classList.remove('dragover');
+
+        uploadArea.ondrop = (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            if (e.dataTransfer.files.length) {
+                handleFile(e.dataTransfer.files[0]);
+            }
+        };
+
+        fileInput.onchange = (e) => {
+            if (e.target.files.length) {
+                handleFile(e.target.files[0]);
+            }
+        };
+
+        async function handleFile(file) {
+            if (!file.name.endsWith('.json')) {
+                showStatus('僅支援 JSON 檔案', 'error');
+                return;
+            }
+
+            try {
+                const text = await file.text();
+                parsedConfig = JSON.parse(text);
+
+                selectedFile = file;
+                document.querySelector('.upload-text').textContent = '已選擇檔案: ' + file.name;
+                document.getElementById('fileInfo').textContent =
+                    `大小: ${formatBytes(file.size)} | 監控點: ${parsedConfig.cameras ? parsedConfig.cameras.length : 0} 個`;
+                uploadArea.style.borderColor = '#00cc66';
+
+                const preview = document.getElementById('configPreview');
+                preview.style.display = 'block';
+                preview.textContent = JSON.stringify(parsedConfig, null, 2).substring(0, 500) + '...';
+
+                document.getElementById('uploadBtn').disabled = false;
+                showStatus('', '');
+            } catch (e) {
+                showStatus('JSON 格式錯誤: ' + e.message, 'error');
+                parsedConfig = null;
+                selectedFile = null;
+            }
+        }
+
+        async function uploadConfig() {
+            if (!parsedConfig) return;
+
+            showStatus('正在上傳...', 'info');
+            document.getElementById('uploadBtn').disabled = true;
+
+            try {
+                const response = await fetch(CONFIG_API, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(parsedConfig)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    showStatus('✅ 配置已成功上傳並套用！', 'success');
+                    loadCurrentConfig();
+                    resetUpload();
+                } else {
+                    showStatus('❌ ' + (result.error || '上傳失敗'), 'error');
+                }
+            } catch (e) {
+                showStatus('❌ 網路錯誤: ' + e.message, 'error');
+            } finally {
+                document.getElementById('uploadBtn').disabled = false;
+            }
+        }
+
+        function downloadCurrent() {
+            window.location.href = CONFIG_API + '/download';
+        }
+
+        function resetUpload() {
+            selectedFile = null;
+            parsedConfig = null;
+            document.querySelector('.upload-text').textContent = '點擊或拖曳 JSON 檔案到此處';
+            document.getElementById('fileInfo').textContent = '';
+            document.getElementById('configPreview').style.display = 'none';
+            uploadArea.style.borderColor = '#4a4a4b';
+            document.getElementById('uploadBtn').disabled = true;
+            fileInput.value = '';
+        }
+
+        function showStatus(msg, type) {
+            const el = document.getElementById('status');
+            if (!msg) {
+                el.style.display = 'none';
+                return;
+            }
+            el.textContent = msg;
+            el.className = 'status status-' + type;
+            el.style.display = 'block';
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatBytes(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        }
+
+        function openConfigServer() {
+            if (confirm('開啟配置管理伺服器頁面？\\n\\n請確保 config-server.py 已在 port 8844 執行。')) {
+                window.open('http://localhost:8844', '_blank');
+            }
+        }
+
+        loadCurrentConfig();
+    </script>
+</body>
+</html>

@@ -10,7 +10,20 @@ import os
 import webbrowser
 import sys
 
-PORT = 8000
+
+def load_env_file():
+    env_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
+    if os.path.exists(env_file):
+        with open(env_file, "r") as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    key, value = line.split("=", 1)
+                    os.environ.setdefault(key.strip(), value.strip())
+
+
+load_env_file()
+PORT = int(os.environ.get("VIEWPOINTS_PORT", 8844))
 
 
 class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
@@ -58,7 +71,7 @@ def main():
     except OSError as e:
         if e.errno == 48 or e.errno == 98:  # Address already in use
             print(f"錯誤: 連接埠 {PORT} 已被佔用")
-            print(f"請關閉佔用該連接埠的程式，或修改腳本中的 PORT 變數")
+            print(f"請關閉佔用該連接埠的程式，或修改 .env 中的 VIEWPOINTS_PORT")
         else:
             print(f"錯誤: {e}")
         sys.exit(1)
