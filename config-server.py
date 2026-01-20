@@ -12,7 +12,7 @@ import shutil
 import uuid
 from datetime import datetime
 from urllib.parse import urlparse, parse_qs
-
+import sys
 
 def load_env_file():
     env_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
