@@ -264,7 +264,7 @@
     <script>
         let selectedFile = null;
         let parsedConfig = null;
-        const CONFIG_API = '/api/config';
+        const CONFIG_API = 'http://localhost:8845/api/config';
 
         async function loadCurrentConfig() {
             try {
@@ -386,7 +386,7 @@
         }
 
         function downloadCurrent() {
-            window.location.href = CONFIG_API + '/download';
+            window.location.href = 'http://localhost:8845/api/config/download';
         }
 
         function resetUpload() {

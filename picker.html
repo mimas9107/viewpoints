@@ -575,7 +575,7 @@
             saveBtn.disabled = true;
 
             try {
-                const response = await fetch('/api/config', {
+                const response = await fetch('http://localhost:8845/api/config', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(config)
