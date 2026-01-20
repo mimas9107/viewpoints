@@ -2,14 +2,22 @@
 
 ## 一分鐘快速啟動
 
-### 1. 啟動伺服器
+### 1. 啟動伺服器（推薦：FastAPI 統一伺服器）
+
+```bash
+cd viewpoints
+pip install -r requirements.txt
+python3 start-server-fastapi.py
+```
+
+瀏覽器會自動開啟 `http://localhost:8844`
+
+### 替代方案：使用 Python 基礎伺服器
 
 ```bash
 cd viewpoints
 python3 start-server.py
 ```
-
-瀏覽器會自動開啟 `http://localhost:8844`
 
 ### 2. 停止伺服器
 
@@ -23,11 +31,12 @@ viewpoints/
 ├── viewpoints.json         # 組態檔（可隨時修改）
 ├── picker.html             # 監控點選擇器
 ├── upload.html             # 上傳組態介面
-├── config-server.py        # 配置管理伺服器
-├── start-server.py         # Python 伺服器啟動指令碼
+├── start-server.py         # Python 基礎伺服器
+├── start-server-fastapi.py # FastAPI 統一伺服器（推薦）
 ├── start-server.js         # Node.js 伺服器啟動指令碼
 ├── cameras_database.json   # 監控點資料庫
 ├── .env                    # 環境變數設定
+├── requirements.txt        # Python 依賴套件
 ├── README.md              # 完整使用說明
 ├── QUICKSTART.md          # 本檔案
 └── PICKER_USAGE.md        # 選擇器使用說明
@@ -95,14 +104,21 @@ viewpoints/
 
 ```bash
 VIEWPOINTS_PORT=8080
-VIEWPOINTS_CONFIG_PORT=9000
 ```
 
 ## 常見問題
 
 ### Q：頁面顯示「無法載入組態檔」？
 
-A：確保您是透過 `python3 start-server.py` 啟動的，而不是直接雙擊開啟 HTML 檔案。
+A：確保您是透過伺服器啟動的，而不是直接雙擊開啟 HTML 檔案。
+
+```bash
+# 推薦方式
+python3 start-server-fastapi.py
+
+# 或基礎方式
+python3 start-server.py
+```
 
 ### Q：如何更改版面設定？
 
@@ -121,14 +137,10 @@ A：存取 https://tw.live/ 找到監控點，詳細方法請看 README.md
 
 ### Q：選擇器或上傳頁面無法開啟？
 
-A：確保 config-server.py 也在執行：
+A：使用 FastAPI 統一伺服器即可同時支援所有頁面：
 
 ```bash
-# 終端機 1：啟動主伺服器
-python3 start-server.py
-
-# 終端機 2：啟動配置伺服器
-python3 config-server.py
+python3 start-server-fastapi.py
 ```
 
 ## 更多資訊

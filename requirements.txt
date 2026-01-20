@@ -1,0 +1,5 @@
+# Viewpoints 專案依賴
+
+fastapi
+uvicorn[standard]
+python-multipart

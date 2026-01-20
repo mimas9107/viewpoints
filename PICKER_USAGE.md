@@ -13,22 +13,19 @@ viewpoints/
 ├── upload.html             # 上傳組態介面
 ├── cameras_database.json   # 監控點資料庫
 ├── viewpoints.json         # 目前設定
-├── config-server.py        # 配置管理伺服器
-├── start-server.py         # 伺服器啟動腳本
+├── start-server.py         # 基礎伺服器
+├── start-server-fastapi.py # 統一伺服器（推薦）
 └── README.md              # 使用說明
 ```
 
 ## 使用流程
 
-### 步驟 1：啟動伺服器
+### 步驟 1：啟動伺服器（推薦）
 
 ```bash
 cd viewpoints
-# 啟動主伺服器
-python3 start-server.py
-
-# 另開終端機，啟動配置伺服器
-python3 config-server.py
+pip install -r requirements.txt
+python3 start-server-fastapi.py
 ```
 
 ### 步驟 2：開啟選擇器
@@ -88,7 +85,7 @@ http://localhost:8844/picker.html
 ### 操作按鈕
 
 - **清空** - 清除所有已選擇的監控點
-- **儲存到伺服器** - 將設定寫入 viewpoints.json（需要 config-server.py）
+- **儲存到伺服器** - 將設定寫入 viewpoints.json
 - **匯出設定** - 產生 viewpoints.json 檔案並下載
 - **預覽監控牆** - 顯示設定資訊
 
@@ -179,7 +176,7 @@ http://localhost:8844/picker.html
 ### 問題：儲存到伺服器失敗
 
 **解決：**
-1. 確認 config-server.py 正在執行（預設連接埠 8845）
+1. 確認 `start-server-fastapi.py` 正在執行
 2. 檢查終端機是否有錯誤訊息
 3. 確認 `.backups/` 目錄有寫入權限
 

@@ -12,22 +12,19 @@ viewpoints/
 ├── picker.html             # 監控點選擇器
 ├── upload.html             # 上傳組態介面
 ├── viewpoints.json         # 目前設定
-├── config-server.py        # 配置管理伺服器
+├── start-server-fastapi.py # 統一伺服器（推薦）
 ├── .backups/               # 備份目錄（自動建立）
 └── README.md              # 使用說明
 ```
 
 ## 使用流程
 
-### 步驟 1：啟動伺服器
+### 步驟 1：啟動伺服器（推薦）
 
 ```bash
 cd viewpoints
-# 啟動主伺服器
-python3 start-server.py
-
-# 另開終端機，啟動配置伺服器
-python3 config-server.py
+pip install -r requirements.txt
+python3 start-server-fastapi.py
 ```
 
 ### 步驟 2：開啟上傳介面
@@ -143,10 +140,10 @@ http://localhost:8844/upload.html
 
 ```bash
 # 列出所有備份
-curl http://localhost:8845/api/config/backup
+curl http://localhost:8844/api/config/backups
 
 # 復原指定備份
-curl http://localhost:8845/api/config/restore/viewpoints_20260120_120000_abc12345.json
+curl -X POST http://localhost:8844/api/config/backups/viewpoints_20260120_120000_abc12345.json/restore
 ```
 
 ## 與選擇器的比較
@@ -165,13 +162,13 @@ curl http://localhost:8845/api/config/restore/viewpoints_20260120_120000_abc1234
 ### 問題：上傳頁面打不開
 
 **解決：**
-1. 確認主伺服器正在執行（連接埠 8844）
+1. 確認伺服器正在執行
 2. 存取正確的 URL：`http://localhost:8844/upload.html`
 
 ### 問題：上傳失敗
 
 **解決：**
-1. 確認 config-server.py 正在執行（連接埠 8845）
+1. 確認 `start-server-fastapi.py` 正在執行
 2. 檢查 JSON 格式是否正確
 3. 確認檔案大小不超過限制
 
@@ -215,13 +212,13 @@ curl http://localhost:8845/api/config/restore/viewpoints_20260120_120000_abc1234
 ### 讀取目前配置
 
 ```bash
-curl http://localhost:8845/api/config
+curl http://localhost:8844/api/config
 ```
 
 ### 上傳新配置
 
 ```bash
-curl -X POST http://localhost:8845/api/config \
+curl -X POST http://localhost:8844/api/config \
   -H "Content-Type: application/json" \
   -d @your-config.json
 ```
@@ -229,13 +226,13 @@ curl -X POST http://localhost:8845/api/config \
 ### 下載配置檔案
 
 ```bash
-curl -O http://localhost:8845/api/config/download
+curl -O http://localhost:8844/api/config/download
 ```
 
 ### 列出備份
 
 ```bash
-curl http://localhost:8845/api/config/backup
+curl http://localhost:8844/api/config/backups
 ```
 
 ## 使用情境

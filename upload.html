@@ -257,14 +257,13 @@
         <div class="nav-links">
             <a href="index.html">🏠 監控牆</a>
             <a href="picker.html">📺 選擇器</a>
-            <a href="#" onclick="openConfigServer(); return false;">⚙️ 配置管理</a>
         </div>
     </div>
 
     <script>
         let selectedFile = null;
         let parsedConfig = null;
-        const CONFIG_API = 'http://localhost:8845/api/config';
+        const CONFIG_API = '/api/config';
 
         async function loadCurrentConfig() {
             try {
@@ -386,7 +385,7 @@
         }
 
         function downloadCurrent() {
-            window.location.href = 'http://localhost:8845/api/config/download';
+            window.location.href = '/api/config/download';
         }
 
         function resetUpload() {
@@ -421,12 +420,6 @@
             if (bytes < 1024) return bytes + ' B';
             if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
             return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
-        }
-
-        function openConfigServer() {
-            if (confirm('開啟配置管理伺服器頁面？\\n\\n請確保 config-server.py 已在 port 8844 執行。')) {
-                window.open('http://localhost:8844', '_blank');
-            }
         }
 
         loadCurrentConfig();

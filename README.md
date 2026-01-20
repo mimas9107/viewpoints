@@ -12,7 +12,7 @@
 - 顯示每個監控畫面的最後更新時間
 - 圖形化監控點選擇器 (`picker.html`)
 - 圖形化上傳介面 (`upload.html`)
-- 設定 API 管理伺服器 (`config-server.py`)
+- 統一伺服器 - 整合靜態服務與 Config API (`start-server-fastapi.py`)
 - AI 整合 - 支援 MCP Server，讓 AI 助手幫你分析路況
 
 ## 快速開始
@@ -21,13 +21,23 @@
 
 由於瀏覽器的安全性限制（CORS），需要透過本機伺服器來執行。
 
-**方法 A：使用 Python（推薦）**
+**方法 A：使用 Python + FastAPI（推薦，整合配置 API）**
+
+```bash
+# 首次安裝依賴
+pip install -r requirements.txt
+
+# 啟動伺服器
+python3 start-server-fastapi.py
+```
+
+**方法 B：使用 Python（基礎版，無配置 API）**
 
 ```bash
 python3 start-server.py
 ```
 
-**方法 B：使用 Node.js**
+**方法 C：使用 Node.js**
 
 ```bash
 node start-server.js
@@ -41,7 +51,6 @@ node start-server.js
 
 ```bash
 VIEWPOINTS_PORT=8080
-VIEWPOINTS_CONFIG_PORT=9000
 ```
 
 ### 2. 修改監控點
@@ -120,15 +129,16 @@ VIEWPOINTS_CONFIG_PORT=9000
 
 **詳細說明：** 參考 [UPLOAD_USAGE.md](./UPLOAD_USAGE.md)
 
-### API 管理伺服器
+### 統一伺服器 (start-server-fastapi.py)
 
-啟動配置管理伺服器：
+使用 FastAPI 重構的統一伺服器，整合靜態文件服務與配置 API。
+
+**啟動方式：**
 
 ```bash
-python3 config-server.py
+pip install -r requirements.txt
+python3 start-server-fastapi.py
 ```
-
-預設連接埠為 8845，可透過 `.env` 調整。
 
 **API 端點：**
 
@@ -137,13 +147,20 @@ python3 config-server.py
 | GET | `/api/config` | 讀取目前配置 |
 | POST | `/api/config` | 儲存新配置 |
 | GET | `/api/config/download` | 下載配置檔案 |
-| GET | `/api/config/backup` | 列出備份檔案 |
-| GET | `/api/config/restore/{檔名}` | 復原備份 |
+| GET | `/api/config/backups` | 列出備份檔案 |
+| POST | `/api/config/backups/{檔名}/restore` | 復原備份 |
 
 **備份機制：**
 - 每次儲存配置前會自動備份
 - 備份檔案存放於 `.backups/` 目錄
 - 最多保留 10 份備份
+
+### 舊版分開伺服器（已廢棄）
+
+> **注意：** 以下方式已不推薦使用，請使用上方的統一伺服器。
+
+- `start-server.py`：靜態伺服器（Port 8844）
+- `config-server.py`：配置 API 伺服器（Port 8845，已整合進 FastAPI 版本）
 
 ## 如何取得監控器 URL
 
@@ -333,6 +350,10 @@ python3 config-server.py
 A：這是瀏覽器的安全性策略。**不要直接雙擊開啟 HTML 檔案**，必須透過本機伺服器執行：
 
 ```bash
+# 使用 FastAPI 統一伺服器（推薦）
+python3 start-server-fastapi.py
+
+# 或使用基礎版伺服器
 python3 start-server.py
 ```
 

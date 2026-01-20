@@ -7,6 +7,49 @@
 
 ---
 
+## [2.0.0] - 2026-01-20
+
+### Changed
+
+- **統一伺服器架構 (`start-server-fastapi.py`)**
+  - 整合 `start-server.py` 與 `config-server.py` 為單一 FastAPI 伺服器
+  - 單一端口 (8844) 提供靜態服務與 Config API
+  - 簡化部署與維護流程
+  - 移除 `VIEWPOINTS_CONFIG_PORT` 環境變數
+
+- **前端 API URL 整合**
+  - `upload.html` 與 `picker.html` 改用相對路徑 `/api/config`
+  - 無需區分端口，全部統一透過 FastAPI 伺服器
+
+### Added
+
+- **FastAPI 統一伺服器功能**
+  - `GET /api/config` - 讀取配置
+  - `POST /api/config` - 儲存配置
+  - `GET /api/config/download` - 下載配置
+  - `GET /api/config/backups` - 列出備份
+  - `POST /api/config/backups/{name}/restore` - 復原備份
+  - 自動備份機制（最多保留 10 份）
+
+- **新增依賴套件**
+  - `fastapi>=0.109.0`
+  - `uvicorn[standard]>=0.27.0`
+  - `python-multipart>=0.0.6`
+
+### Removed
+
+- 廢棄 `config-server.py`（功能已整合至 FastAPI 版本）
+- 廢棄 `VIEWPOINTS_CONFIG_PORT` 環境變數
+
+### Documentation
+
+- 更新 `README.md` - 新增 FastAPI 統一伺服器說明
+- 更新 `QUICKSTART.md` - 簡化啟動指令
+- 更新 `PICKER_USAGE.md` - 單一伺服器說明
+- 更新 `UPLOAD_USAGE.md` - 單一伺服器說明
+
+---
+
 ## [1.3.0] - 2026-01-20
 
 ### Added
@@ -283,5 +326,5 @@ python3 -m json.tool viewpoints.json
 
 - 專案靈感來源：[tw.live](https://tw.live)
 - 授權：MIT License
-- 版本：1.1.0
-- 最後更新：2026-01-19
+- 版本：2.0.0
+- 最後更新：2026-01-20

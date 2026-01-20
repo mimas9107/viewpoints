@@ -351,6 +351,7 @@
                     <button class="save-btn" onclick="saveToServer()">☁️ 儲存到伺服器</button>
                     <button class="preview-btn" onclick="previewWall()">👁️ 預覽監控牆</button>
                     <a href="index.html" class="back-btn">🏠 回傳監控牆</a>
+                    <a href="upload.html" class="back-btn">📤 上傳配置</a>
                 </div>
             </div>
         </div>
@@ -575,7 +576,7 @@
             saveBtn.disabled = true;
 
             try {
-                const response = await fetch('http://localhost:8845/api/config', {
+                const response = await fetch('/api/config', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(config)
