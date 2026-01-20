@@ -20,9 +20,10 @@ Viewpoints 是一個基於資料驅動的「即時影像聚合網頁應用」。
 - `js/`: 邏輯模組目錄。
 - `viewpoints.json`: 當前配置檔。
 - `cameras_database.json`: 全域監控點資料庫。
-- `config-server.py`: 配置管理伺服器 (Port 8845)。
-- `start-server.py`: Python HTTP 伺服器 (Port 8844)。
-- `start-server.js`: 雙模伺服器 (HTTP + MCP)。
+- `config-server.py`: 配置管理伺服器 (Port 8845)。[ v1.x.y版本 ]
+- `start-server.py`: Python HTTP 伺服器 (Port 8844)。[ v1.x.y版本 ]
+- `start-server-fastapi.py`: Python HTTP 伺服器（Port 8844）[ >=v2.0.0版本 ]
+- `start-server.js`: 雙模伺服器 (HTTP + MCP)。[ v1.x.y版本 ]
 - `.env`: 環境變數設定檔。
 - `.backups/`: 自動備份目錄。
 
