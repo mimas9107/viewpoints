@@ -1,5 +1,6 @@
 # Viewpoints 專案依賴
-
+bs4
+requests
 fastapi
 uvicorn[standard]
 python-multipart
