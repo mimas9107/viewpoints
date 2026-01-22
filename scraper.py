@@ -18,6 +18,7 @@ class TWLiveScraper:
         self.base_url = "https://tw.live"
         self.cameras = []
         self.categories = {}
+        self.seen_ids = set()
         self.session = requests.Session()
         self.session.headers.update(
             {
@@ -131,58 +132,96 @@ class TWLiveScraper:
         # 找到所有監控點連結
         cctv_stacks = soup.find_all("div", class_="cctv-stack")
 
-        for stack in cctv_stacks:
-            link = stack.find("a")
-            if not link:
-                continue
-
-            camera_url = urljoin(self.base_url, link.get("href", ""))
-
-            # 提取 camera ID
-            match = re.search(r"id=([a-zA-Z0-9_-]+)", camera_url)
-            if not match:
-                continue
-
-            camera_id = match.group(1)
-
-            # 提取名稱（從縮圖頁面）
-            name_tag = stack.find("p")
-            name = name_tag.text.strip() if name_tag else "未知監控點"
-
-            # 提取縮圖 URL
-            img = stack.find("img")
-            thumbnail = img.get("data-src", "") if img else ""
-
-            # 建立基本資料
-            camera = {
-                "id": camera_id,
-                "name": name,
-                "category": category_name,
-                "location": category_name,  # 預設使用分類名稱作為地點
-                "url": camera_url,
-                "thumbnail": thumbnail,
-                "type": "image",  # 預設類型
-                "imageUrl": thumbnail,  # 預設圖片網址
-            }
-
-            # 判斷類型（從縮圖 URL）
-            if "youtube.com" in thumbnail:
-                # YouTube 類型
-                yt_id_match = re.search(r"/vi/([a-zA-Z0-9_-]+)/", thumbnail)
-                if yt_id_match:
-                    camera["type"] = "youtube"
-                    camera["youtubeId"] = yt_id_match.group(1)
-                    camera["description"] = f"{category_name} YouTube 直播"
-                    # YouTube 不需要 imageUrl
-                    del camera["imageUrl"]
-
-            cameras.append(camera)
-
-            # 避免過度請求
-            time.sleep(0.5)
+        if cctv_stacks:
+            # 直接有 cctv-stack 的頁面
+            for stack in cctv_stacks:
+                camera = self.extract_camera_from_stack(stack, category_name)
+                if camera and camera["id"] not in self.seen_ids:
+                    cameras.append(camera)
+                    self.seen_ids.add(camera["id"])
+                    time.sleep(0.5)
+        else:
+            # 總覽頁面，需要解析子頁面連結
+            sub_links = self.extract_sub_page_links(soup, category_url)
+            for sub_url in sub_links:
+                sub_cameras = self.scrape_category_page(sub_url, category_name)
+                cameras.extend(sub_cameras)
 
         print(f"  ✅ 找到 {len(cameras)} 個監控點")
         return cameras
+
+    def extract_camera_from_stack(self, stack, category_name):
+        """從 cctv-stack 提取監控點資訊"""
+        link = stack.find("a")
+        if not link:
+            return None
+
+        camera_url = urljoin(self.base_url, link.get("href", ""))
+
+        # 提取 camera ID
+        match = re.search(r"id=([a-zA-Z0-9_-]+)", camera_url)
+        if not match:
+            return None
+
+        camera_id = match.group(1)
+
+        # 提取名稱（從縮圖頁面）
+        name_tag = stack.find("p")
+        name = name_tag.text.strip() if name_tag else "未知監控點"
+
+        # 提取縮圖 URL
+        img = stack.find("img")
+        thumbnail = img.get("data-src", "") if img else ""
+
+        # 建立基本資料
+        camera = {
+            "id": camera_id,
+            "name": name,
+            "category": category_name,
+            "location": category_name,  # 預設使用分類名稱作為地點
+            "url": camera_url,
+            "thumbnail": thumbnail,
+            "type": "image",  # 預設類型
+            "imageUrl": thumbnail,  # 預設圖片網址
+        }
+
+        # 判斷類型（從縮圖 URL）
+        if "youtube.com" in thumbnail:
+            # YouTube 類型
+            yt_id_match = re.search(r"/vi/([a-zA-Z0-9_-]+)/", thumbnail)
+            if yt_id_match:
+                camera["type"] = "youtube"
+                camera["youtubeId"] = yt_id_match.group(1)
+                camera["description"] = f"{category_name} YouTube 直播"
+                # YouTube 不需要 imageUrl
+                del camera["imageUrl"]
+
+        return camera
+
+    def extract_sub_page_links(self, soup, base_url):
+        """從總覽頁面提取子頁面連結"""
+        sub_links = []
+        # 查找包含 "即時影像" 的按鈕連結
+        buttons = soup.find_all("a", class_="btn")
+        for btn in buttons:
+            if btn.get_text(strip=True) == "即時影像":
+                href = btn.get("href")
+                if href:
+                    full_url = urljoin(self.base_url, href)
+                    sub_links.append(full_url)
+
+        # 如果沒有找到，查找 cctv-menu 中的所有連結（用於市區分區）
+        if not sub_links:
+            cctv_menu = soup.find("div", class_="cctv-menu")
+            if cctv_menu:
+                links = cctv_menu.find_all("a")
+                for link in links:
+                    href = link.get("href")
+                    if href and not href.startswith("#"):
+                        full_url = urljoin(self.base_url, href)
+                        sub_links.append(full_url)
+
+        return sub_links
 
     def scrape_all_categories(self):
         """爬取所有主要分類"""

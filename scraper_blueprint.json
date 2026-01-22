@@ -1,0 +1,907 @@
+{
+  "categories": {
+    "附近影像LIVE": [],
+    "台北市": [
+      [
+        "松山區",
+        "https://tw.live/city/taipeicity/songshan/"
+      ],
+      [
+        "信義區",
+        "https://tw.live/city/taipeicity/xinyi/"
+      ],
+      [
+        "大安區",
+        "https://tw.live/city/taipeicity/daan/"
+      ],
+      [
+        "中山區",
+        "https://tw.live/city/taipeicity/zhongshan/"
+      ],
+      [
+        "中正區",
+        "https://tw.live/city/taipeicity/zhongzheng/"
+      ],
+      [
+        "大同區",
+        "https://tw.live/city/taipeicity/datong/"
+      ],
+      [
+        "萬華區",
+        "https://tw.live/city/taipeicity/wanhua/"
+      ],
+      [
+        "文山區",
+        "https://tw.live/city/taipeicity/wenshan/"
+      ],
+      [
+        "南港區",
+        "https://tw.live/city/taipeicity/nangang/"
+      ],
+      [
+        "內湖區",
+        "https://tw.live/city/taipeicity/neihu/"
+      ],
+      [
+        "士林區",
+        "https://tw.live/city/taipeicity/shilin/"
+      ],
+      [
+        "北投區",
+        "https://tw.live/city/taipeicity/beitou/"
+      ]
+    ],
+    "國道一號": [
+      [
+        "北上",
+        "https://tw.live/national-highway/1/N/N/"
+      ],
+      [
+        "南下",
+        "https://tw.live/national-highway/1/N/S/"
+      ],
+      [
+        "高架道路",
+        "https://tw.live/national-highway/1a/"
+      ],
+      [
+        "北上",
+        "https://tw.live/national-highway/1/C/N/"
+      ],
+      [
+        "南下",
+        "https://tw.live/national-highway/1/C/S/"
+      ],
+      [
+        "北上",
+        "https://tw.live/national-highway/1/S/N/"
+      ],
+      [
+        "南下",
+        "https://tw.live/national-highway/1/S/S/"
+      ]
+    ],
+    "國道五號": [
+      [
+        "台北往宜蘭",
+        "https://tw.live/national-highway/5/S/"
+      ],
+      [
+        "宜蘭往台北",
+        "https://tw.live/national-highway/5/N/"
+      ]
+    ],
+    "高雄市": [
+      [
+        "新興區",
+        "https://tw.live/city/kaohsiungcity/xinxing/"
+      ],
+      [
+        "前金區",
+        "https://tw.live/city/kaohsiungcity/qianjin/"
+      ],
+      [
+        "苓雅區",
+        "https://tw.live/city/kaohsiungcity/lingya/"
+      ],
+      [
+        "鹽埕區",
+        "https://tw.live/city/kaohsiungcity/yancheng/"
+      ],
+      [
+        "鼓山區",
+        "https://tw.live/city/kaohsiungcity/gushan/"
+      ],
+      [
+        "旗津區",
+        "https://tw.live/city/kaohsiungcity/qijin/"
+      ],
+      [
+        "前鎮區",
+        "https://tw.live/city/kaohsiungcity/qianzhen/"
+      ],
+      [
+        "三民區",
+        "https://tw.live/city/kaohsiungcity/sanmin/"
+      ],
+      [
+        "楠梓區",
+        "https://tw.live/city/kaohsiungcity/nanzi/"
+      ],
+      [
+        "小港區",
+        "https://tw.live/city/kaohsiungcity/xiaogang/"
+      ],
+      [
+        "左營區",
+        "https://tw.live/city/kaohsiungcity/zuoying/"
+      ],
+      [
+        "仁武區",
+        "https://tw.live/city/kaohsiungcity/renwu/"
+      ],
+      [
+        "大社區",
+        "https://tw.live/city/kaohsiungcity/dashe/"
+      ],
+      [
+        "岡山區",
+        "https://tw.live/city/kaohsiungcity/gangshan/"
+      ],
+      [
+        "路竹區",
+        "https://tw.live/city/kaohsiungcity/luzhu/"
+      ],
+      [
+        "阿蓮區",
+        "https://tw.live/city/kaohsiungcity/alian/"
+      ],
+      [
+        "田寮區",
+        "https://tw.live/city/kaohsiungcity/tianliao/"
+      ],
+      [
+        "燕巢區",
+        "https://tw.live/city/kaohsiungcity/yanchao/"
+      ],
+      [
+        "橋頭區",
+        "https://tw.live/city/kaohsiungcity/qiaotou/"
+      ],
+      [
+        "梓官區",
+        "https://tw.live/city/kaohsiungcity/ziguan/"
+      ],
+      [
+        "彌陀區",
+        "https://tw.live/city/kaohsiungcity/mituo/"
+      ],
+      [
+        "永安區",
+        "https://tw.live/city/kaohsiungcity/yongan/"
+      ],
+      [
+        "湖內區",
+        "https://tw.live/city/kaohsiungcity/hunei/"
+      ],
+      [
+        "鳳山區",
+        "https://tw.live/city/kaohsiungcity/fengshan/"
+      ],
+      [
+        "大寮區",
+        "https://tw.live/city/kaohsiungcity/daliao/"
+      ],
+      [
+        "林園區",
+        "https://tw.live/city/kaohsiungcity/linyuan/"
+      ],
+      [
+        "鳥松區",
+        "https://tw.live/city/kaohsiungcity/niaosong/"
+      ],
+      [
+        "大樹區",
+        "https://tw.live/city/kaohsiungcity/dashu/"
+      ],
+      [
+        "旗山區",
+        "https://tw.live/city/kaohsiungcity/qishan/"
+      ],
+      [
+        "美濃區",
+        "https://tw.live/city/kaohsiungcity/meinong/"
+      ],
+      [
+        "六龜區",
+        "https://tw.live/city/kaohsiungcity/liugui/"
+      ],
+      [
+        "內門區",
+        "https://tw.live/city/kaohsiungcity/neimen/"
+      ],
+      [
+        "杉林區",
+        "https://tw.live/city/kaohsiungcity/shanlin/"
+      ],
+      [
+        "甲仙區",
+        "https://tw.live/city/kaohsiungcity/jiaxian/"
+      ],
+      [
+        "桃源區",
+        "https://tw.live/city/kaohsiungcity/taoyuan/"
+      ],
+      [
+        "那瑪夏區",
+        "https://tw.live/city/kaohsiungcity/namaxia/"
+      ],
+      [
+        "茂林區",
+        "https://tw.live/city/kaohsiungcity/maolin/"
+      ],
+      [
+        "茄萣區",
+        "https://tw.live/city/kaohsiungcity/qieding/"
+      ]
+    ],
+    "國道三號": [
+      [
+        "北上",
+        "https://tw.live/national-highway/3/N/N/"
+      ],
+      [
+        "南下",
+        "https://tw.live/national-highway/3/N/S/"
+      ],
+      [
+        "北上",
+        "https://tw.live/national-highway/3/C/N/"
+      ],
+      [
+        "南下",
+        "https://tw.live/national-highway/3/C/S/"
+      ],
+      [
+        "北上",
+        "https://tw.live/national-highway/3/S/N/"
+      ],
+      [
+        "南下",
+        "https://tw.live/national-highway/3/S/S/"
+      ]
+    ],
+    "台南市": [
+      [
+        "中西區",
+        "https://tw.live/city/tainancity/westcentral/"
+      ],
+      [
+        "東區",
+        "https://tw.live/city/tainancity/east/"
+      ],
+      [
+        "南區",
+        "https://tw.live/city/tainancity/south/"
+      ],
+      [
+        "北區",
+        "https://tw.live/city/tainancity/north/"
+      ],
+      [
+        "安平區",
+        "https://tw.live/city/tainancity/anping/"
+      ],
+      [
+        "安南區",
+        "https://tw.live/city/tainancity/annan/"
+      ],
+      [
+        "永康區",
+        "https://tw.live/city/tainancity/yongkang/"
+      ],
+      [
+        "歸仁區",
+        "https://tw.live/city/tainancity/guiren/"
+      ],
+      [
+        "新化區",
+        "https://tw.live/city/tainancity/xinhua/"
+      ],
+      [
+        "左鎮區",
+        "https://tw.live/city/tainancity/zuozhen/"
+      ],
+      [
+        "玉井區",
+        "https://tw.live/city/tainancity/yujing/"
+      ],
+      [
+        "楠西區",
+        "https://tw.live/city/tainancity/nanxi/"
+      ],
+      [
+        "南化區",
+        "https://tw.live/city/tainancity/nanhua/"
+      ],
+      [
+        "仁德區",
+        "https://tw.live/city/tainancity/rende/"
+      ],
+      [
+        "關廟區",
+        "https://tw.live/city/tainancity/guanmiao/"
+      ],
+      [
+        "龍崎區",
+        "https://tw.live/city/tainancity/longqi/"
+      ],
+      [
+        "官田區",
+        "https://tw.live/city/tainancity/guantian/"
+      ],
+      [
+        "麻豆區",
+        "https://tw.live/city/tainancity/madou/"
+      ],
+      [
+        "佳里區",
+        "https://tw.live/city/tainancity/jiali/"
+      ],
+      [
+        "西港區",
+        "https://tw.live/city/tainancity/xigang/"
+      ],
+      [
+        "七股區",
+        "https://tw.live/city/tainancity/qigu/"
+      ],
+      [
+        "將軍區",
+        "https://tw.live/city/tainancity/jiangjun/"
+      ],
+      [
+        "學甲區",
+        "https://tw.live/city/tainancity/xuejia/"
+      ],
+      [
+        "北門區",
+        "https://tw.live/city/tainancity/beimen/"
+      ],
+      [
+        "新營區",
+        "https://tw.live/city/tainancity/xinying/"
+      ],
+      [
+        "後壁區",
+        "https://tw.live/city/tainancity/houbi/"
+      ],
+      [
+        "白河區",
+        "https://tw.live/city/tainancity/baihe/"
+      ],
+      [
+        "東山區",
+        "https://tw.live/city/tainancity/dongshan/"
+      ],
+      [
+        "六甲區",
+        "https://tw.live/city/tainancity/liujia/"
+      ],
+      [
+        "下營區",
+        "https://tw.live/city/tainancity/xiaying/"
+      ],
+      [
+        "柳營區",
+        "https://tw.live/city/tainancity/liuying/"
+      ],
+      [
+        "鹽水區",
+        "https://tw.live/city/tainancity/yanshui/"
+      ],
+      [
+        "善化區",
+        "https://tw.live/city/tainancity/shanhua/"
+      ],
+      [
+        "大內區",
+        "https://tw.live/city/tainancity/danei/"
+      ],
+      [
+        "山上區",
+        "https://tw.live/city/tainancity/shanshang/"
+      ],
+      [
+        "新市區",
+        "https://tw.live/city/tainancity/xinshi/"
+      ],
+      [
+        "安定區",
+        "https://tw.live/city/tainancity/anding/"
+      ]
+    ]
+  },
+  "endpoints": [
+    {
+      "name": "合歡山",
+      "url": "https://tw.live/hhs/",
+      "type": "direct"
+    },
+    {
+      "name": "陽明山",
+      "url": "https://tw.live/yms/",
+      "type": "direct"
+    },
+    {
+      "name": "台北市 - 松山區",
+      "url": "https://tw.live/city/taipeicity/songshan/",
+      "type": "sub",
+      "parent": "台北市"
+    },
+    {
+      "name": "台北市 - 信義區",
+      "url": "https://tw.live/city/taipeicity/xinyi/",
+      "type": "sub",
+      "parent": "台北市"
+    },
+    {
+      "name": "台北市 - 大安區",
+      "url": "https://tw.live/city/taipeicity/daan/",
+      "type": "sub",
+      "parent": "台北市"
+    },
+    {
+      "name": "台北市 - 中山區",
+      "url": "https://tw.live/city/taipeicity/zhongshan/",
+      "type": "sub",
+      "parent": "台北市"
+    },
+    {
+      "name": "台北市 - 中正區",
+      "url": "https://tw.live/city/taipeicity/zhongzheng/",
+      "type": "sub",
+      "parent": "台北市"
+    },
+    {
+      "name": "台北市 - 大同區",
+      "url": "https://tw.live/city/taipeicity/datong/",
+      "type": "sub",
+      "parent": "台北市"
+    },
+    {
+      "name": "台北市 - 萬華區",
+      "url": "https://tw.live/city/taipeicity/wanhua/",
+      "type": "sub",
+      "parent": "台北市"
+    },
+    {
+      "name": "台北市 - 文山區",
+      "url": "https://tw.live/city/taipeicity/wenshan/",
+      "type": "sub",
+      "parent": "台北市"
+    },
+    {
+      "name": "台北市 - 南港區",
+      "url": "https://tw.live/city/taipeicity/nangang/",
+      "type": "sub",
+      "parent": "台北市"
+    },
+    {
+      "name": "台北市 - 內湖區",
+      "url": "https://tw.live/city/taipeicity/neihu/",
+      "type": "sub",
+      "parent": "台北市"
+    },
+    {
+      "name": "台北市 - 士林區",
+      "url": "https://tw.live/city/taipeicity/shilin/",
+      "type": "sub",
+      "parent": "台北市"
+    },
+    {
+      "name": "台北市 - 北投區",
+      "url": "https://tw.live/city/taipeicity/beitou/",
+      "type": "sub",
+      "parent": "台北市"
+    },
+    {
+      "name": "國道一號 - 北上",
+      "url": "https://tw.live/national-highway/1/N/N/",
+      "type": "sub",
+      "parent": "國道一號"
+    },
+    {
+      "name": "國道一號 - 南下",
+      "url": "https://tw.live/national-highway/1/N/S/",
+      "type": "sub",
+      "parent": "國道一號"
+    },
+    {
+      "name": "國道一號 - 高架道路",
+      "url": "https://tw.live/national-highway/1a/",
+      "type": "sub",
+      "parent": "國道一號"
+    },
+    {
+      "name": "國道一號 - 北上",
+      "url": "https://tw.live/national-highway/1/C/N/",
+      "type": "sub",
+      "parent": "國道一號"
+    },
+    {
+      "name": "國道一號 - 南下",
+      "url": "https://tw.live/national-highway/1/C/S/",
+      "type": "sub",
+      "parent": "國道一號"
+    },
+    {
+      "name": "國道一號 - 北上",
+      "url": "https://tw.live/national-highway/1/S/N/",
+      "type": "sub",
+      "parent": "國道一號"
+    },
+    {
+      "name": "國道一號 - 南下",
+      "url": "https://tw.live/national-highway/1/S/S/",
+      "type": "sub",
+      "parent": "國道一號"
+    },
+    {
+      "name": "國道五號 - 台北往宜蘭",
+      "url": "https://tw.live/national-highway/5/S/",
+      "type": "sub",
+      "parent": "國道五號"
+    },
+    {
+      "name": "國道五號 - 宜蘭往台北",
+      "url": "https://tw.live/national-highway/5/N/",
+      "type": "sub",
+      "parent": "國道五號"
+    },
+    {
+      "name": "宜蘭縣",
+      "url": "https://tw.live/provincial-highway/yilan/",
+      "type": "direct"
+    },
+    {
+      "name": "阿里山",
+      "url": "https://tw.live/np/alishan/",
+      "type": "direct"
+    },
+    {
+      "name": "雪霸國家公園",
+      "url": "https://tw.live/np/sheipa/",
+      "type": "direct"
+    },
+    {
+      "name": "新北市",
+      "url": "https://tw.live/provincial-highway/newtaipei/",
+      "type": "direct"
+    },
+    {
+      "name": "高雄市 - 新興區",
+      "url": "https://tw.live/city/kaohsiungcity/xinxing/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 前金區",
+      "url": "https://tw.live/city/kaohsiungcity/qianjin/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 苓雅區",
+      "url": "https://tw.live/city/kaohsiungcity/lingya/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 鹽埕區",
+      "url": "https://tw.live/city/kaohsiungcity/yancheng/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 鼓山區",
+      "url": "https://tw.live/city/kaohsiungcity/gushan/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 旗津區",
+      "url": "https://tw.live/city/kaohsiungcity/qijin/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 前鎮區",
+      "url": "https://tw.live/city/kaohsiungcity/qianzhen/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 三民區",
+      "url": "https://tw.live/city/kaohsiungcity/sanmin/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 楠梓區",
+      "url": "https://tw.live/city/kaohsiungcity/nanzi/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 小港區",
+      "url": "https://tw.live/city/kaohsiungcity/xiaogang/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 左營區",
+      "url": "https://tw.live/city/kaohsiungcity/zuoying/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 仁武區",
+      "url": "https://tw.live/city/kaohsiungcity/renwu/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 大社區",
+      "url": "https://tw.live/city/kaohsiungcity/dashe/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 岡山區",
+      "url": "https://tw.live/city/kaohsiungcity/gangshan/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 路竹區",
+      "url": "https://tw.live/city/kaohsiungcity/luzhu/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 阿蓮區",
+      "url": "https://tw.live/city/kaohsiungcity/alian/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 田寮區",
+      "url": "https://tw.live/city/kaohsiungcity/tianliao/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 燕巢區",
+      "url": "https://tw.live/city/kaohsiungcity/yanchao/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 橋頭區",
+      "url": "https://tw.live/city/kaohsiungcity/qiaotou/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 永安區",
+      "url": "https://tw.live/city/kaohsiungcity/yongan/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 湖內區",
+      "url": "https://tw.live/city/kaohsiungcity/hunei/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 鳳山區",
+      "url": "https://tw.live/city/kaohsiungcity/fengshan/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 大寮區",
+      "url": "https://tw.live/city/kaohsiungcity/daliao/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 林園區",
+      "url": "https://tw.live/city/kaohsiungcity/linyuan/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 鳥松區",
+      "url": "https://tw.live/city/kaohsiungcity/niaosong/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 大樹區",
+      "url": "https://tw.live/city/kaohsiungcity/dashu/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 旗山區",
+      "url": "https://tw.live/city/kaohsiungcity/qishan/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 美濃區",
+      "url": "https://tw.live/city/kaohsiungcity/meinong/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 六龜區",
+      "url": "https://tw.live/city/kaohsiungcity/liugui/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 甲仙區",
+      "url": "https://tw.live/city/kaohsiungcity/jiaxian/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "高雄市 - 茄萣區",
+      "url": "https://tw.live/city/kaohsiungcity/qieding/",
+      "type": "sub",
+      "parent": "高雄市"
+    },
+    {
+      "name": "國道三號 - 北上",
+      "url": "https://tw.live/national-highway/3/N/N/",
+      "type": "sub",
+      "parent": "國道三號"
+    },
+    {
+      "name": "國道三號 - 南下",
+      "url": "https://tw.live/national-highway/3/N/S/",
+      "type": "sub",
+      "parent": "國道三號"
+    },
+    {
+      "name": "國道三號 - 北上",
+      "url": "https://tw.live/national-highway/3/C/N/",
+      "type": "sub",
+      "parent": "國道三號"
+    },
+    {
+      "name": "國道三號 - 南下",
+      "url": "https://tw.live/national-highway/3/C/S/",
+      "type": "sub",
+      "parent": "國道三號"
+    },
+    {
+      "name": "國道三號 - 北上",
+      "url": "https://tw.live/national-highway/3/S/N/",
+      "type": "sub",
+      "parent": "國道三號"
+    },
+    {
+      "name": "國道三號 - 南下",
+      "url": "https://tw.live/national-highway/3/S/S/",
+      "type": "sub",
+      "parent": "國道三號"
+    },
+    {
+      "name": "台南市 - 中西區",
+      "url": "https://tw.live/city/tainancity/westcentral/",
+      "type": "sub",
+      "parent": "台南市"
+    },
+    {
+      "name": "台南市 - 東區",
+      "url": "https://tw.live/city/tainancity/east/",
+      "type": "sub",
+      "parent": "台南市"
+    },
+    {
+      "name": "台南市 - 南區",
+      "url": "https://tw.live/city/tainancity/south/",
+      "type": "sub",
+      "parent": "台南市"
+    },
+    {
+      "name": "台南市 - 北區",
+      "url": "https://tw.live/city/tainancity/north/",
+      "type": "sub",
+      "parent": "台南市"
+    },
+    {
+      "name": "台南市 - 安平區",
+      "url": "https://tw.live/city/tainancity/anping/",
+      "type": "sub",
+      "parent": "台南市"
+    },
+    {
+      "name": "台南市 - 安南區",
+      "url": "https://tw.live/city/tainancity/annan/",
+      "type": "sub",
+      "parent": "台南市"
+    },
+    {
+      "name": "台南市 - 永康區",
+      "url": "https://tw.live/city/tainancity/yongkang/",
+      "type": "sub",
+      "parent": "台南市"
+    },
+    {
+      "name": "台南市 - 歸仁區",
+      "url": "https://tw.live/city/tainancity/guiren/",
+      "type": "sub",
+      "parent": "台南市"
+    },
+    {
+      "name": "台南市 - 仁德區",
+      "url": "https://tw.live/city/tainancity/rende/",
+      "type": "sub",
+      "parent": "台南市"
+    },
+    {
+      "name": "台南市 - 關廟區",
+      "url": "https://tw.live/city/tainancity/guanmiao/",
+      "type": "sub",
+      "parent": "台南市"
+    },
+    {
+      "name": "台南市 - 麻豆區",
+      "url": "https://tw.live/city/tainancity/madou/",
+      "type": "sub",
+      "parent": "台南市"
+    },
+    {
+      "name": "台南市 - 西港區",
+      "url": "https://tw.live/city/tainancity/xigang/",
+      "type": "sub",
+      "parent": "台南市"
+    },
+    {
+      "name": "台南市 - 新營區",
+      "url": "https://tw.live/city/tainancity/xinying/",
+      "type": "sub",
+      "parent": "台南市"
+    },
+    {
+      "name": "台南市 - 善化區",
+      "url": "https://tw.live/city/tainancity/shanhua/",
+      "type": "sub",
+      "parent": "台南市"
+    },
+    {
+      "name": "台南市 - 新市區",
+      "url": "https://tw.live/city/tainancity/xinshi/",
+      "type": "sub",
+      "parent": "台南市"
+    },
+    {
+      "name": "台南市 - 安定區",
+      "url": "https://tw.live/city/tainancity/anding/",
+      "type": "sub",
+      "parent": "台南市"
+    }
+  ],
+  "metadata": {
+    "total_categories": 7,
+    "total_endpoints": 80,
+    "last_updated": "2026-01-22 13:17:50",
+    "source": "https://tw.live"
+  }
+}

@@ -1,0 +1,1575 @@
+{
+  "cameras": [
+    {
+      "id": "T14A-7K-520",
+      "name": "清境停車場旁",
+      "category": "合歡山",
+      "location": "合歡山",
+      "url": "https://tw.live/cam/?id=T14A-7K-520",
+      "thumbnail": "https://cctv-ss04.thb.gov.tw/T14A-7K+520/snapshot?t=1769059545",
+      "type": "image",
+      "imageUrl": "https://cctv-ss04.thb.gov.tw/T14A-7K+520/snapshot?t=1769059545"
+    },
+    {
+      "id": "T14A-006K-950",
+      "name": "清境農場",
+      "category": "合歡山",
+      "location": "合歡山",
+      "url": "https://tw.live/cam/?id=T14A-006K-950",
+      "thumbnail": "https://cctv-ss04.thb.gov.tw/T14A-006K+950/snapshot?t=1769059545",
+      "type": "image",
+      "imageUrl": "https://cctv-ss04.thb.gov.tw/T14A-006K+950/snapshot?t=1769059545"
+    },
+    {
+      "id": "T14A-9K-950",
+      "name": "青青草原入口處",
+      "category": "合歡山",
+      "location": "合歡山",
+      "url": "https://tw.live/cam/?id=T14A-9K-950",
+      "thumbnail": "https://cctv-ss04.thb.gov.tw/T14A-9K+950/snapshot?t=1769059545",
+      "type": "image",
+      "imageUrl": "https://cctv-ss04.thb.gov.tw/T14A-9K+950/snapshot?t=1769059545"
+    },
+    {
+      "id": "T14A-29K-200",
+      "name": "合歡山昆陽停車場",
+      "category": "合歡山",
+      "location": "合歡山",
+      "url": "https://tw.live/cam/?id=T14A-29K-200",
+      "thumbnail": "https://cctv-ss04.thb.gov.tw/T14A-29K+200/snapshot?t=1769059545",
+      "type": "image",
+      "imageUrl": "https://cctv-ss04.thb.gov.tw/T14A-29K+200/snapshot?t=1769059545"
+    },
+    {
+      "id": "T14A-d61a0c91",
+      "name": "合歡山武嶺亭",
+      "category": "合歡山",
+      "location": "合歡山",
+      "url": "https://tw.live/cam/?id=T14A-d61a0c91",
+      "thumbnail": "https://cctv-ss04.thb.gov.tw/T14A-d61a0c91/snapshot?t=1769059545",
+      "type": "image",
+      "imageUrl": "https://cctv-ss04.thb.gov.tw/T14A-d61a0c91/snapshot?t=1769059545"
+    },
+    {
+      "id": "T14A-32K-975-2",
+      "name": "合歡山莊雪厚標尺",
+      "category": "合歡山",
+      "location": "合歡山",
+      "url": "https://tw.live/cam/?id=T14A-32K-975-2",
+      "thumbnail": "https://cctv-ss04.thb.gov.tw/T14A-32K+781-2/snapshot?t=1769059545",
+      "type": "image",
+      "imageUrl": "https://cctv-ss04.thb.gov.tw/T14A-32K+781-2/snapshot?t=1769059545"
+    },
+    {
+      "id": "T14A-32K-975",
+      "name": "合歡山遊客服務中心",
+      "category": "合歡山",
+      "location": "合歡山",
+      "url": "https://tw.live/cam/?id=T14A-32K-975",
+      "thumbnail": "https://cctv-ss04.thb.gov.tw/T14A-32K+781/snapshot?t=1769059545",
+      "type": "image",
+      "imageUrl": "https://cctv-ss04.thb.gov.tw/T14A-32K+781/snapshot?t=1769059545"
+    },
+    {
+      "id": "T14A-36K-560",
+      "name": "仁愛鄉小風口合歡山管理站",
+      "category": "合歡山",
+      "location": "合歡山",
+      "url": "https://tw.live/cam/?id=T14A-36K-560",
+      "thumbnail": "https://cctv-ss01.thb.gov.tw/T14A-036K+560/snapshot?t=1769059545",
+      "type": "image",
+      "imageUrl": "https://cctv-ss01.thb.gov.tw/T14A-036K+560/snapshot?t=1769059545"
+    },
+    {
+      "id": "hehuanfourseasons",
+      "name": "合歡四季",
+      "category": "合歡山",
+      "location": "合歡山",
+      "url": "https://tw.live/cam/?id=hehuanfourseasons",
+      "thumbnail": "https://img.youtube.com/vi/ix9BKNaRtEk/maxresdefault_live.jpg?t=1769059545",
+      "type": "youtube",
+      "youtubeId": "ix9BKNaRtEk",
+      "description": "合歡山 YouTube 直播"
+    },
+    {
+      "id": "hehuanpeaks",
+      "name": "合歡群峰",
+      "category": "合歡山",
+      "location": "合歡山",
+      "url": "https://tw.live/cam/?id=hehuanpeaks",
+      "thumbnail": "https://img.youtube.com/vi/d_wW0gsNRio/maxresdefault_live.jpg?t=1769059545",
+      "type": "youtube",
+      "youtubeId": "d_wW0gsNRio",
+      "description": "合歡山 YouTube 直播"
+    },
+    {
+      "id": "T14A-41K-470",
+      "name": "大禹嶺路側停車場電信箱旁",
+      "category": "合歡山",
+      "location": "合歡山",
+      "url": "https://tw.live/cam/?id=T14A-41K-470",
+      "thumbnail": "https://cctv-ss01.thb.gov.tw/T14A-041K+700/snapshot?t=1769059545",
+      "type": "image",
+      "imageUrl": "https://cctv-ss01.thb.gov.tw/T14A-041K+700/snapshot?t=1769059545"
+    },
+    {
+      "id": "T8-114K-600",
+      "name": "新城分局合歡派出所",
+      "category": "合歡山",
+      "location": "合歡山",
+      "url": "https://tw.live/cam/?id=T8-114K-600",
+      "thumbnail": "https://cctv-ss02.thb.gov.tw/T8-114K+600/snapshot?t=1769059545",
+      "type": "image",
+      "imageUrl": "https://cctv-ss02.thb.gov.tw/T8-114K+600/snapshot?t=1769059545"
+    },
+    {
+      "id": "T8-114K-940",
+      "name": "中油關原加油站",
+      "category": "合歡山",
+      "location": "合歡山",
+      "url": "https://tw.live/cam/?id=T8-114K-940",
+      "thumbnail": "https://cctv-ss02.thb.gov.tw/T8-114K+940/snapshot?t=1769059545",
+      "type": "image",
+      "imageUrl": "https://cctv-ss02.thb.gov.tw/T8-114K+940/snapshot?t=1769059545"
+    },
+    {
+      "id": "ymswyttbpd",
+      "name": "陽明書屋遠眺台北盆地",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=ymswyttbpd",
+      "thumbnail": "https://img.youtube.com/vi/RttyIGHbN_w/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "RttyIGHbN_w",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "qtgcy",
+      "name": "擎天崗草原",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=qtgcy",
+      "thumbnail": "https://img.youtube.com/vi/yF2LAyOvq0Q/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "yF2LAyOvq0Q",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "lsktcc",
+      "name": "冷水坑停車場",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=lsktcc",
+      "thumbnail": "https://img.youtube.com/vi/GB64WeZZQPQ/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "GB64WeZZQPQ",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "dtzrgy",
+      "name": "大屯自然公園",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=dtzrgy",
+      "thumbnail": "https://img.youtube.com/vi/6ghffcNt3Nw/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "6ghffcNt3Nw",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "ezptcc",
+      "name": "二子坪停車場",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=ezptcc",
+      "thumbnail": "https://img.youtube.com/vi/d9KuXrPCWYU/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "d9KuXrPCWYU",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "xyktcc",
+      "name": "小油坑停車場",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=xyktcc",
+      "thumbnail": "https://img.youtube.com/vi/kKD-ZBLs8-4/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "kKD-ZBLs8-4",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "ytqxs",
+      "name": "遠眺七星山",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=ytqxs",
+      "thumbnail": "https://img.youtube.com/vi/PvJr2efA6n0/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "PvJr2efA6n0",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "qtghxbd",
+      "name": "擎天崗環型步道",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=qtghxbd",
+      "thumbnail": "https://img.youtube.com/vi/rLFcPXHiokc/sddefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "rLFcPXHiokc",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "ymsqxgy",
+      "name": "陽明山七星公園",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=ymsqxgy",
+      "thumbnail": "https://img.youtube.com/vi/XO4C8bEYymQ/sddefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "XO4C8bEYymQ",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "ymsxyktcc",
+      "name": "陽明山小油坑停車場",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=ymsxyktcc",
+      "thumbnail": "https://img.youtube.com/vi/CAJHiNdHgHw/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "CAJHiNdHgHw",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "ymsxykqtcc",
+      "name": "陽明山小油坑橋停車場",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=ymsxykqtcc",
+      "thumbnail": "https://img.youtube.com/vi/6JKzHPwVVAU/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "6JKzHPwVVAU",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "ymsxgytcc",
+      "name": "陽明山小觀音停車場",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=ymsxgytcc",
+      "thumbnail": "https://img.youtube.com/vi/cJ3LtLxNREg/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "cJ3LtLxNREg",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "ymsqtgtcc",
+      "name": "陽明山擎天崗停車場",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=ymsqtgtcc",
+      "thumbnail": "https://img.youtube.com/vi/4Km8wQZVsxQ/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "4Km8wQZVsxQ",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "ymsmhhtcc",
+      "name": "陽明山夢幻湖停車場",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=ymsmhhtcc",
+      "thumbnail": "https://img.youtube.com/vi/rBv-_GxtkKI/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "rBv-_GxtkKI",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "ymslskehtcc",
+      "name": "陽明山冷水坑二號停車場",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=ymslskehtcc",
+      "thumbnail": "https://img.youtube.com/vi/rECInoiM9VU/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "rECInoiM9VU",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "ymslskyhtcc",
+      "name": "陽明山冷水坑一號停車場",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=ymslskyhtcc",
+      "thumbnail": "https://img.youtube.com/vi/WP_ULdKfuW8/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "WP_ULdKfuW8",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "ymsezpehtcc",
+      "name": "陽明山二子坪二號停車場",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=ymsezpehtcc",
+      "thumbnail": "https://img.youtube.com/vi/NtpTBfgWGlw/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "NtpTBfgWGlw",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "ymsezpyhtcc",
+      "name": "陽明山二子坪一號停車場",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=ymsezpyhtcc",
+      "thumbnail": "https://img.youtube.com/vi/ddpQUODD_9s/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "ddpQUODD_9s",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "ymsdtyhtcc2",
+      "name": "陽明山大屯二號停車場",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=ymsdtyhtcc2",
+      "thumbnail": "https://img.youtube.com/vi/w9QGazvjq5U/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "w9QGazvjq5U",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "ymsdtyhtcc",
+      "name": "陽明山大屯一號停車場",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=ymsdtyhtcc",
+      "thumbnail": "https://img.youtube.com/vi/jDJlrP2B-Cw/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "jDJlrP2B-Cw",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "ymsabtcc",
+      "name": "陽明山鞍部停車場",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=ymsabtcc",
+      "thumbnail": "https://img.youtube.com/vi/vRwRi30NDl4/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "vRwRi30NDl4",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "xykjsyx",
+      "name": "小油坑噴氣孔",
+      "category": "陽明山",
+      "location": "陽明山",
+      "url": "https://tw.live/cam/?id=xykjsyx",
+      "thumbnail": "https://img.youtube.com/vi/OsypboJq43w/maxresdefault_live.jpg?t=1769059547",
+      "type": "youtube",
+      "youtubeId": "OsypboJq43w",
+      "description": "陽明山 YouTube 直播"
+    },
+    {
+      "id": "BOT037",
+      "name": "037-市民快麥帥一橋",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT037",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT046",
+      "name": "046-民權大橋",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT046",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT047",
+      "name": "047-麥帥二橋松山抽水站",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT047",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT092",
+      "name": "092-復北隧道南口-民族復興",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT092",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT093",
+      "name": "093-復北隧道北向0K+500M",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT093",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT094",
+      "name": "094-復北隧道北向0K+623M",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT094",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT095",
+      "name": "095-復北隧道北向0K+750M",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT095",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT099",
+      "name": "099-復北隧道南向0K+830M",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT099",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT100",
+      "name": "100-復北隧道南向0K+705M",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT100",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT101",
+      "name": "101-復北隧道南向0K+580M",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT101",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT243",
+      "name": "243-復興北路427巷(往北)",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT243",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT266",
+      "name": "266-基隆路-八德路口(高架第2層)",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT266",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT269",
+      "name": "269-市民大道-松信路口",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT269",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT305",
+      "name": "305-敦化-南京",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT305",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT306",
+      "name": "306-敦化-八德",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT306",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT341",
+      "name": "341-南京東路4段北寧路口",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT341",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT348",
+      "name": "348-八德-塔悠路口",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT348",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT349",
+      "name": "349-南京東-三民路口",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT349",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT351",
+      "name": "351-南京-光復路口",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT351",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT372",
+      "name": "372-民權東路與敦化北路",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT372",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT388",
+      "name": "388-八德路3段-光復北路",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT388",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT421",
+      "name": "421-市民大道四段-敦化南路1段(橋下)",
+      "category": "台北市 - 松山區",
+      "location": "台北市 - 松山區",
+      "url": "https://tw.live/cam/?id=BOT421",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059550",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059550"
+    },
+    {
+      "id": "BOT031",
+      "name": "031-市民快永吉",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT031",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT036",
+      "name": "036-市民快正氣橋上層",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT036",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT038",
+      "name": "038-基隆永吉",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT038",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT074",
+      "name": "074-信義松德",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT074",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT075",
+      "name": "075-信義松仁",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT075",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT128",
+      "name": "128-信義松智東南角",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT128",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT129",
+      "name": "129-忠孝光復",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT129",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT131",
+      "name": "131-忠孝松山",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT131",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT132",
+      "name": "132-仁愛光復",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT132",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT133",
+      "name": "133-松高松智",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT133",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT134",
+      "name": "134-松仁松壽",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT134",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT135",
+      "name": "135-基隆信義",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT135",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT136",
+      "name": "136-基隆光復",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT136",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT137",
+      "name": "137-市府西南(松壽市府)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT137",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT138",
+      "name": "138-市府東南(松壽松智)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT138",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT139",
+      "name": "139-市府東北(松高松智)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT139",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT140",
+      "name": "140-市府西北(松高市府)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT140",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT180",
+      "name": "180-基隆路北往南主車道4(基隆松高)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT180",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT181",
+      "name": "181-基隆路北往南主車道5(基隆松高)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT181",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT188",
+      "name": "188-基隆路南往北主車道4(基隆松高)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT188",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT189",
+      "name": "189-基隆路南往北主車道5(基隆松高)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT189",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT190",
+      "name": "190-基隆路南往北主車道6(基隆忠孝)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT190",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT191",
+      "name": "191-基隆路南往北主車道7(基隆忠孝)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT191",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT192",
+      "name": "192-基隆路南往北主車道8(基隆忠孝)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT192",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT196",
+      "name": "196-基隆路北往南混合車道4(基隆松壽)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT196",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT197",
+      "name": "197-基隆路南往北混合車道1(基隆松壽)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT197",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT198",
+      "name": "198-基隆路南往北混合車道2(基隆松壽)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT198",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT199",
+      "name": "199-基隆路南往北混合車道3(基隆松高)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT199",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT200",
+      "name": "200-基隆路南往北混合車道4(基隆忠孝)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT200",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT257",
+      "name": "257-忠孝東路-松仁路口",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT257",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT268",
+      "name": "268-基隆路口-八德路口(高架上層)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT268",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT270",
+      "name": "270-市民大道-松山路口",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT270",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT277",
+      "name": "277-信義路五段7號(台北101大樓)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT277",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT283",
+      "name": "283-信義路四段-光復南路口",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT283",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT284",
+      "name": "284-信義路-莊敬路口",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT284",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT287",
+      "name": "287-基隆路二段-嘉興街",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT287",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT288",
+      "name": "288-逸仙路-松高路口",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT288",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT300",
+      "name": "300-基隆松壽限高器",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT300",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT343",
+      "name": "343-市高(光復) 市高西行既設鋼構",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT343",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT377",
+      "name": "377-菸廠路 市民大道5段14巷",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT377",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT382",
+      "name": "382忠孝東路-光復南路(巨蛋體育館)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT382",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT383",
+      "name": "383-忠孝東路-逸仙路",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT383",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT384",
+      "name": "384忠孝東路-逸仙路(巨蛋辦公樓)",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT384",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT392",
+      "name": "392-文山北向出口",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT392",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT393",
+      "name": "393-文山南向入口",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT393",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT395",
+      "name": "395-象山北向入口",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT395",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT396",
+      "name": "396-象山北向出口",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT396",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT397",
+      "name": "397-象山南向入口",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT397",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT398",
+      "name": "398-象山南向出口",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT398",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT418",
+      "name": "418-市民大道5段-東興路",
+      "category": "台北市 - 信義區",
+      "location": "台北市 - 信義區",
+      "url": "https://tw.live/cam/?id=BOT418",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059553",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059553"
+    },
+    {
+      "id": "BOT010",
+      "name": "010-辛亥快泰順",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT010",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT011",
+      "name": "011-辛亥快新生南",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT011",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT012",
+      "name": "012-建國快辛亥",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT012",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT013",
+      "name": "013-建國快和平",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT013",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT014",
+      "name": "014-建國快信義",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT014",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT015",
+      "name": "015-建國快仁愛",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT015",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT016",
+      "name": "016-建國快忠孝",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT016",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT025",
+      "name": "025-基隆快羅斯",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT025",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT026",
+      "name": "026-基隆快辛亥",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT026",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT029",
+      "name": "029-市民快敦化",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT029",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT034",
+      "name": "034-市民快建國北匝道",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT034",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT035",
+      "name": "035-市民快光復匝道",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT035",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT079",
+      "name": "079-復興辛亥",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT079",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT087",
+      "name": "087-基隆快樂業街口",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT087",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT088",
+      "name": "088-基隆快敦化南路",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT088",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT089",
+      "name": "089-基隆快辛亥出口匝道",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT089",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT125",
+      "name": "125-辛亥路三段330號(二殯西北角)",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT125",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT126",
+      "name": "126-芳蘭路-基隆路三段155巷176弄",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT126",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT127",
+      "name": "127-辛亥路-芳蘭路",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT127",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT169",
+      "name": "169-基隆路3段156巷",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT169",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT172",
+      "name": "172-基隆羅斯(東南角)",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT172",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT173",
+      "name": "173-仁愛敦化(北側)",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT173",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT174",
+      "name": "174-仁愛敦化(西側)",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT174",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT175",
+      "name": "175-仁愛敦化(東側)",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT175",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT176",
+      "name": "176-仁愛敦化(南側)",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT176",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT207",
+      "name": "207-辛亥隧道往木柵入口0K+7M",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT207",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT211",
+      "name": "211-辛亥隧道往市區入口0K+160M",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT211",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT212",
+      "name": "212-辛亥隧道往市區入口0K+355M",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT212",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT262",
+      "name": "262-忠孝東路-復興南路口",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT262",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT264",
+      "name": "264-基隆路-和平東路口",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT264",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT267",
+      "name": "267-市民高架道路(往東延吉街上方)",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT267",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT280",
+      "name": "280-基隆羅斯(平面東側)",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT280",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT317",
+      "name": "317-復興南路與市民大道口",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT317",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT319",
+      "name": "319-復興南路-仁愛三段",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT319",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT320",
+      "name": "320-復興南路與信義路口",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT320",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT321",
+      "name": "321-復興南路與復興南路2段148巷口",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT321",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT322",
+      "name": "322-復興南路與和平東路口",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT322",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT329",
+      "name": "329-光復南路與市民大道口",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT329",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT330",
+      "name": "330-信義路與安和路口",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT330",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT342",
+      "name": "342-辛亥路3段基隆路3段路口",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT342",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT344",
+      "name": "344-市高(建國) 市高西行既設鋼構",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT344",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT345",
+      "name": "345-忠孝東-敦化南路口",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT345",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT352",
+      "name": "352-忠孝-延吉路口",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT352",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT354",
+      "name": "354-信義-敦化路口",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT354",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT355",
+      "name": "355-和平-敦化路口",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT355",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT387",
+      "name": "387-新生南路-和平東路",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT387",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    },
+    {
+      "id": "BOT417",
+      "name": "417-和平東路1段-師大路",
+      "category": "台北市 - 大安區",
+      "location": "台北市 - 大安區",
+      "url": "https://tw.live/cam/?id=BOT417",
+      "thumbnail": "https://tw.live/assets/thumbnail.png?t=1769059559",
+      "type": "image",
+      "imageUrl": "https://tw.live/assets/thumbnail.png?t=1769059559"
+    }
+  ],
+  "metadata": {
+    "totalCount": 154,
+    "lastUpdated": "2026-01-22 13:26:03",
+    "version": "2.0.0",
+    "source": "https://tw.live",
+    "method": "blueprint-based"
+  }
+}
