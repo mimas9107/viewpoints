@@ -195,8 +195,31 @@ class TWLiveScraper:
                 camera["description"] = f"{category_name} YouTube 直播"
                 # YouTube 不需要 imageUrl
                 del camera["imageUrl"]
+        elif thumbnail.startswith("https://tw.live/assets/thumbnail.png"):
+            # 佔位符圖片，可能需要從詳細頁面提取 HLS
+            hls_url = self.extract_hls_from_detail_page(camera_url)
+            if hls_url:
+                camera["type"] = "hls"
+                camera["hlsUrl"] = hls_url
+                # HLS 不需要 imageUrl
+                del camera["imageUrl"]
 
         return camera
+
+    def extract_hls_from_detail_page(self, detail_url):
+        """從詳細頁面提取 HLS URL"""
+        html = self.fetch_page(detail_url)
+        if not html:
+            return None
+
+        soup = BeautifulSoup(html, "html.parser")
+
+        # 查找 HLS 來源
+        source = soup.find("source", {"type": "application/x-mpegURL"})
+        if source and source.get("src"):
+            return source["src"]
+
+        return None
 
     def extract_sub_page_links(self, soup, base_url):
         """從總覽頁面提取子頁面連結"""
