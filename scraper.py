@@ -2,6 +2,7 @@
 """
 tw.live 監控點爬蟲程式
 爬取全站監控點資訊並建立資料庫
+版本：2.0.1
 """
 
 import requests
@@ -195,14 +196,23 @@ class TWLiveScraper:
                 camera["description"] = f"{category_name} YouTube 直播"
                 # YouTube 不需要 imageUrl
                 del camera["imageUrl"]
-        elif thumbnail.startswith("https://tw.live/assets/thumbnail.png"):
-            # 佔位符圖片，可能需要從詳細頁面提取 HLS
+        elif not thumbnail or thumbnail.startswith(
+            "https://tw.live/assets/thumbnail.png"
+        ):
+            # 佔位符圖片或沒有 thumbnail，可能需要從詳細頁面提取 HLS
             hls_url = self.extract_hls_from_detail_page(camera_url)
             if hls_url:
                 camera["type"] = "hls"
                 camera["hlsUrl"] = hls_url
                 # HLS 不需要 imageUrl
                 del camera["imageUrl"]
+            else:
+                # 無法提取到有效的 HLS URL，跳過這個監控點
+                return None
+        else:
+            # Image 類型：處理 snapshot URL，移除 /snapshot 部分以實現動態更新
+            if camera["type"] == "image" and "/snapshot" in camera["imageUrl"]:
+                camera["imageUrl"] = camera["imageUrl"].split("/snapshot")[0]
 
         return camera
 
@@ -214,10 +224,58 @@ class TWLiveScraper:
 
         soup = BeautifulSoup(html, "html.parser")
 
-        # 查找 HLS 來源
+        # 方法1: 查找 source 標籤
         source = soup.find("source", {"type": "application/x-mpegURL"})
         if source and source.get("src"):
             return source["src"]
+
+        # 方法2: 查找 iframe 中的 .m3u8 連結
+        iframe = soup.find("iframe")
+        if iframe and iframe.get("src"):
+            iframe_src = iframe["src"]
+            if ".m3u8" in iframe_src:
+                return iframe_src
+
+        # 方法3: 查找外部播放器連結
+        external_link = soup.find(
+            "a", {"target": "_blank", "rel": "noopener noreferrer"}
+        )
+        if external_link and external_link.get("href"):
+            href = external_link["href"]
+            # 檢查是否是外部播放器連結
+            if "hls_player" in href or "live_cam" in href:
+                # 對於需要外部播放器的情況，返回 None
+                # 這類型需要複雜的 AJAX 請求和令牌處理
+                # 不適合直接在監控牆中使用
+                return None
+
+        return None
+
+        soup = BeautifulSoup(html, "html.parser")
+
+        # 查找 HLS 來源（多種格式）
+        # 方法1: 查找 source 標籤
+        source = soup.find("source", {"type": "application/x-mpegURL"})
+        if source and source.get("src"):
+            return source["src"]
+
+        # 方法2: 查找 iframe 中的 .m3u8 連結
+        iframe = soup.find("iframe")
+        if iframe and iframe.get("src"):
+            iframe_src = iframe["src"]
+            if ".m3u8" in iframe_src:
+                return iframe_src
+
+        # 方法3: 查找外部播放器連結
+        external_link = soup.find(
+            "a", {"target": "_blank", "rel": "noopener noreferrer"}
+        )
+        if external_link and external_link.get("href"):
+            href = external_link["href"]
+            # 檢查是否是外部播放器連結
+            if "hls_player" in href or "live_cam" in href:
+                # 將外部連結作為 hlsUrl（雖然不是真正的 HLS）
+                return href
 
         return None
 
@@ -379,7 +437,7 @@ class TWLiveScraper:
             "metadata": {
                 "totalCount": len(self.cameras),
                 "lastUpdated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                "version": "1.0.0",
+                "version": "2.0.1",
                 "source": "https://tw.live",
             },
         }

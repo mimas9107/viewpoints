@@ -28,9 +28,15 @@ package-lock.json
 *.log
 
 # Temporary files
+.backups/
 *.tmp
 *~
 
 # environment variables
 .env
-.json
+*.json
+
+# Scrape output files
+cameras_database.json
+testoutput.json
+scraper_blueprint.json

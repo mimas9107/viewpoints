@@ -2,6 +2,7 @@
 """
 tw.live 監控點抓取器 v2
 基於分類藍圖的完整抓取
+版本：2.0.1
 """
 
 import requests
@@ -168,7 +169,7 @@ class TWLiveScraper2:
             "metadata": {
                 "totalCount": len(self.cameras),
                 "lastUpdated": time.strftime("%Y-%m-%d %H:%M:%S"),
-                "version": "2.0.0",
+                "version": "2.0.1",
                 "source": "https://tw.live",
                 "method": "blueprint-based",
             },
