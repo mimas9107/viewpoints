@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,7 +45,7 @@
             border-radius: 12px;
             padding: 30px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .upload-area {
@@ -57,9 +58,10 @@
             cursor: pointer;
         }
 
-        .upload-area:hover, .upload-area.dragover {
+        .upload-area:hover,
+        .upload-area.dragover {
             border-color: #0066cc;
-            background: rgba(0,102,204,0.1);
+            background: rgba(0, 102, 204, 0.1);
         }
 
         .upload-icon {
@@ -154,17 +156,17 @@
         }
 
         .status-success {
-            background: rgba(0,204,102,0.2);
+            background: rgba(0, 204, 102, 0.2);
             color: #00cc66;
         }
 
         .status-error {
-            background: rgba(255,68,68,0.2);
+            background: rgba(255, 68, 68, 0.2);
             color: #ff4444;
         }
 
         .status-info {
-            background: rgba(0,102,204,0.2);
+            background: rgba(0, 102, 204, 0.2);
             color: #0066cc;
         }
 
@@ -218,6 +220,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -260,14 +263,23 @@
         </div>
     </div>
 
-    <script>
+    <script type="module">
+        import { fetchWithAuth, checkAuth, getToken } from './js/auth.js';
+
+        // 立即檢查認證
+        checkAuth();
+
         let selectedFile = null;
         let parsedConfig = null;
         const CONFIG_API = '/api/config';
 
+        // 將函式掛載到 window 以便 onclick 調用
+        window.uploadConfig = uploadConfig;
+        window.downloadCurrent = downloadCurrent;
+
         async function loadCurrentConfig() {
             try {
-                const response = await fetch(CONFIG_API);
+                const response = await fetchWithAuth(CONFIG_API);
                 if (!response.ok) throw new Error('無法載入');
 
                 const config = await response.json();
@@ -362,7 +374,7 @@
             document.getElementById('uploadBtn').disabled = true;
 
             try {
-                const response = await fetch(CONFIG_API, {
+                const response = await fetchWithAuth(CONFIG_API, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(parsedConfig)
@@ -385,7 +397,8 @@
         }
 
         function downloadCurrent() {
-            window.location.href = '/api/config/download';
+            const token = getToken();
+            window.location.href = `/api/config/download?token=${token}`;
         }
 
         function resetUpload() {
@@ -425,4 +438,5 @@
         loadCurrentConfig();
     </script>
 </body>
+
 </html>

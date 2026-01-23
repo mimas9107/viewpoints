@@ -12,6 +12,7 @@
 - 顯示每個監控畫面的最後更新時間
 - 圖形化監控點選擇器 (`picker.html`)
 - 圖形化上傳介面 (`upload.html`)
+- **使用者權限與個人化監視牆** - 支援註冊、登入，不同使用者擁有獨立配置
 - 統一伺服器 - 整合靜態服務與 Config API (`start-server-fastapi.py`)
 - AI 整合 - 支援 MCP Server，讓 AI 助手幫你分析路況
 
@@ -144,16 +145,27 @@ python3 start-server-fastapi.py
 
 | 方法 | 路徑 | 功能 |
 |------|------|------|
-| GET | `/api/config` | 讀取目前配置 |
-| POST | `/api/config` | 儲存新配置 |
-| GET | `/api/config/download` | 下載配置檔案 |
-| GET | `/api/config/backups` | 列出備份檔案 |
-| POST | `/api/config/backups/{檔名}/restore` | 復原備份 |
+| POST | `/api/auth/register` | 註冊新使用者 |
+| POST | `/api/auth/login` | 登入並獲取 JWT Token |
+| GET | `/api/auth/me` | 獲取目前登入使用者資訊 |
+| GET | `/api/config` | 讀取目前使用者的配置 |
+| POST | `/api/config` | 儲存目前使用者的配置 |
+| GET | `/api/config/download` | 下載目前使用者的配置檔案 |
+| GET | `/api/config/backups` | 列出目前使用者的備份檔案 |
+| POST | `/api/config/backups/{檔名}/restore` | 復原目前使用者的備份 |
 
 **備份機制：**
 - 每次儲存配置前會自動備份
 - 備份檔案存放於 `.backups/` 目錄
+- 檔名包含使用者名稱以區隔不同使用者的備份
 - 最多保留 10 份備份
+
+### 使用者權限系統
+
+本專案現在支援多使用者環境：
+- **註冊/登入**：首次存取會導向至 `login.html`。
+- **配置隔離**：不同使用者的配置儲存於 `viewpoints_<username>.json`。
+- **安全性**：使用 JWT (JSON Web Token) 進行認證。
 
 ### 舊版分開伺服器（已廢棄）
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,7 +45,7 @@
             padding: 20px;
             border-radius: 12px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .search-bar {
@@ -103,7 +104,7 @@
             background: #2d2d2e;
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             max-height: 600px;
             overflow-y: auto;
         }
@@ -170,7 +171,7 @@
             background: #2d2d2e;
             border-radius: 12px;
             padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             max-height: 600px;
             overflow-y: auto;
         }
@@ -227,7 +228,7 @@
             border-radius: 12px;
             padding: 20px;
             margin-top: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .export-btn {
@@ -313,6 +314,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -357,10 +359,23 @@
         </div>
     </div>
 
-    <script>
+    <script type="module">
+        import { fetchWithAuth, checkAuth } from './js/auth.js';
+
+        // 立即檢查認證
+        checkAuth();
+
         let database = {};
         let selectedCameras = [];
         let currentFilter = '全部';
+
+        // 將函式掛載到 window 以便 onclick 調用
+        window.clearAll = clearAll;
+        window.exportConfig = exportConfig;
+        window.saveToServer = saveToServer;
+        window.previewWall = previewWall;
+        window.toggleCamera = toggleCamera;
+        window.removeCamera = removeCamera;
 
         // 載入資料庫
         async function loadDatabase() {
@@ -379,23 +394,23 @@
         function generateFilterTabs() {
             const cameras = database.cameras || [];
             const categories = {};
-            
+
             // 統計各分類數量
             cameras.forEach(cam => {
                 if (cam.category) {
                     categories[cam.category] = (categories[cam.category] || 0) + 1;
                 }
             });
-            
+
             // 排序分類（按數量多到少）
             const sortedCategories = Object.entries(categories)
                 .sort((a, b) => b[1] - a[1]);
-            
+
             const tabsContainer = document.getElementById('filterTabs');
-            
+
             // 保留"全部"按鈕
             tabsContainer.innerHTML = '<button class="filter-tab active" data-category="全部">全部</button>';
-            
+
             // 產生標籤
             sortedCategories.forEach(([cat, count]) => {
                 const btn = document.createElement('button');
@@ -412,13 +427,13 @@
         function renderCameraList(searchTerm = '') {
             const container = document.getElementById('cameraList');
             const cameras = database.cameras || [];
-            
+
             // 篩選
             let filtered = cameras.filter(cam => {
                 const name = cam.name || "";
                 const location = cam.location || "";
-                const matchSearch = !searchTerm || 
-                    name.includes(searchTerm) || 
+                const matchSearch = !searchTerm ||
+                    name.includes(searchTerm) ||
                     location.includes(searchTerm);
                 const matchCategory = currentFilter === '全部' || cam.category === currentFilter;
                 return matchSearch && matchCategory;
@@ -442,7 +457,8 @@
                         <span>🏷️ ${cam.category || "未分類"}</span>
                     </div>
                 </div>
-            `;}).join('');
+            `;
+            }).join('');
         }
 
         // 判斷是否已選擇
@@ -480,7 +496,7 @@
         function renderSelectedList() {
             const container = document.getElementById('selectedList');
             const countEl = document.getElementById('selectedCount');
-            
+
             countEl.textContent = selectedCameras.length;
 
             if (selectedCameras.length === 0) {
@@ -576,7 +592,7 @@
             saveBtn.disabled = true;
 
             try {
-                const response = await fetch('/api/config', {
+                const response = await fetchWithAuth('/api/config', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(config)
@@ -590,7 +606,8 @@
                     alert('❌ 儲存失敗: ' + (result.error || '未知錯誤'));
                 }
             } catch (error) {
-                alert('❌ 網路錯誤: ' + error.message + '\n\n請確保 config-server.py 已在 port 8844 執行。');
+                if (error.message === 'Unauthorized') return;
+                alert('❌ 網路錯誤: ' + error.message + '\n\n請確保伺服器已在 port 8844 執行。');
             } finally {
                 saveBtn.textContent = originalText;
                 saveBtn.disabled = false;
@@ -629,4 +646,5 @@
         loadDatabase();
     </script>
 </body>
+
 </html>

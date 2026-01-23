@@ -7,6 +7,38 @@
 
 ---
 
+## [2.1.0] - 2026-01-23
+
+### Added
+
+- **使用者權限與個人化監視牆**
+  - 實作基於 JWT 的認證系統 (FastAPI + python-jose)。
+  - 新增現代化登入頁面 (`login.html`)，採用 Glassmorphism 設計。
+  - 支援使用者註冊、登入與登出功能。
+  - 實作使用者獨立配置檔案 (`viewpoints_<username>.json`)。
+  - 新增受保護的 API 路由，確保配置數據安全與隔離。
+  - 認證模組封裝 (`js/auth.js`)，支援 Token 管理與請求攔截。
+
+### Changed
+
+- **統一伺服器升級 (`start-server-fastapi.py`)**
+  - 整合 JWT 驗證與使用者管理邏輯。
+  - 配置 API 路由現在支援使用者隔離儲存與備份。
+  - 支援透過 URL 參數或 Authorization Header 進行認證。
+
+- **前端頁面整合**
+  - `index.html`：新增使用者資訊顯示與登出按鈕，加入登入狀態檢查。
+  - `picker.html` & `upload.html`：整合 API 認證邏輯與 ES 模組化。
+  - `js/config.js`：更新配置載入邏輯以配合認證機制。
+
+### Fixed
+
+- **安全與穩定性**
+  - 修復密碼雜湊方案相容性問題（使用 `pbkdf2_sha256`）。
+  - 修復下載 API 在瀏覽器環境下的認證傳遞問題。
+
+---
+
 ## [Unreleased] - 技術重點整理與修復
 
 ### Added

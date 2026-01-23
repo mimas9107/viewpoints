@@ -18,11 +18,14 @@ from datetime import datetime
 from pathlib import Path
 from typing import List, Optional
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel
+from jose import JWTError, jwt
+from passlib.context import CryptContext
 
 
 class SPAStaticFiles(StaticFiles):
@@ -64,8 +67,17 @@ load_env_file()
 PORT = int(os.environ.get("VIEWPOINTS_PORT", 8844))
 BASE_DIR = Path(__file__).parent.resolve()
 CONFIG_FILE = BASE_DIR / "viewpoints.json"
+USERS_FILE = BASE_DIR / "users.json"
 BACKUP_DIR = BASE_DIR / ".backups"
 MAX_BACKUPS = 10
+
+# JWT Settings
+SECRET_KEY = os.environ.get("SECRET_KEY", "viewpoints-secret-key-3000")
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7 days
+
+pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")
 
 
 class Camera(BaseModel):
@@ -94,23 +106,88 @@ def validate_config(data: dict) -> bool:
         return False
     if not isinstance(data["cameras"], list):
         return False
-    for cam in data["cameras"]:
-        if "id" not in cam or "name" not in cam or "type" not in cam:
-            return False
+    # 允許空相機列表
     return True
 
 
-def create_backup():
-    BACKUP_DIR.mkdir(parents=True, exist_ok=True)
+def get_user_config_file(username: str) -> Path:
+    return BASE_DIR / f"viewpoints_{username}.json"
 
-    if not CONFIG_FILE.exists():
+
+def load_users() -> dict:
+    if not USERS_FILE.exists():
+        return {}
+    try:
+        with open(USERS_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except:
+        return {}
+
+
+def save_users(users: dict):
+    with open(USERS_FILE, "w", encoding="utf-8") as f:
+        json.dump(users, f, ensure_ascii=False, indent=2)
+
+
+def get_password_hash(password):
+    return pwd_context.hash(password)
+
+
+def verify_password(plain_password, hashed_password):
+    return pwd_context.verify(plain_password, hashed_password)
+
+
+def create_access_token(data: dict):
+    to_encode = data.copy()
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+
+async def get_current_user(
+    token_header: Optional[str] = Depends(oauth2_scheme),
+    token: Optional[str] = None
+):
+    # 如果 header 沒有 token，嘗試從 query params 獲取
+    actual_token = token_header
+    if not actual_token and token:
+        actual_token = token
+
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    if not actual_token:
+        raise credentials_exception
+    try:
+        payload = jwt.decode(actual_token, SECRET_KEY, algorithms=[ALGORITHM])
+        username: str = payload.get("sub")
+        if username is None:
+            raise credentials_exception
+        return username
+    except JWTError:
+        raise credentials_exception
+
+
+class UserAuth(BaseModel):
+    username: str
+    password: str
+
+
+def create_backup(username: Optional[str] = None):
+    BACKUP_DIR.mkdir(parents=True, exist_ok=True)
+    
+    target_file = get_user_config_file(username) if username else CONFIG_FILE
+    
+    if not target_file.exists():
         return
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    backup_filename = f"viewpoints_{timestamp}_{uuid.uuid4().hex[:8]}.json"
+    prefix = f"viewpoints_{username}_" if username else "viewpoints_"
+    backup_filename = f"{prefix}{timestamp}_{uuid.uuid4().hex[:8]}.json"
     backup_path = BACKUP_DIR / backup_filename
 
-    shutil.copy2(CONFIG_FILE, backup_path)
+    shutil.copy2(target_file, backup_path)
 
     backups = sorted(
         [
@@ -140,33 +217,76 @@ app.add_middleware(
 )
 
 
-@app.get("/api/config")
-def get_config():
-    try:
-        if not CONFIG_FILE.exists():
-            return JSONResponse(content={"error": "配置文件不存在"}, status_code=404)
+# --- Auth API ---
 
-        with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+@app.post("/api/auth/register")
+def register(user: UserAuth):
+    users = load_users()
+    if user.username in users:
+        raise HTTPException(status_code=400, detail="使用者名稱已存在")
+    
+    users[user.username] = {
+        "password": get_password_hash(user.password),
+        "created_at": datetime.now().isoformat()
+    }
+    save_users(users)
+    return {"success": True, "message": "註冊成功"}
+
+
+@app.post("/api/auth/login")
+def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    users = load_users()
+    user = users.get(form_data.username)
+    if not user or not verify_password(form_data.password, user["password"]):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="帳號或密碼錯誤",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    
+    access_token = create_access_token(data={"sub": form_data.username})
+    return {"access_token": access_token, "token_type": "bearer", "username": form_data.username}
+
+
+@app.get("/api/auth/me")
+def get_me(username: str = Depends(get_current_user)):
+    return {"username": username}
+
+
+# --- Config API ---
+
+
+@app.get("/api/config")
+def get_config(username: str = Depends(get_current_user)):
+    try:
+        user_config = get_user_config_file(username)
+        if not user_config.exists():
+            # 回傳預設配置
+            if CONFIG_FILE.exists():
+                with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            return {"title": "我的監視器牆", "cameras": [], "autoRefresh": True, "refreshInterval": 60}
+
+        with open(user_config, "r", encoding="utf-8") as f:
             data = json.load(f)
 
         return data
-    except json.JSONDecodeError:
-        return JSONResponse(content={"error": "配置文件格式錯誤"}, status_code=500)
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
 
 
 @app.post("/api/config")
-def save_config(config: dict):
+def save_config(config: dict, username: str = Depends(get_current_user)):
     try:
         if not validate_config(config):
             return JSONResponse(
                 content={"error": "配置文件格式驗證失敗"}, status_code=400
             )
 
-        create_backup()
+        create_backup(username)
 
-        with open(CONFIG_FILE, "w", encoding="utf-8") as f:
+        user_config = get_user_config_file(username)
+        with open(user_config, "w", encoding="utf-8") as f:
             json.dump(config, f, ensure_ascii=False, indent=2)
 
         return {
@@ -174,8 +294,6 @@ def save_config(config: dict):
             "message": "配置已儲存",
             "timestamp": datetime.now().isoformat(),
         }
-    except json.JSONDecodeError:
-        return JSONResponse(content={"error": "無效的 JSON 格式"}, status_code=400)
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
 
@@ -188,19 +306,20 @@ def download_config_head():
 
 
 @app.get("/api/config/download")
-def download_config():
+def download_config(username: str = Depends(get_current_user)):
     try:
-        if not CONFIG_FILE.exists():
+        user_config = get_user_config_file(username)
+        if not user_config.exists():
             return JSONResponse(content={"error": "配置文件不存在"}, status_code=404)
 
-        with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+        with open(user_config, "r", encoding="utf-8") as f:
             content = f.read()
 
         return Response(
             content=content,
             media_type="application/json",
             headers={
-                "Content-Disposition": 'attachment; filename="viewpoints.json"',
+                "Content-Disposition": f'attachment; filename="viewpoints_{username}.json"',
             },
         )
     except Exception as e:
@@ -208,14 +327,15 @@ def download_config():
 
 
 @app.get("/api/config/backups")
-def list_backups():
+def list_backups(username: str = Depends(get_current_user)):
     try:
         if not BACKUP_DIR.exists():
             return {"backups": []}
 
         backups = []
+        prefix = f"viewpoints_{username}_"
         for f in os.listdir(BACKUP_DIR):
-            if f.startswith("viewpoints_") and f.endswith(".json"):
+            if f.startswith(prefix) and f.endswith(".json"):
                 filepath = BACKUP_DIR / f
                 stat = filepath.stat()
                 backups.append(
@@ -233,10 +353,14 @@ def list_backups():
 
 
 @app.post("/api/config/backups/{filename}/restore")
-def restore_backup(filename: str):
+def restore_backup(filename: str, username: str = Depends(get_current_user)):
     try:
         if not filename.endswith(".json"):
             filename += ".json"
+
+        # 安全性檢查：確保檔名屬於該使用者
+        if not filename.startswith(f"viewpoints_{username}_"):
+            raise HTTPException(status_code=403, detail="無權存取此備份檔")
 
         backup_path = BACKUP_DIR / filename
 
@@ -251,9 +375,10 @@ def restore_backup(filename: str):
                 content={"error": "備份檔案格式驗證失敗"}, status_code=400
             )
 
-        create_backup()
+        create_backup(username)
 
-        with open(CONFIG_FILE, "w", encoding="utf-8") as f:
+        user_config = get_user_config_file(username)
+        with open(user_config, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
 
         return {
@@ -262,6 +387,8 @@ def restore_backup(filename: str):
             "timestamp": datetime.now().isoformat(),
         }
     except Exception as e:
+        if isinstance(e, HTTPException):
+            raise e
         return JSONResponse(content={"error": str(e)}, status_code=500)
 
 

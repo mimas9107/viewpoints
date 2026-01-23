@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的監視器牆</title>
-    
+
     <!-- Video.js for HLS streaming -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.23.4/video-js.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/video.js/8.23.4/video.min.js"></script>
 </head>
+
 <body>
     <div class="header">
         <h1 id="pageTitle">我的監視器牆</h1>
         <div class="controls">
+            <span class="user-info" id="userInfo" style="margin-right: 1rem; color: #94a3b8; font-size: 0.9rem;"></span>
             <span class="status" id="autoRefreshStatus">自動重新整理: 關閉</span>
             <button class="btn" id="refreshBtn">手動重新整理</button>
             <button class="btn" id="toggleAutoRefresh">啟用自動重新整理</button>
             <a href="picker.html" class="btn" style="text-decoration: none;">⚙️ 選取器</a>
             <a href="upload.html" class="btn" style="text-decoration: none;">📤 上傳</a>
+            <button class="btn btn-danger" id="logoutBtn"
+                style="background: rgba(239, 68, 68, 0.2); color: #f87171;">登出</button>
         </div>
     </div>
 
@@ -31,6 +36,26 @@
         <img class="fullscreen-image" id="fullscreenImage" src="" alt="全螢幕顯示">
     </div>
 
+    <script type="module">
+        import { getUsername, logout, checkAuth } from './js/auth.js';
+
+        // 頁面初始化時檢查認證
+        checkAuth();
+
+        // 顯示使用者名稱
+        const username = getUsername();
+        if (username) {
+            document.getElementById('userInfo').textContent = `使用者: ${username}`;
+        }
+
+        // 登出邏輯
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            if (confirm('確定要登出嗎？')) {
+                logout();
+            }
+        });
+    </script>
     <script type="module" src="js/app.js"></script>
 </body>
+
 </html>

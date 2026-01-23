@@ -1,8 +1,10 @@
+import { fetchWithAuth, checkAuth } from './auth.js';
+
 /**
  * 配置管理模組
  * 優先順序：
  * 1. URL 參數 ?configUrl=... (外部 URL)
- * 2. API 端點 /api/config (config-server.py)
+ * 2. API 端點 /api/config (start-server-fastapi.py)
  * 3. 本地檔案 ./viewpoints.json (fallback)
  */
 const CONFIG_API = '/api/config';
@@ -17,12 +19,16 @@ export async function fetchConfig() {
     }
 
     try {
-        const apiResponse = await fetch(CONFIG_API);
+        // 檢查認證狀態（除了載入外部配置外）
+        checkAuth();
+
+        const apiResponse = await fetchWithAuth(CONFIG_API);
         if (apiResponse.ok) {
             console.log('[Config] 使用 API 端點載入配置');
             return await apiResponse.json();
         }
     } catch (apiError) {
+        if (apiError.message === 'Unauthorized') return null;
         console.log('[Config] API 不可用，嘗試本地檔案');
     }
 
