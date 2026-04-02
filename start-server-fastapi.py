@@ -144,8 +144,7 @@ def create_access_token(data: dict):
 
 
 async def get_current_user(
-    token_header: Optional[str] = Depends(oauth2_scheme),
-    token: Optional[str] = None
+    token_header: Optional[str] = Depends(oauth2_scheme), token: Optional[str] = None
 ):
     # 如果 header 沒有 token，嘗試從 query params 獲取
     actual_token = token_header
@@ -176,9 +175,9 @@ class UserAuth(BaseModel):
 
 def create_backup(username: Optional[str] = None):
     BACKUP_DIR.mkdir(parents=True, exist_ok=True)
-    
+
     target_file = get_user_config_file(username) if username else CONFIG_FILE
-    
+
     if not target_file.exists():
         return
 
@@ -217,17 +216,31 @@ app.add_middleware(
 )
 
 
+# --- Health / Ping API (Keep-alive for free tier) ---
+
+
+@app.get("/api/ping")
+def ping():
+    return {"status": "ok", "ts": datetime.now().isoformat()}
+
+
+@app.get("/api/health")
+def health():
+    return {"status": "healthy", "service": "viewpoints"}
+
+
 # --- Auth API ---
+
 
 @app.post("/api/auth/register")
 def register(user: UserAuth):
     users = load_users()
     if user.username in users:
         raise HTTPException(status_code=400, detail="使用者名稱已存在")
-    
+
     users[user.username] = {
         "password": get_password_hash(user.password),
-        "created_at": datetime.now().isoformat()
+        "created_at": datetime.now().isoformat(),
     }
     save_users(users)
     return {"success": True, "message": "註冊成功"}
@@ -243,9 +256,13 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
             detail="帳號或密碼錯誤",
             headers={"WWW-Authenticate": "Bearer"},
         )
-    
+
     access_token = create_access_token(data={"sub": form_data.username})
-    return {"access_token": access_token, "token_type": "bearer", "username": form_data.username}
+    return {
+        "access_token": access_token,
+        "token_type": "bearer",
+        "username": form_data.username,
+    }
 
 
 @app.get("/api/auth/me")
@@ -265,7 +282,12 @@ def get_config(username: str = Depends(get_current_user)):
             if CONFIG_FILE.exists():
                 with open(CONFIG_FILE, "r", encoding="utf-8") as f:
                     return json.load(f)
-            return {"title": "我的監視器牆", "cameras": [], "autoRefresh": True, "refreshInterval": 60}
+            return {
+                "title": "我的監視器牆",
+                "cameras": [],
+                "autoRefresh": True,
+                "refreshInterval": 60,
+            }
 
         with open(user_config, "r", encoding="utf-8") as f:
             data = json.load(f)
