@@ -43,6 +43,11 @@
 
 ### Added
 
+- **Render.com 免費專案防休眠機制** (`start-server-fastapi.py`)
+  - 實作基於 `threading.Thread` 的容錯守護背景執行緒。
+  - 隨機間隔 7~11 分鐘自動對 `/api/health` 觸發網路請求以免服務休眠。
+  - 自動讀取 `RENDER_EXTERNAL_URL` 環變避免本地迴圈，精準控制月流量佔用於極低範圍。
+
 - **分類藍圖發現工具 (`scraper_blueprint.py`)**
   - 建立網站結構分析工具，自動發現所有監控點分類頁面
   - 支援三種頁面類型偵測：直接列表、按鈕型分頁、分區型分頁

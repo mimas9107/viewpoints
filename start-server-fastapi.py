@@ -218,6 +218,44 @@ app.add_middleware(
 
 # --- Health / Ping API (Keep-alive for free tier) ---
 
+import threading
+import time
+import random
+import urllib.request
+import urllib.error
+
+def keep_alive_task():
+    print("[Keep-Alive] 守護執行緒已啟動，首次元等待中...")
+    while True:
+        try:
+            # 隨機等待 7 到 11 分鐘 (420 ~ 660 秒)
+            sleep_time = random.uniform(420, 660)
+            time.sleep(sleep_time)
+            
+            # 取得基礎 URL，優先使用 Render 的外部網址配置
+            url = os.environ.get("RENDER_EXTERNAL_URL")
+            if not url:
+                url = f"http://localhost:{PORT}"
+                
+            ping_url = f"{url.rstrip('/')}/api/health"
+            
+            req = urllib.request.Request(
+                ping_url, 
+                headers={"User-Agent": "viewpoints-keep-alive-daemon/1.0"}
+            )
+            with urllib.request.urlopen(req, timeout=10) as response:
+                pass # 僅產生網路互動流量以維持清醒，無需處理回應內容
+        except urllib.error.URLError as e:
+            print(f"[Keep-Alive] 連線錯誤 ({ping_url}): {e}")
+        except Exception as e:
+            print(f"[Keep-Alive] 未預期錯誤: {e}")
+
+@app.on_event("startup")
+def startup_event():
+    daemon = threading.Thread(target=keep_alive_task, daemon=True, name="KeepAliveDaemon")
+    daemon.start()
+    print("[Keep-Alive] 已依需求啟動自保持清醒機制 (7~11分鐘間隔)")
+
 
 @app.get("/api/ping")
 def ping():
