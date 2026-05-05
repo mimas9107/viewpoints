@@ -349,10 +349,11 @@
                 </div>
 
                 <div class="export-section">
-                    <button class="export-btn" onclick="exportConfig()">📥 匯出設定</button>
+                    <button class="export-btn" onclick="exportConfig()">📥 匯出設定 (本地)</button>
                     <button class="save-btn" onclick="saveToServer()">☁️ 儲存到伺服器</button>
+                    <button class="export-btn" style="background: #6b7280;" onclick="downloadCurrentFromServer()">⬇️ 下載目前配置 (從伺服器)</button>
                     <button class="preview-btn" onclick="previewWall()">👁️ 預覽監控牆</button>
-                    <a href="index.html" class="back-btn">🏠 回傳監控牆</a>
+                    <a href="index.html" class="back-btn">🏠 回到監控牆</a>
                     <a href="upload.html" class="back-btn">📤 上傳配置</a>
                 </div>
             </div>
@@ -360,7 +361,7 @@
     </div>
 
     <script type="module">
-        import { fetchWithAuth, checkAuth } from './js/auth.js';
+        import { fetchWithAuth, checkAuth, getToken } from './js/auth.js';
 
         // 立即檢查認證
         checkAuth();
@@ -373,6 +374,7 @@
         window.clearAll = clearAll;
         window.exportConfig = exportConfig;
         window.saveToServer = saveToServer;
+        window.downloadCurrentFromServer = downloadCurrentFromServer;
         window.previewWall = previewWall;
         window.toggleCamera = toggleCamera;
         window.removeCamera = removeCamera;
@@ -607,11 +609,22 @@
                 }
             } catch (error) {
                 if (error.message === 'Unauthorized') return;
-                alert('❌ 網路錯誤: ' + error.message + '\n\n請確保伺服器已在 port 8844 執行。');
+                alert('❌ 網路錯誤: ' + error.message + '\n\n請確保伺服器已執行。');
             } finally {
                 saveBtn.textContent = originalText;
                 saveBtn.disabled = false;
             }
+        }
+
+        // 從伺服器下載目前配置
+        function downloadCurrentFromServer() {
+            const token = getToken();
+            if (!token) {
+                alert('請先登入');
+                window.location.href = 'login.html';
+                return;
+            }
+            window.location.href = `/api/config/download?token=${token}`;
         }
 
         // 預覽監控牆

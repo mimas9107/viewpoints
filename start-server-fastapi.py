@@ -18,7 +18,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import List, Optional
 
-from fastapi import FastAPI, HTTPException, Depends, status
+from fastapi import FastAPI, HTTPException, Depends, status, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
@@ -77,7 +77,7 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7 days
 
 pwd_context = CryptContext(schemes=["pbkdf2_sha256"], deprecated="auto")
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/auth/login", auto_error=False)
 
 
 class Camera(BaseModel):
@@ -144,7 +144,8 @@ def create_access_token(data: dict):
 
 
 async def get_current_user(
-    token_header: Optional[str] = Depends(oauth2_scheme), token: Optional[str] = None
+    token_header: Optional[str] = Depends(oauth2_scheme), 
+    token: Optional[str] = Query(None)
 ):
     # 如果 header 沒有 token，嘗試從 query params 獲取
     actual_token = token_header

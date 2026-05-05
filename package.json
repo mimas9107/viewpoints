@@ -1,6 +1,6 @@
 {
   "name": "viewpoints",
-  "version": "1.0.0",
+  "version": "2.2.1",
   "description": "基于 tw.live 的客制化监视器墙系统，可通过 JSON 配置文件轻松管理您关注的监控点。",
   "main": "start-server.js",
   "scripts": {

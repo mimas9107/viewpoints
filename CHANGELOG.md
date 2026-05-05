@@ -7,41 +7,27 @@
 
 ---
 
-## [2.1.0] - 2026-01-23
-
-### Added
-
-- **使用者權限與個人化監視牆**
-  - 實作基於 JWT 的認證系統 (FastAPI + python-jose)。
-  - 新增現代化登入頁面 (`login.html`)，採用 Glassmorphism 設計。
-  - 支援使用者註冊、登入與登出功能。
-  - 實作使用者獨立配置檔案 (`viewpoints_<username>.json`)。
-  - 新增受保護的 API 路由，確保配置數據安全與隔離。
-  - 認證模組封裝 (`js/auth.js`)，支援 Token 管理與請求攔截。
-
-### Changed
-
-- **統一伺服器升級 (`start-server-fastapi.py`)**
-  - 整合 JWT 驗證與使用者管理邏輯。
-  - 配置 API 路由現在支援使用者隔離儲存與備份。
-  - 支援透過 URL 參數或 Authorization Header 進行認證。
-
-- **前端頁面整合**
-  - `index.html`：新增使用者資訊顯示與登出按鈕，加入登入狀態檢查。
-  - `picker.html` & `upload.html`：整合 API 認證邏輯與 ES 模組化。
-  - `js/config.js`：更新配置載入邏輯以配合認證機制。
+## [2.2.1] - 2026-05-05
 
 ### Fixed
 
-- **安全與穩定性**
-  - 修復密碼雜湊方案相容性問題（使用 `pbkdf2_sha256`）。
-  - 修復下載 API 在瀏覽器環境下的認證傳遞問題。
+- **下載 API 認證修復 (`start-server-fastapi.py`)**
+  - 修復 `/api/config/download` 在使用 URL `token` 參數時仍回傳 401 Unauthorized 的問題。
+  - 調整 `OAuth2PasswordBearer` 為非強制報錯模式，允許正確回退至 Query 參數驗證。
+- **環境依賴修復**
+  - 在 `pyproject.toml` 中補齊缺失的 `python-jose` 與 `passlib` 依賴。
+  - 更新 `uv.lock` 確保開發環境一致性。
 
 ---
 
-## [Unreleased] - 技術重點整理與修復
+## [2.2.0] - 2026-05-05
 
 ### Added
+
+- **選擇器下載功能 (`picker.html`)**
+  - 在監視器選擇器中新增「下載目前配置 (從伺服器)」按鈕。
+  - 支援使用者直接從前端下載儲存在伺服器上的個人化組態檔。
+  - 整合 JWT Token 認證至下載請求中。
 
 - **Render.com 免費專案防休眠機制** (`start-server-fastapi.py`)
   - 實作基於 `threading.Thread` 的容錯守護背景執行緒。
@@ -124,6 +110,38 @@
 
 - 更新技術重點整理文檔
 - 新增 scraper.py 版本號管理
+
+---
+
+## [2.1.0] - 2026-01-23
+
+### Added
+
+- **使用者權限與個人化監視牆**
+  - 實作基於 JWT 的認證系統 (FastAPI + python-jose)。
+  - 新增現代化登入頁面 (`login.html`)，採用 Glassmorphism 設計。
+  - 支援使用者註冊、登入與登出功能。
+  - 實作使用者獨立配置檔案 (`viewpoints_<username>.json`)。
+  - 新增受保護的 API 路由，確保配置數據安全與隔離。
+  - 認證模組封裝 (`js/auth.js`)，支援 Token 管理與請求攔截。
+
+### Changed
+
+- **統一伺服器升級 (`start-server-fastapi.py`)**
+  - 整合 JWT 驗證與使用者管理邏輯。
+  - 配置 API 路由現在支援使用者隔離儲存與備份。
+  - 支援透過 URL 參數 or Authorization Header 進行認證。
+
+- **前端頁面整合**
+  - `index.html`：新增使用者資訊顯示與登出按鈕，加入登入狀態檢查。
+  - `picker.html` & `upload.html`：整合 API 認證邏輯與 ES 模組化。
+  - `js/config.js`：更新配置載入邏輯以配合認證機制。
+
+### Fixed
+
+- **安全與穩定性**
+  - 修復密碼雜湊方案相容性問題（使用 `pbkdf2_sha256`）。
+  - 修復下載 API 在瀏覽器環境下的認證傳遞問題。
 
 ---
 
