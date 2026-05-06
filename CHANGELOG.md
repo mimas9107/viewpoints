@@ -2,9 +2,9 @@
 name:          "CHANGELOG.md"
 description:   "變更紀錄文件"
 created_date:  "2026/05/01 10:00:00"
-modified_date: "2026/05/07 10:00:00"
-project_version: "2.2.2"
-document_version: "1.0.1"
+modified_date: "2026/05/07 11:00:00"
+project_version: "2.2.3"
+document_version: "1.0.2"
 agent_sign: ['AI Agent Framework', 'gemini cli/mimas']
 ----
 # Changelog
@@ -13,6 +13,17 @@ agent_sign: ['AI Agent Framework', 'gemini cli/mimas']
 
 格式基於 [Keep a Changelog](https://keepachangelog.com/zh-TW/1.0.0/)，
 版本號遵循 [Semantic Versioning](https://semver.org/zh-TW/)。
+
+---
+
+## [2.2.3] - 2026-05-07
+
+### Fixed
+- **手機端佈局徹底重構**
+  - 強制手機端所有網格配置為單欄 (1-column)，解決 JS 動態類別覆蓋回應式樣式的問題。
+  - 徹底移除手機端 `body` 捲動限制，修正無法向下查看更多監視器的錯誤。
+  - 強化控制列不換行邏輯 (`flex-wrap: nowrap`)，解決按鈕文字垂直擠壓問題。
+  - 將電腦版專用樣式隔離至獨立媒體查詢，確保手機端渲染純淨性。
 
 ---
 

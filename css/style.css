@@ -4,11 +4,14 @@
     box-sizing: border-box;
 }
 
-body {
+/* 全域設定：預設允許捲動，這對手機端最安全 */
+html, body {
     background-color: #1a1a1b;
     color: #ffffff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
     min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .header {
@@ -20,6 +23,9 @@ body {
     align-items: center;
     flex-wrap: wrap;
     gap: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .header h1 {
@@ -43,7 +49,8 @@ body {
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.2s;
-    white-space: nowrap;
+    white-space: nowrap; /* 強制文字不換行 */
+    display: inline-block;
 }
 
 .btn:hover {
@@ -67,34 +74,120 @@ body {
     display: grid;
     gap: 10px;
     padding: 10px;
-    height: calc(100vh - 70px);
+    width: 100%;
 }
 
-.camera-grid.grid-2x2 {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+/* 電腦版專屬樣式 (769px 以上) */
+@media (min-width: 769px) {
+    body {
+        overflow: hidden; /* 電腦版固定畫面 */
+    }
+
+    .camera-grid {
+        height: calc(100vh - 70px);
+    }
+
+    .camera-grid.grid-2x2 {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .camera-grid.grid-2x3 {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    .camera-grid.grid-3x2 {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+
+    .camera-grid.grid-3x3 {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+    .camera-grid.grid-4x3 {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
 }
 
-.camera-grid.grid-2x3 {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+/* 手機版專屬樣式 (768px 以下) */
+@media (max-width: 768px) {
+    html, body {
+        overflow-y: auto !important;
+        height: auto !important;
+        position: relative;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    .controls {
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap !important; /* 強制不換行 */
+        padding: 5px 0 10px 0;
+        -webkit-overflow-scrolling: touch;
+        gap: 8px;
+        scrollbar-width: thin;
+        scrollbar-color: #0066cc #2d2d2e;
+    }
+
+    .controls::-webkit-scrollbar {
+        height: 4px;
+        display: block;
+    }
+
+    .controls::-webkit-scrollbar-thumb {
+        background: #0066cc;
+        border-radius: 10px;
+    }
+
+    /* 強制所有網格配置在手機端都變回單欄，防止 JS 注入的 class 影響 */
+    .camera-grid,
+    .camera-grid.grid-2x2,
+    .camera-grid.grid-2x3,
+    .camera-grid.grid-3x2,
+    .camera-grid.grid-3x3,
+    .camera-grid.grid-4x3 {
+        grid-template-columns: 1fr !important; 
+        grid-template-rows: auto !important;
+        height: auto !important;
+        padding: 8px;
+        gap: 15px;
+        display: grid !important;
+    }
+
+    .camera-item {
+        min-height: auto;
+        aspect-ratio: 16 / 11;
+    }
+
+    .camera-image-container {
+        aspect-ratio: 16 / 9;
+        flex: none;
+        height: auto;
+    }
+    
+    .header h1 {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .btn {
+        padding: 6px 12px;
+        font-size: 13px;
+        flex-shrink: 0;
+    }
 }
 
-.camera-grid.grid-3x2 {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-}
-
-.camera-grid.grid-3x3 {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-}
-
-.camera-grid.grid-4x3 {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-}
-
+/* 其它通用組件 */
 .camera-item {
     background-color: #2d2d2e;
     border-radius: 8px;
@@ -271,68 +364,4 @@ body {
 
 .close-fullscreen:hover {
     background-color: rgba(255, 255, 255, 0.3);
-}
-
-@media (min-width: 769px) {
-    body {
-        overflow: hidden;
-    }
-}
-
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px;
-    }
-
-    .controls {
-        width: 100%;
-        justify-content: flex-start;
-        overflow-x: auto;
-        padding: 5px 0 10px 0;
-        -webkit-overflow-scrolling: touch;
-        display: flex;
-        gap: 8px;
-        scrollbar-width: thin;
-        scrollbar-color: #0066cc #2d2d2e;
-    }
-
-    .controls::-webkit-scrollbar {
-        height: 4px;
-        display: block;
-    }
-
-    .controls::-webkit-scrollbar-track {
-        background: #2d2d2e;
-        border-radius: 10px;
-    }
-
-    .controls::-webkit-scrollbar-thumb {
-        background: #0066cc;
-        border-radius: 10px;
-    }
-
-    /* 添加捲動指示漸層 */
-    .header {
-        position: relative;
-    }
-
-    .header::after {
-        content: '';
-        position: absolute;
-        right: 0;
-        bottom: 10px;
-        width: 30px;
-        height: 40px;
-        background: linear-gradient(to right, transparent, #2d2d2e);
-        pointer-events: none;
-    }
-
-    .btn {
-        padding: 6px 12px;
-        font-size: 13px;
-        flex-shrink: 0; /* 防止按鈕被壓縮 */
-        white-space: nowrap; /* 強制文字不換行 */
-    }
 }
