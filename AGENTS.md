@@ -26,9 +26,9 @@ Viewpoints 是一個基於資料驅動的「即時影像聚合網頁應用」。
 - `start-server.js`: 雙模伺服器 (HTTP + MCP)。[ v1.x.y版本 ]
 - `.env`: 環境變數設定檔。
 - `.backups/`: 自動備份目錄。
-- `scraper.py`: 主要爬蟲程式，使用預定義的分類列表進行抓取成"全域資料庫"用途。`v2.2.1`
-- `scraper2.py`: 使用分類藍圖進行測試抓取成測試資料庫比對用途，須與scraper_blueprint.py搭配使用。`v2.2.1`
-- `scraper_blueprint.py`: 分類發現工具，遍歷全站並收集所有監控點分類頁面。`v2.2.1`
+- `scraper.py`: 主要爬蟲程式，使用預定義的分類列表進行抓取成"全域資料庫"用途。`v2.2.2`
+- `scraper2.py`: 使用分類藍圖進行測試抓取成測試資料庫比對用途，須與scraper_blueprint.py搭配使用。`v2.2.2`
+- `scraper_blueprint.py`: 分類發現工具，遍歷全站並收集所有監控點分類頁面。`v2.2.2`
 - `SCRAPER.md`: 爬蟲使用指南，包含技術重點整理、方法文件、故障排除指南。
 
 ### 3. 核心元件
@@ -65,7 +65,7 @@ Viewpoints 是一個基於資料驅動的「即時影像聚合網頁應用」。
 
 ---
 
-## 📜 資料格式規範 (Strict Schema v2.2.1)
+## 📜 資料格式規範 (Strict Schema v2.2.2)
 
 為避免出現 `undefined` 或 404 錯誤，所有監控點必須符合以下格式：
 
@@ -82,7 +82,7 @@ Viewpoints 是一個基於資料驅動的「即時影像聚合網頁應用」。
 }
 ```
 
-**v2.2.1 更新**：
+**v2.2.2 更新**：
 - `imageUrl` 現在移除 `/snapshot` 參數以實現自動更新
 - 使用動態圖片端點（如 `https://tcnvr8.taichung.gov.tw/c0415ae1`）
 - 確保圖片會定期更新而不需要手動刷新
@@ -111,7 +111,7 @@ Viewpoints 是一個基於資料驅動的「即時影像聚合網頁應用」。
 }
 ```
 
-**v2.2.1 更新**：
+**v2.2.2 更新**：
 - 支援三種 HLS 來源格式：
   - `<source type="application/x-mpegURL">` 標籤
   - `<iframe src="...live.m3u8">` 元素
@@ -203,7 +203,7 @@ python3 -m json.tool viewpoints.json
 - [ ] `QUICKSTART.md` - 更新快速開始指令
 - [ ] `PICKER_USAGE.md` - 更新選擇器操作說明（如有變更）
 - [ ] `UPLOAD_USAGE.md` - 更新上傳介面說明（如有變更）
-- [x] `SCRAPER.md` - 更新爬蟲使用指南（新增 v2.2.1 技術重點整理）
+- [x] `SCRAPER.md` - 更新爬蟲使用指南（新增 v2.2.2 技術重點整理）
 
 ### 文件更新原則
 
@@ -250,7 +250,7 @@ python3 -m json.tool viewpoints.json
 
 ## 📈 爬蟲技術重點 (Scraper Highlights)
 
-### v2.2.1 修復內容
+### v2.2.2 修復內容
 
 1. **分類藍圖系統 (`scraper_blueprint.py`)**
    - 自動發現所有監控點分類頁面
@@ -259,7 +259,7 @@ python3 -m json.tool viewpoints.json
    - 產生 `scraper_blueprint.json` 分類藍圖
 
 2. **爬蟲架構重構與修復 (`scraper.py`)**
-   - 新增版本號管理，與主程式版本同步 (v2.2.1)
+   - 新增版本號管理，與主程式版本同步 (v2.2.2)
    - 改進 HLS 串流提取邏輯，支援多種來源格式
    - 修復動態圖片 URL 處理，移除 `/snapshot` 參數實現自動更新
    - 支援三種監控點類型：image（動態）、hls（串流）、youtube（直播）
@@ -302,11 +302,11 @@ python3 -m json.tool viewpoints.json
 - [ ] **視覺警報**: 透過 MCP 定時截圖並在車流量過大時發出通知。
 ---
 
-**版本**: 2.2.1
+**版本**: 2.2.2
 **最後更新**: 2026-05-05
 **維護者**: AI Agent Framework
 
-**v2.2.1 更新內容**：
+**v2.2.2 更新內容**：
 - 爬蟲系統重構與修復
 - 新增分類藍圖發現與測試工具
 - 改進 HLS 串流提取邏輯

@@ -75,6 +75,43 @@
             flex-wrap: wrap;
         }
 
+        @media (max-width: 768px) {
+            .filter-tabs {
+                display: grid;
+                grid-template-rows: repeat(3, auto);
+                grid-auto-flow: column;
+                grid-auto-columns: max-content;
+                gap: 8px;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+                scrollbar-color: #0066cc #2d2d2e;
+            }
+            
+            .filter-tabs::-webkit-scrollbar {
+                height: 4px;
+                display: block;
+            }
+
+            .filter-tabs::-webkit-scrollbar-track {
+                background: #2d2d2e;
+                border-radius: 10px;
+            }
+
+            .filter-tabs::-webkit-scrollbar-thumb {
+                background: #0066cc;
+                border-radius: 10px;
+            }
+            
+            .filter-tab {
+                white-space: nowrap;
+                margin: 0;
+                text-align: center;
+                padding: 6px 12px;
+            }
+        }
+
         .filter-tab {
             padding: 8px 16px;
             background: #4a4a4b;
@@ -107,6 +144,12 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             max-height: 600px;
             overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+            .camera-list {
+                max-height: 400px;
+            }
         }
 
         .camera-item {
@@ -174,6 +217,12 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             max-height: 600px;
             overflow-y: auto;
+        }
+
+        @media (max-width: 768px) {
+            .selected-panel {
+                max-height: 300px;
+            }
         }
 
         .selected-header {

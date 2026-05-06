@@ -1,6 +1,6 @@
 [project]
 name = "viewpoints"
-version = "2.2.1"
+version = "2.2.2"
 description = "監視器牆 - 個人化 CCTV 監控面板"
 readme = "README.md"
 requires-python = ">=3.13"

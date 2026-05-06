@@ -39,14 +39,14 @@ export function updateRefreshStatus(enabled, interval) {
     const btnEl = document.getElementById('toggleAutoRefresh');
     
     if (enabled) {
-        statusEl.textContent = `自動重新整理: 開啟 (${interval}秒)`;
+        statusEl.textContent = `🔄 狀態: 開啟 (${interval}s)`;
         statusEl.classList.add('live');
-        btnEl.textContent = '停止自動重新整理';
+        btnEl.textContent = '⏹️ 停止更新';
         btnEl.classList.add('active');
     } else {
-        statusEl.textContent = '自動重新整理: 關閉';
+        statusEl.textContent = '🔄 狀態: 關閉';
         statusEl.classList.remove('live');
-        btnEl.textContent = '啟用自動重新整理';
+        btnEl.textContent = '⏱️ 自動更新';
         btnEl.classList.remove('active');
     }
 }

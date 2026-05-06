@@ -1,9 +1,34 @@
+----
+name:          "CHANGELOG.md"
+description:   "變更紀錄文件"
+created_date:  "2026/05/01 10:00:00"
+modified_date: "2026/05/07 10:00:00"
+project_version: "2.2.2"
+document_version: "1.0.1"
+agent_sign: ['AI Agent Framework', 'gemini cli/mimas']
+----
 # Changelog
 
 所有重要的變更都會記錄在此檔案中。
 
 格式基於 [Keep a Changelog](https://keepachangelog.com/zh-TW/1.0.0/)，
 版本號遵循 [Semantic Versioning](https://semver.org/zh-TW/)。
+
+---
+
+## [2.2.2] - 2026-05-07
+
+### Added
+- **手機端體驗優化 (Mobile UX)**
+  - 監視牆手機端單欄滿版佈局，提升影像觀看寬度與清晰度。
+  - 選取器分類標籤支援手機端 3 行水平捲動，提升在眾多分類中的搜尋效率。
+  - 手機端標頭按鈕精簡化（Emoji + 關鍵字），防止在窄螢幕下文字擠壓垂直排列。
+  - 針對水平捲動區域（控制列、分類標籤）加入美化捲軸提示，支援跨瀏覽器顯示。
+
+### Fixed
+- **回應式佈局修復**
+  - 修正手機端 `body` 誤設 `overflow: hidden` 導致監視牆無法向下捲動的問題。
+  - 修正登入頁面與上傳頁面在小螢幕或橫向模式下內容被裁切的問題。
 
 ---
 
