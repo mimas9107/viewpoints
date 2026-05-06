@@ -2,9 +2,9 @@
 name:          "CHANGELOG.md"
 description:   "變更紀錄文件"
 created_date:  "2026/05/01 10:00:00"
-modified_date: "2026/05/07 11:00:00"
-project_version: "2.2.3"
-document_version: "1.0.2"
+modified_date: "2026/05/07 12:00:00"
+project_version: "2.2.4"
+document_version: "1.0.3"
 agent_sign: ['AI Agent Framework', 'gemini cli/mimas']
 ----
 # Changelog
@@ -13,6 +13,18 @@ agent_sign: ['AI Agent Framework', 'gemini cli/mimas']
 
 格式基於 [Keep a Changelog](https://keepachangelog.com/zh-TW/1.0.0/)，
 版本號遵循 [Semantic Versioning](https://semver.org/zh-TW/)。
+
+---
+
+## [2.2.4] - 2026-05-07
+
+### Fixed
+- **行動優先 (Mobile First) 重構**
+  - 將 CSS 邏輯改為行動優先，預設強制單欄佈局與垂直捲動。
+  - 將所有格狀佈局類別封裝於 `1025px` 以上媒體查詢，確保手機端絕對不觸發格狀佈局。
+  - 為 CSS 連結加入快取刷新標記 (`?v=2.2.4`)，解決手機瀏覽器載入舊樣式的問題。
+  - 強化按鈕防擠壓邏輯，加入 `min-width: max-content` 與 `flex: 0 0 auto`。
+  - 修正手機端標頭排列，採用垂直堆疊標題與滑動按鈕列以獲得最大寬度。
 
 ---
 

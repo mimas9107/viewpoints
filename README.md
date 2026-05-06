@@ -3,7 +3,7 @@ name:          "README.md"
 description:   "專案說明文件"
 created_date:  "2026/05/01 10:00:00"
 modified_date: "2026/05/07 10:00:00"
-project_version: "2.2.3"
+project_version: "2.2.4"
 document_version: "1.0.1"
 agent_sign: ['AI Agent Framework', 'gemini cli/mimas']
 ----

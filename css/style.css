@@ -1,56 +1,82 @@
+/* 
+   Viewpoints v2.2.4
+   CSS 重構：行動優先 (Mobile First)
+*/
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* 全域設定：預設允許捲動，這對手機端最安全 */
+/* --- 全域與手機預設樣式 --- */
 html, body {
     background-color: #1a1a1b;
     color: #ffffff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", sans-serif;
     min-height: 100vh;
+    /* 預設允許捲動，手機端絕對必須 */
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: auto !important; 
+    height: auto !important;
 }
 
 .header {
     background-color: #2d2d2e;
-    padding: 15px 20px;
+    padding: 12px 15px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
+    flex-direction: column; /* 手機端標題與按鈕垂直排列 */
+    align-items: flex-start;
+    gap: 10px;
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
 .header h1 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
 }
 
 .controls {
     display: flex;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
-    flex-wrap: wrap;
+    width: 100%;
+    overflow-x: auto; /* 手機端按鈕水平滑動 */
+    flex-wrap: nowrap !important; /* 絕對不換行 */
+    padding-bottom: 5px;
+    -webkit-overflow-scrolling: touch;
+    
+    /* 捲軸美化 */
+    scrollbar-width: thin;
+    scrollbar-color: #0066cc #2d2d2e;
+}
+
+.controls::-webkit-scrollbar {
+    height: 3px;
+    display: block;
+}
+
+.controls::-webkit-scrollbar-thumb {
+    background: #0066cc;
+    border-radius: 10px;
 }
 
 .btn {
     background-color: #4a4a4b;
     border: none;
     color: white;
-    padding: 8px 16px;
+    padding: 6px 12px;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 13px;
     transition: background-color 0.2s;
-    white-space: nowrap; /* 強制文字不換行 */
+    white-space: nowrap !important; /* 文字絕對不換行 */
+    flex: 0 0 auto; /* 防止按鈕寬度被壓縮 */
     display: inline-block;
+    min-width: max-content;
 }
 
 .btn:hover {
@@ -62,31 +88,74 @@ html, body {
 }
 
 .status {
-    font-size: 12px;
+    font-size: 11px;
     color: #888;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .status.live {
     color: #00ff00;
 }
 
+/* 監視器網格：手機端預設單欄 */
 .camera-grid {
-    display: grid;
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     padding: 10px;
     width: 100%;
+    height: auto !important;
 }
 
-/* 電腦版專屬樣式 (769px 以上) */
-@media (min-width: 769px) {
+.camera-item {
+    background-color: #2d2d2e;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 11; /* 保持良好比例 */
+}
+
+/* --- 電腦版與寬螢幕優化 (1025px 以上) --- */
+@media (min-width: 1025px) {
     body {
-        overflow: hidden; /* 電腦版固定畫面 */
+        overflow: hidden; /* 電腦版固定畫面不捲動 */
+    }
+
+    .header {
+        flex-direction: row; /* 恢復水平排列 */
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .controls {
+        width: auto;
+        overflow-x: visible;
+        flex-wrap: wrap;
+        padding-bottom: 0;
+    }
+
+    .btn {
+        padding: 8px 16px;
+        font-size: 14px;
     }
 
     .camera-grid {
-        height: calc(100vh - 70px);
+        display: grid;
+        height: calc(100vh - 75px);
+        overflow: hidden;
     }
 
+    /* 只有在寬螢幕下才啟用這些網格配置 */
     .camera-grid.grid-2x2 {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
@@ -111,93 +180,14 @@ html, body {
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(3, 1fr);
     }
-}
-
-/* 手機版專屬樣式 (768px 以下) */
-@media (max-width: 768px) {
-    html, body {
-        overflow-y: auto !important;
-        height: auto !important;
-        position: relative;
-    }
-
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px;
-    }
-
-    .controls {
-        width: 100%;
-        justify-content: flex-start;
-        overflow-x: auto;
-        flex-wrap: nowrap !important; /* 強制不換行 */
-        padding: 5px 0 10px 0;
-        -webkit-overflow-scrolling: touch;
-        gap: 8px;
-        scrollbar-width: thin;
-        scrollbar-color: #0066cc #2d2d2e;
-    }
-
-    .controls::-webkit-scrollbar {
-        height: 4px;
-        display: block;
-    }
-
-    .controls::-webkit-scrollbar-thumb {
-        background: #0066cc;
-        border-radius: 10px;
-    }
-
-    /* 強制所有網格配置在手機端都變回單欄，防止 JS 注入的 class 影響 */
-    .camera-grid,
-    .camera-grid.grid-2x2,
-    .camera-grid.grid-2x3,
-    .camera-grid.grid-3x2,
-    .camera-grid.grid-3x3,
-    .camera-grid.grid-4x3 {
-        grid-template-columns: 1fr !important; 
-        grid-template-rows: auto !important;
-        height: auto !important;
-        padding: 8px;
-        gap: 15px;
-        display: grid !important;
-    }
-
-    .camera-item {
-        min-height: auto;
-        aspect-ratio: 16 / 11;
-    }
-
-    .camera-image-container {
-        aspect-ratio: 16 / 9;
-        flex: none;
-        height: auto;
-    }
     
-    .header h1 {
-        font-size: 20px;
-        margin-bottom: 5px;
-    }
-
-    .btn {
-        padding: 6px 12px;
-        font-size: 13px;
-        flex-shrink: 0;
+    .camera-item {
+        width: auto;
+        aspect-ratio: auto; /* 讓 Grid 決定大小 */
     }
 }
 
-/* 其它通用組件 */
-.camera-item {
-    background-color: #2d2d2e;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
-
+/* --- 通用組件樣式 --- */
 .camera-header {
     padding: 10px 15px;
     background-color: #3a3a3b;
@@ -208,6 +198,9 @@ html, body {
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .camera-info {
@@ -237,6 +230,7 @@ html, body {
     background-color: #1a1a1b;
     position: relative;
     overflow: hidden;
+    aspect-ratio: 16 / 9;
 }
 
 .camera-image {
@@ -257,11 +251,10 @@ html, body {
     border: none;
 }
 
-.youtube-badge {
+.youtube-badge, .hls-badge {
     position: absolute;
     top: 8px;
     left: 8px;
-    background-color: rgba(255, 0, 0, 0.8);
     color: white;
     padding: 4px 8px;
     border-radius: 3px;
@@ -270,45 +263,12 @@ html, body {
     z-index: 10;
 }
 
-.hls-badge {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    background-color: rgba(0, 153, 255, 0.8);
-    color: white;
-    padding: 4px 8px;
-    border-radius: 3px;
-    font-size: 11px;
-    font-weight: bold;
-    z-index: 10;
-}
+.youtube-badge { background-color: rgba(255, 0, 0, 0.8); }
+.hls-badge { background-color: rgba(0, 153, 255, 0.8); }
 
 .video-js {
     width: 100%;
     height: 100%;
-}
-
-.video-js .vjs-tech {
-    object-fit: contain;
-}
-
-.loading {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #666;
-    font-size: 14px;
-}
-
-.error {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #ff4444;
-    font-size: 14px;
-    text-align: center;
 }
 
 .last-update {
@@ -335,15 +295,7 @@ html, body {
     align-items: center;
 }
 
-.fullscreen-overlay.active {
-    display: flex;
-}
-
-.fullscreen-image {
-    max-width: 95%;
-    max-height: 95%;
-    object-fit: contain;
-}
+.fullscreen-overlay.active { display: flex; }
 
 .close-fullscreen {
     position: absolute;
@@ -360,8 +312,4 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.close-fullscreen:hover {
-    background-color: rgba(255, 255, 255, 0.3);
 }
