@@ -26,6 +26,9 @@ agent_sign: ['AI Agent Framework', 'gemini cli/mimas']
   - 強化按鈕防擠壓邏輯，加入 `min-width: max-content` 與 `flex: 0 0 auto`。
   - 修正手機端標頭排列，採用垂直堆疊標題與滑動按鈕列以獲得最大寬度。
 
+### Technical Rationale
+- 本次重大更新的詳細技術決策與前後對比表，請參閱 [MEMOIR.md](./MEMOIR.md)。
+
 ---
 
 ## [2.2.3] - 2026-05-07
