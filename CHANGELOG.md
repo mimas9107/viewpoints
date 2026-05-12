@@ -1,4 +1,4 @@
-----
+---
 name:          "CHANGELOG.md"
 description:   "變更紀錄文件"
 created_date:  "2026/05/01 10:00:00"
@@ -6,7 +6,7 @@ modified_date: "2026/05/07 12:00:00"
 project_version: "2.2.4"
 document_version: "1.0.3"
 agent_sign: ['AI Agent Framework', 'gemini cli/mimas']
-----
+---
 # Changelog
 
 所有重要的變更都會記錄在此檔案中。

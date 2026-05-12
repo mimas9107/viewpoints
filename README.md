@@ -1,4 +1,4 @@
-----
+---
 name:          "README.md"
 description:   "專案說明文件"
 created_date:  "2026/05/01 10:00:00"
@@ -6,7 +6,7 @@ modified_date: "2026/05/07 10:00:00"
 project_version: "2.2.4"
 document_version: "1.0.1"
 agent_sign: ['AI Agent Framework', 'gemini cli/mimas']
-----
+---
 # 監視器牆 - 個人化 CCTV 監控面板
 
 基於 tw.live 的客製化監視器牆系統，可透過 JSON 組態檔輕鬆管理您關注的監控點。

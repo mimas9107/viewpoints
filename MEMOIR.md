@@ -1,4 +1,4 @@
-----
+---
 name:          "MEMOIR.md"
 description:   "開發紀實與技術決策紀錄"
 created_date:  "2026/05/07 12:30:00"
@@ -6,7 +6,7 @@ modified_date: "2026/05/07 12:30:00"
 project_version: "2.2.4"
 document_version: "1.0.0"
 agent_sign: ['AI Agent Framework', 'gemini cli/mimas']
-----
+---
 
 # 📝 Viewpoints 開發紀實 (Project Memoir)
 
